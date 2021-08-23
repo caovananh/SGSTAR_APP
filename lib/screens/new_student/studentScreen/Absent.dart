@@ -35,7 +35,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
               child: Container(
                 width: double.infinity,
                 child: new Text(
-                  "ABSENT123",
+                  "ABSENT",
                   style: new TextStyle(
                     color: Color(0Xff13438f),
                     fontWeight: FontWeight.w600,
