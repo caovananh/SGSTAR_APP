@@ -10,7 +10,7 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
-  bool _checkbox = false;
+
   String name;
 
   void initState() {
@@ -28,7 +28,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      
       appBar: AppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -53,33 +53,68 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 padding: new EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                border: Border(
+                    
+                    bottom: BorderSide( //                    <--- top side
+                      color: Color(0xff7cd3f7),
+                      width: 2.0,
+                    ),
+                  ),
+                  
+                ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('album name'.toUpperCase(),
+                      style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700)),
+                      Text('1',style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700))
+                    ],
+                ),
+              ),
+            ),
+ 
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Image.asset('assets/images/pic4.png')
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Center(
                 child: CarouselSlider(
-                  options: CarouselOptions(
-                    enableInfiniteScroll: true,
-                    enlargeCenterPage: false,
-                    autoPlay: false,
-                  ),
-                  items: imageList
-                      .map((e) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Stack(
-                                fit: StackFit.expand,
-                                children: [
-                                  Image.network(e,
-                                      width: 100,
-                                      height: 350,
-                                      fit: BoxFit.cover)
-                                ],
-                              ),
-                            ),
-                          ))
-                      .toList(),
-                ),
+                    options: CarouselOptions(
+                      enableInfiniteScroll: true,
+                      height: 140,
+                    
+                      viewportFraction: 0.7,
+                      enlargeCenterPage: false,
+                      autoPlay: false,
+                    ),
+                    items: imageList.map((e) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              Image.network(e,
+                              
+                              fit: BoxFit.cover)
+                            ],
+                        ),
+                        
+                      ),
+                    )).toList(),
+                    ),
               ),
             )
           ],

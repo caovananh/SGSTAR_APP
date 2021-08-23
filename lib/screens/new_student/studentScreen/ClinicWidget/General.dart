@@ -20,28 +20,33 @@ class _GeneralInfoState extends State<GeneralInfo> {
         Text("MEDICAL INSURANCE INFORMATION",style: TextStyle(fontSize: 16,color: Color(0Xff13438f),fontWeight: FontWeight.w800),),
         Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                children: [
-                  Container(width: 150, child: Text('Medical Insurance')),
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
-                  ),
-                  Text('Yes'),
-                  Checkbox(
-                    value: _checkbox1,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox1 = !_checkbox1;
-                      });
-                    },
-                  ),
-                  Text('No'),
-                ],
+              child: Theme(
+                data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                child: Row(
+                  children: [
+                    Container(width: 150, child: Text('Medical Insurance')),
+                    Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
+                    Text('Yes'),
+                    Checkbox(
+                      value: _checkbox1,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox1 = !_checkbox1;
+                        });
+                      },
+                    ),
+                    Text('No'),
+                  ],
+                ),
               ),
             ),
 
@@ -87,13 +92,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -107,13 +117,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               padding: const EdgeInsets.only(left: 30),
               child: Row(
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Text('PARACETAMOL (eg. tylenol and Panadol)' )),
                   
@@ -125,13 +140,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               padding: const EdgeInsets.only(left: 30),
               child: Row(
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Text('IBUBROFEN' )),
                   
@@ -143,13 +163,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               padding: const EdgeInsets.only(left: 30),
               child: Row(
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Text('THROAT LOZENGES' )),
                   
@@ -162,13 +187,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -183,13 +213,18 @@ class _GeneralInfoState extends State<GeneralInfo> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: _checkbox,
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
-                    },
+                  Theme(
+                    data: ThemeData(
+                       unselectedWidgetColor: Color(0xff7cd3f7), 
+                     ),
+                    child: Checkbox(
+                      value: _checkbox,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkbox = !_checkbox;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(child: Padding(
                     padding: const EdgeInsets.only(top: 15),

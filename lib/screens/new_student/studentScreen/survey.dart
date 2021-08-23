@@ -281,6 +281,7 @@ class _SurveyScreenState extends State<SurveyScreen>
                     padding: const EdgeInsets.only(
                         left: 100, right: 100, bottom: 10),
                     child: ElevatedButton(
+                      
                       onPressed: () {},
                       child: Text(
                         'survey link'.toUpperCase(),
@@ -288,6 +289,7 @@ class _SurveyScreenState extends State<SurveyScreen>
                             fontSize: 16, fontWeight: FontWeight.w800),
                       ),
                       style: ElevatedButton.styleFrom(
+                        primary: Color(0xff7cd3f7),
                         fixedSize: Size(50, 20),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6), // <-- Radius
