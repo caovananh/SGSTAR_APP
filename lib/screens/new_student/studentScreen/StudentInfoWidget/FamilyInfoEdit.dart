@@ -219,7 +219,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Full name"),
+                    hintText: "Full name"),
               ),
             ),
             Padding(
@@ -241,7 +241,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Nationality"),
+                    hintText: "Nationality"),
               ),
             ),
             Padding(
@@ -263,7 +263,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Occupation"),
+                    hintText: "Occupation"),
               ),
             ),
             Padding(
@@ -285,7 +285,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Company"),
+                    hintText: "Company"),
               ),
             ),
             Padding(
@@ -307,7 +307,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Work address"),
+                    hintText: "Work address"),
               ),
             ),
             Padding(
@@ -329,7 +329,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Phone"),
+                    hintText: "Phone"),
               ),
             ),
             Padding(
@@ -351,7 +351,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "Personal email"),
+                    hintText: "Personal email"),
               ),
             ),
             Padding(
@@ -373,7 +373,7 @@ class _FamilyInfoEditState extends State<FamilyInfoEdit> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    labelText: "First Language"),
+                    hintText: "First Language"),
               ),
             ),
             Padding(

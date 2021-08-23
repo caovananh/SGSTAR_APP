@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "applicationId": "com.pichillilorenzo.flutter_inappwebview",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": -1,
+        "outputFile": "flutter_inappwebview-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "../../library_manifest/debug/AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.pichillilorenzo.flutter_inappwebview",
+        "split": ""
+      }
+    }
+  ]
+}

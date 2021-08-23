@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/FamilyInfoEdit.dart';
-import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/StudentEditPage.dart';
 
 class StudentInfoADM extends StatefulWidget {
   const StudentInfoADM({key}) : super(key: key);
@@ -139,34 +138,39 @@ class _StudentInfoADMState extends State<StudentInfoADM> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-                 Container(
-                  // margin: EdgeInsets.all(25),
-                  child: OutlineButton(
-                    child: Text("Enter information for the first time",
-                        style: TextStyle(color: Color(0xFF144385))),
-                    highlightedBorderColor: Color(0xFF9EDEFF),
-                    borderSide: BorderSide(color: Color(0xFF9EDEFF)),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    onPressed: () {},
-                  ),
+                 Expanded(
+                   flex: 4,
+                   child: Container(
+                    // margin: EdgeInsets.all(25),
+                    child: OutlineButton(
+                      child: Text("Enter information for the first time",
+                          style: TextStyle(color: Color(0xFF144385))),
+                      highlightedBorderColor: Color(0xFF9EDEFF),
+                      borderSide: BorderSide(color: Color(0xFF9EDEFF)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      onPressed: () {},
+                    ),
                 ),
+                 ),
 
-                 Container(
-                  // margin: EdgeInsets.all(25),
-                  child: FlatButton(
-                    child: Text("Edit", style: TextStyle(color: Colors.white)),
-                    color: Color(0xFF9EDEFF),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => FamilyInfoEdit()),
-                      );
-                    },
-                  ),
+                 Expanded(
+                   child: Container(
+                    // margin: EdgeInsets.all(25),
+                    child: FlatButton(
+                      child: Text("EDIT", style: TextStyle(color: Colors.white)),
+                      color: Color(0xFF9EDEFF),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => FamilyInfoEdit()),
+                        );
+                      },
+                    ),
                 ),
+                 ),
 
             ],
           ),

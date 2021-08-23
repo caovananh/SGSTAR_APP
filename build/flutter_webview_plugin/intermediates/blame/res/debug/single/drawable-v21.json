@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\b4af6bb2486b9c409bb555a5adff63fa\\appcompat-1.1.0\\res\\drawable-v21\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\3ae8acf77913112ba07cff775c9265b3\\core-1.1.0\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\b4af6bb2486b9c409bb555a5adff63fa\\appcompat-1.1.0\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_list_divider_material.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\b4af6bb2486b9c409bb555a5adff63fa\\appcompat-1.1.0\\res\\drawable-v21\\abc_list_divider_material.xml"
+    },
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\b4af6bb2486b9c409bb555a5adff63fa\\appcompat-1.1.0\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\Android\\SGSTAR_APP\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\crims\\.gradle\\caches\\transforms-2\\files-2.1\\b4af6bb2486b9c409bb555a5adff63fa\\appcompat-1.1.0\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    }
+]

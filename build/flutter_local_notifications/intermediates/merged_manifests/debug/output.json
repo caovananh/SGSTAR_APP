@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "applicationId": "com.dexterous.flutterlocalnotifications",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": -1,
+        "outputFile": "flutter_local_notifications-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "../../library_manifest/debug/AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.dexterous.flutterlocalnotifications",
+        "split": ""
+      }
+    }
+  ]
+}

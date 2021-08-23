@@ -64,39 +64,65 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.headline6;
 
+    MediaQueryData mediaQueryData = MediaQuery.of(context);
+    mediaQueryData.size.width;
+    mediaQueryData.size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Container(
           child: Column(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(""),
-                  Text(""),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        // Respond to button press
-                      },
-                      child: const Text('ENGLISH'),
-                      style: TextButton.styleFrom(
-                        primary: const Color(0xff13438f),
-                        side: const BorderSide(
-                            color: Color(0xff13438f), width: 1),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 15),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                      ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: EdgeInsets.only(top: mediaQueryData.size.height*0.05,right: mediaQueryData.size.width*0.1),
+                  child: OutlinedButton(
+                    onPressed: () {
+                      // Respond to button press
+                    },
+                    child: const Text('ENGLISH'),
+                    style: TextButton.styleFrom(
+                      primary: const Color(0xff13438f),
+                      side: const BorderSide(
+                          color: Color(0xff13438f), width: 1),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 15),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(10))),
                     ),
                   ),
-                ],
+                ),
               ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     Text(""),
+              //     Text(""),
+              //     Padding(
+              //       padding: EdgeInsets.only(top: 10.0),
+              //       child: OutlinedButton(
+              //         onPressed: () {
+              //           // Respond to button press
+              //         },
+              //         child: const Text('ENGLISH'),
+              //         style: TextButton.styleFrom(
+              //           primary: const Color(0xff13438f),
+              //           side: const BorderSide(
+              //               color: Color(0xff13438f), width: 1),
+              //           padding: const EdgeInsets.symmetric(
+              //               horizontal: 25, vertical: 15),
+              //           shape: const RoundedRectangleBorder(
+              //               borderRadius:
+              //                   BorderRadius.all(Radius.circular(10))),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               Expanded(
                 flex: 3,
                 child: Container(
@@ -107,8 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage(AppConfig.loginLogo),
-                      )),
+                            image: AssetImage(AppConfig.loginLogo),
+                          )),
                     ),
                   ),
                 ),
@@ -139,11 +165,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide:
-                                    BorderSide(color: Color(0xFF9EDEFF)),
+                                BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0xFF9EDEFF)),
+                                BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               hintText: "email",
                               labelText: "Email",
@@ -188,11 +214,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide:
-                                    BorderSide(color: Color(0xFF9EDEFF)),
+                                BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0xFF9EDEFF)),
+                                BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               hintText: "password",
                               labelText: "Password",
@@ -206,11 +232,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => RegisterWidget()),
-                            // );
                           },
                           child: Padding(
                               padding: EdgeInsets.only(bottom: 5.0),
@@ -219,105 +240,105 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: TextStyle(color: Colors.grey),
                                 textAlign: TextAlign.end,
                               ))),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FlatButton(
+                              child: Text(
+                                "LOGIN",
+                                style:
+                                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  String email = emailController.text;
+                                  String password = passwordController.text;
+
+                                  if (email.length > 0 && password.length > 0) {
+                                    setState(() {
+                                      isResponse = true;
+                                    });
+                                    Login(email, password).getData2(context).then((result) {
+                                      setState(() {
+                                        isResponse = false;
+                                      });
+                                      Utils.showToast(result);
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isResponse = false;
+                                    });
+                                    Utils.showToast('invalid email and password');
+                                  }
+                                }
+                              },
+                              color: Color(0xFF9EDEFF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Color(0xFF9EDEFF))),
+                            ),
+                            // GestureDetector(
+                            //   child: Container(
+                            //     alignment: Alignment.center,
+                            //     width: MediaQuery.of(context).size.width,
+                            //     height: 50.0,
+                            //     decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(25.0),
+                            //       color: Color(0xFF7dd3f7),
+                            //     ),
+                            //     child: Text(
+                            //       "REGISTER",
+                            //       style: Theme.of(context)
+                            //           .textTheme
+                            //           .headline5
+                            //           .copyWith(color: Colors.white),
+                            //     ),
+                            //   ),
+                            //   onTap: () {
+                            //     if (_formKey.currentState.validate()) {
+                            //       String email = emailController.text;
+                            //       String password = passwordController.text;
+                            //
+                            //       if (email.length > 0 && password.length > 0) {
+                            //         setState(() {
+                            //           isResponse = true;
+                            //         });
+                            //         Login(email, password).getData2(context).then((result) {
+                            //           setState(() {
+                            //             isResponse = false;
+                            //           });
+                            //           Utils.showToast(result);
+                            //         });
+                            //       } else {
+                            //         setState(() {
+                            //           isResponse = false;
+                            //         });
+                            //         Utils.showToast('invalid email and password');
+                            //       }
+                            //     }
+                            //   },
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: isResponse == true
+                                  ? LinearProgressIndicator(
+                                backgroundColor: Colors.transparent,
+                              )
+                                  : Text(''),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ],
           ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton(
-              child: Text(
-                "REGISTER",
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  String email = emailController.text;
-                  String password = passwordController.text;
-
-                  if (email.length > 0 && password.length > 0) {
-                    setState(() {
-                      isResponse = true;
-                    });
-                    Login(email, password).getData2(context).then((result) {
-                      setState(() {
-                        isResponse = false;
-                      });
-                      Utils.showToast(result);
-                    });
-                  } else {
-                    setState(() {
-                      isResponse = false;
-                    });
-                    Utils.showToast('invalid email and password');
-                  }
-                }
-              },
-              color: Color(0xFF9EDEFF),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Color(0xFF9EDEFF))),
-            ),
-            // GestureDetector(
-            //   child: Container(
-            //     alignment: Alignment.center,
-            //     width: MediaQuery.of(context).size.width,
-            //     height: 50.0,
-            //     decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(25.0),
-            //       color: Color(0xFF7dd3f7),
-            //     ),
-            //     child: Text(
-            //       "REGISTER",
-            //       style: Theme.of(context)
-            //           .textTheme
-            //           .headline5
-            //           .copyWith(color: Colors.white),
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     if (_formKey.currentState.validate()) {
-            //       String email = emailController.text;
-            //       String password = passwordController.text;
-            //
-            //       if (email.length > 0 && password.length > 0) {
-            //         setState(() {
-            //           isResponse = true;
-            //         });
-            //         Login(email, password).getData2(context).then((result) {
-            //           setState(() {
-            //             isResponse = false;
-            //           });
-            //           Utils.showToast(result);
-            //         });
-            //       } else {
-            //         setState(() {
-            //           isResponse = false;
-            //         });
-            //         Utils.showToast('invalid email and password');
-            //       }
-            //     }
-            //   },
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: isResponse == true
-                  ? LinearProgressIndicator(
-                      backgroundColor: Colors.transparent,
-                    )
-                  : Text(''),
-            ),
-          ],
         ),
       ),
     );

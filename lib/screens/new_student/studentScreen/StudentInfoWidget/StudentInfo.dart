@@ -140,31 +140,36 @@ class _StudentInfoState extends State<StudentInfo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                // margin: EdgeInsets.all(25),
-                child: OutlineButton(
-                  child: Text("Enter information for the first time",
-                      style: TextStyle(color: Color(0xFF144385))),
-                  highlightedBorderColor: Color(0xFF9EDEFF),
-                  borderSide: BorderSide(color: Color(0xFF9EDEFF)),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  onPressed: () {},
+              Expanded(
+                flex: 4,
+                child: Container(
+                  // margin: EdgeInsets.all(25),
+                  child: OutlineButton(
+                    child: Text("Enter information for the first time",
+                        style: TextStyle(color: Color(0xFF144385))),
+                    highlightedBorderColor: Color(0xFF9EDEFF),
+                    borderSide: BorderSide(color: Color(0xFF9EDEFF)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    onPressed: () {},
+                  ),
                 ),
               ),
-              Container(
-                // margin: EdgeInsets.all(25),
-                child: FlatButton(
-                  child: Text("Edit", style: TextStyle(color: Colors.white)),
-                  color: Color(0xFF9EDEFF),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => StudentInfoEdit()),
-                    );
-                  },
+              Expanded(
+                child: Container(
+                  // margin: EdgeInsets.all(25),
+                  child: FlatButton(
+                    child: Text("EDIT", style: TextStyle(color: Colors.white)),
+                    color: Color(0xFF9EDEFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => StudentInfoEdit()),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
