@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -10,7 +12,6 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
-
   String name;
 
   void initState() {
@@ -18,17 +19,29 @@ class _GalleryScreenState extends State<GalleryScreen> {
     name = getName();
   }
 
-  final List<String> imageList = [
+  int _currentIndex = 0;
+  final List<String> imagesList = [
     "https://sgstar.edu.vn/public/images/pic4.png",
     "https://sgstar.edu.vn/public/images/pic4.png",
     "https://sgstar.edu.vn/public/images/pic4.png",
     "https://sgstar.edu.vn/public/images/pic4.png",
     "https://sgstar.edu.vn/public/images/pic4.png",
   ];
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    double imgHeight = screenHeight * 0.15;
+
     return Scaffold(
-      
       appBar: AppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -53,68 +66,94 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 padding: new EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
               child: Container(
                 height: 40,
                 decoration: BoxDecoration(
-                border: Border(
-                    
-                    bottom: BorderSide( //                    <--- top side
+                  border: Border(
+                    bottom: BorderSide(
+                      //                    <--- top side
                       color: Color(0xff7cd3f7),
                       width: 2.0,
                     ),
                   ),
-                  
                 ),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('album name'.toUpperCase(),
-                      style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700)),
-                      Text('1',style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700))
-                    ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('album name'.toUpperCase(),
+                        style: TextStyle(
+                            color: Color(0xff13438f),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700)),
+                    Text('1',
+                        style: TextStyle(
+                            color: Color(0xff13438f),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700))
+                  ],
                 ),
               ),
             ),
- 
             Padding(
               padding: const EdgeInsets.only(top: 15),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image.asset('assets/images/pic4.png')
-              ),
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image.asset('assets/images/pic4.png')),
             ),
-
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Center(
-                child: CarouselSlider(
-                    options: CarouselOptions(
-                      enableInfiniteScroll: true,
-                      height: 140,
-                    
-                      viewportFraction: 0.7,
-                      enlargeCenterPage: false,
-                      autoPlay: false,
-                    ),
-                    items: imageList.map((e) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.network(e,
-                              
-                              fit: BoxFit.cover)
-                            ],
-                        ),
-                        
+                child: Column(
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        enableInfiniteScroll: true,
+                        height: imgHeight,
+                        aspectRatio: 2,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                        viewportFraction: 0.5,
+                        enlargeCenterPage: false,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
                       ),
-                    )).toList(),
+                      items: imagesList
+                          .map((e) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      Image.network(e, fit: BoxFit.cover)
+                                    ],
+                                  ),
+                                ),
+                              ))
+                          .toList(),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: map<Widget>(imagesList, (index, url) {
+                        return Container(
+                          width: 10.0,
+                          height: 10.0,
+                          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
