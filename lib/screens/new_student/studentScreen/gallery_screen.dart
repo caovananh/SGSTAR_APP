@@ -111,13 +111,13 @@ class _GalleryScreenState extends State<GalleryScreen> {
                       options: CarouselOptions(
                         enableInfiniteScroll: true,
                         height: imgHeight,
-                        aspectRatio: 2,
+                        aspectRatio: 0,
                         onPageChanged: (index, reason) {
                           setState(() {
                             _currentIndex = index;
                           });
                         },
-                        viewportFraction: 0.5,
+                        viewportFraction: 0.6 ,
                         enlargeCenterPage: false,
                         autoPlay: true,
                         autoPlayInterval: Duration(seconds: 3),
@@ -138,6 +138,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                               ))
                           .toList(),
                     ),
+                     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: map<Widget>(imagesList, (index, url) {
@@ -151,6 +152,73 @@ class _GalleryScreenState extends State<GalleryScreen> {
                           ),
                         );
                       }),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Color(0xff7cd3f7))
+                            ),
+                            child: TextButton(
+                                child: Text('<',style: TextStyle(color: Colors.grey,fontSize: 20),),
+                                
+                                onPressed: () {},
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            child: TextButton(
+                                child: Text('1',style: TextStyle(color: Colors.white,fontSize: 20),),
+                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xff7cd3f7))),
+                                onPressed: () {},
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Color(0xff7cd3f7))
+                            ),
+                            child: TextButton(
+                                child: Text('2',style: TextStyle(color: Colors.grey,fontSize: 20),),
+                                
+                                onPressed: () {},
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Color(0xff7cd3f7))
+                            ),
+                            child: TextButton(
+                                child: Text('>',style: TextStyle(color: Colors.grey,fontSize: 20),),
+                                
+                                onPressed: () {},
+                            ),
+                          ),
+                        ),
+                        
+                      ],
                     ),
                   ],
                 ),
