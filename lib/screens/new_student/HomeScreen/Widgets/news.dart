@@ -11,7 +11,9 @@ class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    double cardHeight = screenHeight * 0.415;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    double cardHeight = (screenWidth / screenHeight)*650;
+   
     return ListView(
       children: [
         Container(
