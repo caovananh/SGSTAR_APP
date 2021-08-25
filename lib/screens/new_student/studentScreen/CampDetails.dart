@@ -60,17 +60,36 @@ class _CampDetailsState extends State<CampDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('SUMMER CAMP 2021'),
+                  Text('SUMMER CAMP 2021',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff07509d))),
                   Container(height: 10),
-                  Text('Skills & Attitude:'),
+                  Text('Skills & Attitude:',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                   Container(height: 10),
-                  Text('Field trips:'),
+                  Text('Field trips:',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                   Container(height: 10),
-                  Text('Student grouping by age:'),
+                  Text('Student grouping by age:',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                   Container(height: 10),
-                  Text('Simple week:'),
+                  Text('Simple week:',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                   Container(height: 10),
-                  Text('Fee:'),
+                  Text('Fee:',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                 ],
               ),
             ),

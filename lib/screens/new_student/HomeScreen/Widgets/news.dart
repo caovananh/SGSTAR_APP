@@ -11,168 +11,101 @@ class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
+
+    final items = List<String>.generate(5, (i) => "Item $i");
     double cardHeight = screenHeight * 0.415;
-    return ListView(
-      children: [
-        Container(
-          height: cardHeight,
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Card(
-            semanticContainer: true,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/card-thumb.png"),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
+    return Padding(
+        padding: EdgeInsets.only(left: 20, right: 20),
+        child: ListView.separated(
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
-                    child: Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                      style: TextStyle(color: Colors.grey),
-                      textAlign: TextAlign.left,
+                  Container(
+                      width: MediaQuery.of(context).size.width - 40,
+                      height: shortestSide >= 600
+                          ? screenHeight / 3
+                          : screenHeight / 4,
+                      child: FittedBox(
+                        child: Image.asset('assets/images/card-thumb.png'),
+                        fit: BoxFit.fill,
+                      )),
+                  DefaultTextStyle(
+                    style: TextStyle(
+                        fontSize: shortestSide >= 600 ? 20 : 14,
+                        color: Colors.grey),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 40,
+                      height: screenHeight / 6,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Text('25/12/2021 14:30',
+                                style: TextStyle(color: Colors.grey)),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Row(
+                                      children: [
+                                        IconButton(
+                                            icon: Image.asset(
+                                              'assets/images/icons/4. LIKE.png',
+                                            ),
+                                            color: Colors.grey,
+                                            tooltip: 'Like',
+                                            onPressed: () {}),
+                                        Text('0 like'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Row(
+                                      children: [
+                                        IconButton(
+                                            icon: Icon(Icons.comment),
+                                            color: Colors.grey,
+                                            tooltip: 'comment',
+                                            onPressed: () {}),
+                                        Text('0 comment'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                    icon: Icon(Icons.share),
+                                    color: Colors.grey,
+                                    tooltip: 'Comments',
+                                    onPressed: () {}),
+                                Text('0 share'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 5),
-                        child: Text("25/12/2021     14:30",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                          icon: Image.asset(
-                            'assets/images/icons/4. LIKE.png',
-                            height: 25,
-                            width: 30,
-                          ),
-                          color: Colors.grey,
-                          tooltip: 'Like',
-                          onPressed: () {}),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text('0 like'),
-                      ),
-                      IconButton(
-                          icon: Icon(Icons.comment),
-                          color: Colors.grey,
-                          tooltip: 'Comments',
-                          onPressed: () {}),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text('0 comment'),
-                      ),
-                      IconButton(
-                          icon: Icon(Icons.share),
-                          color: Colors.grey,
-                          tooltip: 'Comments',
-                          onPressed: () {}),
-                      Text('0 share'),
-                    ],
                   ),
                 ],
               ),
-            ),
-          ),
-        ),
-        Container(
-          height: cardHeight,
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Card(
-            semanticContainer: true,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/card-thumb.png"),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
-                    child: Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                      style: TextStyle(color: Colors.grey),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 5),
-                        child: Text("25/12/2021     14:30",
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.end),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                          icon: Image.asset(
-                            'assets/images/icons/4. LIKE.png',
-                            height: 25,
-                            width: 30,
-                          ),
-                          color: Colors.grey,
-                          tooltip: 'Like',
-                          onPressed: () {}),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text('0 like'),
-                      ),
-                      IconButton(
-                          icon: Icon(Icons.comment),
-                          color: Colors.grey,
-                          tooltip: 'Comments',
-                          onPressed: () {}),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text('0 comment'),
-                      ),
-                      IconButton(
-                          icon: Icon(Icons.share),
-                          color: Colors.grey,
-                          tooltip: 'Comments',
-                          onPressed: () {}),
-                      Text('0 share'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
+            );
+          },
+        ));
   }
 }

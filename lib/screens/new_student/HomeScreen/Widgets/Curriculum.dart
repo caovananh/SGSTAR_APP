@@ -10,6 +10,7 @@ class Curriculum extends StatefulWidget {
 class _CurriculumState extends State<Curriculum> {
   @override
   Widget build(BuildContext context) {
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
     return Container(
       color: Colors.white,
       child: GridView.count(
@@ -17,7 +18,7 @@ class _CurriculumState extends State<Curriculum> {
         padding: const EdgeInsets.all(50),
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        crossAxisCount: 2,
+        crossAxisCount: shortestSide < 600 ? 2 : 3,
         children: <Widget>[
           Container(
               padding: const EdgeInsets.all(0),

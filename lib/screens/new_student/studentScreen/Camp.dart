@@ -61,14 +61,14 @@ class _CampState extends State<Camp> {
                                     Text(
                                       items[index],
                                       style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 24,
                                           color: _selected == index
                                               ? Color(0xffffffff)
                                               : Color(0xff07509d)),
                                     ),
                                     Text('Unregisted',
                                         style: TextStyle(
-                                            fontSize: 13,
+                                            fontSize: 16,
                                             color: _selected == index
                                                 ? Color(0xFF7dd3f7)
                                                 : Colors.grey)),

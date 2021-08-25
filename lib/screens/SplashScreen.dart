@@ -78,7 +78,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/splash_bg.png'),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
               child: Column(

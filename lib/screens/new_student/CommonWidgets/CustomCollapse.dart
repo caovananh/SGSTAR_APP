@@ -63,13 +63,19 @@ class _CusTomCollapseState extends State<CusTomCollapse> {
                   ),
                 ),
                 Positioned(
-                    top: 10,
-                    right: 10,
+                  top: 10,
+                  right: 30,
+                  child: GestureDetector(
+                    onTap: () {
+                      collapse();
+                    },
                     child: Icon(
                       FontAwesomeIcons.angleUp,
-                      size: ScreenUtil().setSp(25),
+                      size: ScreenUtil().setSp(20),
                       color: Color(0xff07509d),
-                    ))
+                    ),
+                  ),
+                )
               ],
             ),
           ),

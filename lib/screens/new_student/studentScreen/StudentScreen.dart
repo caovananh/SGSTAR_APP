@@ -22,6 +22,7 @@ class StudentScreen extends StatefulWidget {
 class _StudentScreenState extends State<StudentScreen> {
   @override
   Widget build(BuildContext context) {
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
     return Container(
       color: Colors.white,
       child: Column(
@@ -36,7 +37,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
-                crossAxisCount: 4,
+                crossAxisCount: shortestSide < 600 ? 4 : 6,
                 children: <Widget>[
                   Container(
                       child: Column(
@@ -295,7 +296,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
-                crossAxisCount: 2,
+                crossAxisCount: shortestSide < 600 ? 2 : 3,
                 children: <Widget>[
                   Container(
                       decoration: BoxDecoration(
