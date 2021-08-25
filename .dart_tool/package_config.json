@@ -320,6 +320,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_slidable",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_slidable-0.5.7",
       "packageUri": "lib/",
@@ -872,7 +878,8 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-25T04:54:59.703421Z",
+  "generated": "2021-08-25T07:04:12.501651Z",
+
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }
