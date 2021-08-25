@@ -26,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Padding(
             padding: EdgeInsets.only(top: mediaQueryData.size.height * 0.03,left: mediaQueryData.size.width*0.08,right: mediaQueryData.size.width*0.08),
             child: Container(
-              width: 315,
+              width: mediaQueryData.size.width*1,
               height: mediaQueryData.size.height*0.08,
               decoration: BoxDecoration(
                 boxShadow: [

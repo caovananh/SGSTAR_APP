@@ -33,7 +33,10 @@ class _StudentInfoState extends State<StudentInfo> {
               borderRadius: BorderRadius.circular(30),
               border: Border.all(width: 2, color: Color(0xFF9EDEFF)),
             ),
-            child: Column(children: <Widget>[
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
               Container(
                 // padding: EdgeInsets.only(left: 10),
                 decoration: new BoxDecoration(
