@@ -24,7 +24,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(),
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(
             height: 20,
@@ -35,7 +35,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
               child: Container(
                 width: double.infinity,
                 child: new Text(
-                  "ABSENT",
+                  "absent".toUpperCase(),
                   style: new TextStyle(
                     color: Color(0Xff13438f),
                     fontWeight: FontWeight.w600,
@@ -195,31 +195,25 @@ class _AbsentScreenState extends State<AbsentScreen> {
               ],
             ),
           ),
-          Card(
-            color: Color(0xffe4087e),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: TextButton(
-              style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
+
+          Center(
+                  child: ElevatedButton(         
+                    onPressed: () {},
+                    child: Text(
+                      'SUBMIT',
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w800),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xffe4087e),
+                      fixedSize: Size(140, 45),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20), // <-- Radius
+                      ),
+                    ),
+                  ),
                 ),
-              )),
-              onPressed: null,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                child: Text(
-                  "SUBMIT",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-          ),
+
         ],
       ),
     );

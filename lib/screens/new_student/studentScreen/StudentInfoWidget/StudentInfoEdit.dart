@@ -430,7 +430,7 @@ class _StudentInfoEditState extends State<StudentInfoEdit> {
                     padding: EdgeInsets.only(left: 10.0,right: 10.0),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                        value: dropdownValue,
+                        value: 'dropdownValue',
                         style: TextStyle(color: Color(0xFF58595B),fontWeight: FontWeight.bold),
                         icon: const Icon(Icons.keyboard_arrow_down_sharp),
                         iconSize: 24,

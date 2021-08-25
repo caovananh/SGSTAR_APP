@@ -7,6 +7,7 @@ import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Menu.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoPage.dart';
 import 'package:infixedu/screens/new_student/studentScreen/gallery_screen.dart';
+import 'package:infixedu/screens/new_student/studentScreen/refunds_screen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/survey.dart';
 
 import 'DailyActivities.dart';
@@ -247,6 +248,7 @@ class _StudentScreenState extends State<StudentScreen> {
                       ))
                     ],
                   )),
+                  
                   Container(
                       child: Column(
                     children: <Widget>[
@@ -281,9 +283,46 @@ class _StudentScreenState extends State<StudentScreen> {
                       ))
                     ],
                   )),
+                  Container(
+                      child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(8);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/camp.png')),
+                          )),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'camp'.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xff07509d)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ))
+                    ],
+                  )),
+                  
                 ],
               ),
             ),
+            
+            
           ),
           Flexible(
             flex: 3,
@@ -337,10 +376,10 @@ class _StudentScreenState extends State<StudentScreen> {
                           children: <Widget>[
                             Image(
                                 image:
-                                    AssetImage('assets/images/icons/camp.png')),
+                                    AssetImage('assets/images/icons/survey.png')),
                             Flexible(
                                 child: Text(
-                              'Camp'.toUpperCase(),
+                              'survey'.toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -383,10 +422,10 @@ class _StudentScreenState extends State<StudentScreen> {
                           children: <Widget>[
                             Image(
                                 image: AssetImage(
-                                    'assets/images/icons/survey.png')),
+                                    'assets/images/icons/REFUNDS.png')),
                             Flexible(
                                 child: Text(
-                              'Survey'.toUpperCase(),
+                              'refund'.toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -415,13 +454,13 @@ class _StudentScreenState extends State<StudentScreen> {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Camp()),
+          MaterialPageRoute(builder: (context) => SurveyScreen()),
         );
         break;
       case 4:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SurveyScreen()),
+          MaterialPageRoute(builder: (context) => RefundPage()),
         );
         break;
       default:
@@ -469,6 +508,12 @@ class _StudentScreenState extends State<StudentScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ClinicPage()),
+        );
+        break;
+      case 8:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Camp()),
         );
         break;
       default:
