@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/CardHeader.dart';
-
 import 'package:infixedu/utils/Utils.dart';
+
 
 class RefundPage extends StatefulWidget {
   const RefundPage({key}) : super(key: key);
@@ -14,7 +14,7 @@ class RefundPage extends StatefulWidget {
 class RefundPageState extends State<RefundPage>
     with SingleTickerProviderStateMixin {
   String name;
-
+  String _chosenValue;
   String dropdownValue = 'Refund List';
 
   @override
@@ -60,19 +60,22 @@ class RefundPageState extends State<RefundPage>
                       padding: EdgeInsets.only(left: 10.0, right: 10.0),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
+                          icon: Icon(Icons.arrow_drop_down,
+                          size: 30,),
+                          iconEnabledColor: Color(0xff13438f),
                           value: dropdownValue,
                           style: TextStyle(
                               color: Color(0xFF58595B),
                               fontWeight: FontWeight.bold),
-                          icon: const Icon(Icons.keyboard_arrow_down_sharp),
-                          iconSize: 24,
-                          iconEnabledColor: Color(0xff13438f),
-                          elevation: 16,
+                              
+                          menuMaxHeight: 200,
                           onChanged: (String newValue) {
                             setState(() {
                               dropdownValue = newValue;
                             });
                           },
+                          dropdownColor: Color(0xffebf6ff),
+                          isDense: false,
                           items: <String>[
                             'Refund List',
                             'Refund reserves',
@@ -91,15 +94,14 @@ class RefundPageState extends State<RefundPage>
                   ),
                 ),
 
+            
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -109,14 +111,16 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
                   child: Text(
@@ -127,16 +131,13 @@ class RefundPageState extends State<RefundPage>
                         fontWeight: FontWeight.w600),
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -146,23 +147,23 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -172,23 +173,23 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('123456 ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            '123456 ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -198,23 +199,23 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -224,14 +225,16 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('DD/MM/YYYY ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'DD/MM/YYYY ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-                
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
                   child: Text(
@@ -242,16 +245,13 @@ class RefundPageState extends State<RefundPage>
                         fontWeight: FontWeight.w600),
                   ),
                 ),
-
-                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -261,23 +261,23 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
-                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -287,23 +287,23 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
-                 Padding(
-                  padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
                     width: double.infinity,
-                   
                     decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(color: Color(0xFF9EDEFF))
-                    ),
+                        borderRadius: BorderRadius.circular(15.0),
+                        border: Border.all(color: Color(0xFF9EDEFF))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -313,28 +313,31 @@ class RefundPageState extends State<RefundPage>
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                          child: Text('Lorem Ipsum ',
-                          style: TextStyle(color: Color(0xff13438f),fontSize: 16),),
+                          child: Text(
+                            'Lorem Ipsum ',
+                            style: TextStyle(
+                                color: Color(0xff13438f), fontSize: 16),
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-
-                SizedBox(height: 30,),
-
-                Center(
-                  child: Text('Request will be sent to the school administration',
-                  style: TextStyle(color: Color(0xffe4087e)),)
+                SizedBox(
+                  height: 30,
                 ),
-
                 Center(
-                  child: ElevatedButton(         
+                    child: Text(
+                  'Request will be sent to the school administration',
+                  style: TextStyle(color: Color(0xffe4087e)),
+                )),
+                Center(
+                  child: ElevatedButton(
                     onPressed: () {},
                     child: Text(
                       'refund'.toUpperCase(),
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w800),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff7cd3f7),
@@ -345,7 +348,6 @@ class RefundPageState extends State<RefundPage>
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

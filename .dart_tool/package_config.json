@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "dropdown_below",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/dropdown_below-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "edge_alert",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/edge_alert-0.0.1",
       "packageUri": "lib/",
@@ -872,7 +878,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-25T04:54:59.703421Z",
+  "generated": "2021-08-25T07:52:31.242559Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }
