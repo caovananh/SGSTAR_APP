@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:infixedu/config/app_config.dart';
 import 'package:infixedu/screens/login/login_new.dart';
@@ -17,6 +18,7 @@ import 'package:infixedu/screens/regsiter.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/server/Login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -24,6 +26,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final storage = new FlutterSecureStorage();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   var _formKey = GlobalKey<FormState>();
@@ -32,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<String> futureEmail;
   String password = '123456';
   bool isResponse = false;
+  bool _isChecked = false;
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
@@ -39,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    _loadUserEmailPassword();
     firebaseNotificationSetup();
     super.initState();
   }
@@ -78,7 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: EdgeInsets.only(top: mediaQueryData.size.height*0.05,right: mediaQueryData.size.width*0.1),
+                  padding: EdgeInsets.only(
+                      top: mediaQueryData.size.height * 0.05,
+                      right: mediaQueryData.size.width * 0.1),
                   child: OutlinedButton(
                     onPressed: () {
                       // Respond to button press
@@ -86,43 +93,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text('ENGLISH'),
                     style: TextButton.styleFrom(
                       primary: const Color(0xff13438f),
-                      side: const BorderSide(
-                          color: Color(0xff13438f), width: 1),
+                      side:
+                          const BorderSide(color: Color(0xff13438f), width: 1),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 15),
                       shape: const RoundedRectangleBorder(
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(10))),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                     ),
                   ),
                 ),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   children: [
-              //     Text(""),
-              //     Text(""),
-              //     Padding(
-              //       padding: EdgeInsets.only(top: 10.0),
-              //       child: OutlinedButton(
-              //         onPressed: () {
-              //           // Respond to button press
-              //         },
-              //         child: const Text('ENGLISH'),
-              //         style: TextButton.styleFrom(
-              //           primary: const Color(0xff13438f),
-              //           side: const BorderSide(
-              //               color: Color(0xff13438f), width: 1),
-              //           padding: const EdgeInsets.symmetric(
-              //               horizontal: 25, vertical: 15),
-              //           shape: const RoundedRectangleBorder(
-              //               borderRadius:
-              //                   BorderRadius.all(Radius.circular(10))),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
               Expanded(
                 flex: 3,
                 child: Container(
@@ -133,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 150.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(AppConfig.loginLogo),
-                          )),
+                        image: AssetImage(AppConfig.loginLogo),
+                      )),
                     ),
                   ),
                 ),
@@ -165,11 +145,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide:
-                                BorderSide(color: Color(0xFF9EDEFF)),
+                                    BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Color(0xFF9EDEFF)),
+                                    BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               hintText: "email",
                               labelText: "Email",
@@ -214,11 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                                 borderSide:
-                                BorderSide(color: Color(0xFF9EDEFF)),
+                                    BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Color(0xFF9EDEFF)),
+                                    BorderSide(color: Color(0xFF9EDEFF)),
                               ),
                               hintText: "password",
                               labelText: "Password",
@@ -231,8 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {
-                          },
+                          onTap: () {},
                           child: Padding(
                               padding: EdgeInsets.only(bottom: 5.0),
                               child: Text(
@@ -240,6 +219,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: TextStyle(color: Colors.grey),
                                 textAlign: TextAlign.end,
                               ))),
+                      Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                        SizedBox(
+                            height: 24.0,
+                            width: 24.0,
+                            child: Theme(
+                              data: ThemeData(
+                                  unselectedWidgetColor: Color(0xff00C8E8) // Your color
+                              ),
+                              child: Checkbox(
+                                  activeColor: Color(0xff00C8E8),
+                                  value: _isChecked,
+                                  onChanged: _handleRemeberme),
+                            )),
+                        SizedBox(width: 10.0),
+                        Text("Remember Me",
+                            style: TextStyle(
+                                color: Color(0xff646464),
+                                fontSize: 12,
+                                fontFamily: 'Rubic'))
+                      ]),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -250,8 +249,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             FlatButton(
                               child: Text(
                                 "LOGIN",
-                                style:
-                                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
@@ -262,7 +262,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     setState(() {
                                       isResponse = true;
                                     });
-                                    Login(email, password).getData2(context).then((result) {
+                                    Login(email, password)
+                                        .getData2(context)
+                                        .then((result) {
                                       setState(() {
                                         isResponse = false;
                                       });
@@ -272,7 +274,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     setState(() {
                                       isResponse = false;
                                     });
-                                    Utils.showToast('invalid email and password');
+                                    Utils.showToast(
+                                        'invalid email and password');
                                   }
                                 }
                               },
@@ -281,53 +284,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: BorderSide(color: Color(0xFF9EDEFF))),
                             ),
-                            // GestureDetector(
-                            //   child: Container(
-                            //     alignment: Alignment.center,
-                            //     width: MediaQuery.of(context).size.width,
-                            //     height: 50.0,
-                            //     decoration: BoxDecoration(
-                            //         borderRadius: BorderRadius.circular(25.0),
-                            //       color: Color(0xFF7dd3f7),
-                            //     ),
-                            //     child: Text(
-                            //       "REGISTER",
-                            //       style: Theme.of(context)
-                            //           .textTheme
-                            //           .headline5
-                            //           .copyWith(color: Colors.white),
-                            //     ),
-                            //   ),
-                            //   onTap: () {
-                            //     if (_formKey.currentState.validate()) {
-                            //       String email = emailController.text;
-                            //       String password = passwordController.text;
-                            //
-                            //       if (email.length > 0 && password.length > 0) {
-                            //         setState(() {
-                            //           isResponse = true;
-                            //         });
-                            //         Login(email, password).getData2(context).then((result) {
-                            //           setState(() {
-                            //             isResponse = false;
-                            //           });
-                            //           Utils.showToast(result);
-                            //         });
-                            //       } else {
-                            //         setState(() {
-                            //           isResponse = false;
-                            //         });
-                            //         Utils.showToast('invalid email and password');
-                            //       }
-                            //     }
-                            //   },
-                            // ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: isResponse == true
                                   ? LinearProgressIndicator(
-                                backgroundColor: Colors.transparent,
-                              )
+                                      backgroundColor: Colors.transparent,
+                                    )
                                   : Text(''),
                             ),
                           ],
@@ -352,5 +314,43 @@ class _LoginScreenState extends State<LoginScreen> {
     //print(InfixApi.getDemoEmail(schoolId));
 
     return jsonData['data'][user]['email'];
+  }
+
+  void _loadUserEmailPassword() async {
+    print("Load Email");
+    try {
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      var _email = _prefs.getString("email") ?? "";
+      var _password = _prefs.getString("password") ?? "";
+      var _remeberMe = _prefs.getBool("remember_me") ?? false;
+
+      print(_remeberMe);
+      print(_email);
+      print(_password);
+      if (_remeberMe) {
+        setState(() {
+          _isChecked = true;
+        });
+        emailController.text = _email ?? "";
+        passwordController.text = _password ?? "";
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void _handleRemeberme(bool value) {
+    print("Handle Rember Me");
+    _isChecked = value;
+    SharedPreferences.getInstance().then(
+      (prefs) {
+        prefs.setBool("remember_me", value);
+        prefs.setString('email', emailController.text);
+        prefs.setString('password', passwordController.text);
+      },
+    );
+    setState(() {
+      _isChecked = value;
+    });
   }
 }

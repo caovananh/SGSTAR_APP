@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:infixedu/screens/login/login_new.dart';
 import 'package:infixedu/screens/new_student/BusScreen/BusScreen.dart';
 import 'package:infixedu/screens/new_student/ChatScreen/ChatScreen.dart';
@@ -13,6 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
+import '../Login.dart';
 import 'CommonWidgets/AppBarWidget.dart';
 
 class StudentHome extends StatefulWidget {
@@ -20,15 +22,19 @@ class StudentHome extends StatefulWidget {
   var _images;
 
   StudentHome(this._titles, this._images);
+
   @override
   _StudentHomeState createState() => _StudentHomeState();
 }
 
 class _StudentHomeState extends State<StudentHome> {
+  FlutterSecureStorage storage = FlutterSecureStorage();
   String name;
+  bool rememberMe;
   String rule;
   int _selectedIndex = 0;
   var _pageController = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -78,8 +84,21 @@ class _StudentHomeState extends State<StudentHome> {
             ),
             onPressed: () {
               clear();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+              //getAll();
+              getRemember();
+              if (getRememberMe() == true) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    (route) => false);
+              } else {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    (route) => false);
+              }
+              // Navigator.pushReplacement(context,
+              //     MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
           Padding(
@@ -220,10 +239,26 @@ class _StudentHomeState extends State<StudentHome> {
         ));
   }
 
+  Future<Null> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', null);
+
+    setState(() {
+      name = '';
+    });
+  }
+
   Future<void> clear() async {
     // print(widget._images);
     final pref = await SharedPreferences.getInstance();
-    await pref.clear();
+    await pref.remove('isLogged');
+    // await pref.clear();
+  }
+
+  getRemember() async {
+    final pref = await SharedPreferences.getInstance();
+    bool remember = pref.get('remember_me');
+    print(remember);
   }
 
   String getName() {
@@ -233,6 +268,27 @@ class _StudentHomeState extends State<StudentHome> {
       });
     });
     return name;
+  }
+
+  bool getRememberMe() {
+    Utils.getBooleanValue('remember_me').then((value) {
+      setState(() {
+        rememberMe = value;
+      });
+    });
+    return rememberMe;
+  }
+
+  void getAll() async {
+    final prefs = await SharedPreferences.getInstance();
+    final keys = prefs.getKeys();
+
+    final prefsMap = Map<String, dynamic>();
+    for (String key in keys) {
+      prefsMap[key] = prefs.get(key);
+    }
+
+    print(prefsMap);
   }
 
   body(_selectedIndex) {
