@@ -227,29 +227,29 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(color: Colors.grey),
                                 textAlign: TextAlign.end,
                               ))),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                height: 24.0,
-                                width: 24.0,
-                                child: Theme(
-                                  data: ThemeData(
-                                      unselectedWidgetColor:
-                                          Color(0xff00C8E8) // Your color
-                                      ),
-                                  child: Checkbox(
-                                      activeColor: Color(0xff00C8E8),
-                                      value: _isChecked,
-                                      onChanged: _handleRemeberme),
-                                )),
-                            SizedBox(width: 10.0),
-                            Text("Remember Me",
-                                style: TextStyle(
-                                    color: Color(0xff646464),
-                                    fontSize: 12,
-                                    fontFamily: 'Rubic'))
-                          ]),
+                      // Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       SizedBox(
+                      //           height: 24.0,
+                      //           width: 24.0,
+                      //           child: Theme(
+                      //             data: ThemeData(
+                      //                 unselectedWidgetColor:
+                      //                     Color(0xff00C8E8) // Your color
+                      //                 ),
+                      //             child: Checkbox(
+                      //                 activeColor: Color(0xff00C8E8),
+                      //                 value: _isChecked,
+                      //                 onChanged: _handleRemeberme),
+                      //           )),
+                      //       SizedBox(width: 10.0),
+                      //       Text("Remember Me",
+                      //           style: TextStyle(
+                      //               color: Color(0xff646464),
+                      //               fontSize: 12,
+                      //               fontFamily: 'Rubic'))
+                      //     ]),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -272,6 +272,7 @@ class _LoginPageState extends State<LoginPage> {
                                   if (email.length > 0 && password.length > 0) {
                                     setState(() {
                                       isResponse = true;
+                                      _handleRemeberme(true);
                                     });
                                     Login(email, password)
                                         .getData2(context)

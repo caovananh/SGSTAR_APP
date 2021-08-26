@@ -84,20 +84,10 @@ class _StudentHomeState extends State<StudentHome> {
             onPressed: () {
               clear();
               //getAll();
-              getRemember();
-              if (getRememberMe() == true) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (route) => false);
-              } else {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                    (route) => false);
-              }
-              // Navigator.pushReplacement(context,
-              //     MaterialPageRoute(builder: (context) => LoginPage()));
+              // getRemember();
+              return Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
           Padding(
