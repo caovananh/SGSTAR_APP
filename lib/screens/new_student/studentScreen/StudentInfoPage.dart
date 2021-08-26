@@ -414,6 +414,107 @@ class StudentInfoPageState extends State<StudentInfoPage>
                     ],
                 )),
 
+                CusTomDropDown(
+                  title: Text('transport'.toUpperCase()),
+                  content: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('pick up point:'.toUpperCase(),style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('156 Cach Mang Thang Tam, Ward 12 ,District 10, HCM City'),
+                          ],
+                        ),
+                      ),
+                      
+                      SizedBox(height: 20),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('drop-off point:'.toUpperCase(),style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('156 Cach Mang Thang Tam, Ward 12 ,District 10, HCM City'),
+                          ],
+                        ),
+                      ),
+                      
+                    ],
+                )),  
+
+                CusTomDropDown(
+                  title: Text('fee'.toUpperCase()),
+                  content: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Tuition fees in 2021-2022:',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('No Date available'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Food service fees:',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('No Date available'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('School bus fees:',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('No Date available'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Uniform:',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('No Date available'),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Book:',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w800)),
+                            SizedBox(height: 10,),
+                            Text('No Date available'),
+                          ],
+                        ),
+                      ),     
+                    ],
+                )),  
+
               ],
             ),
           ),
