@@ -13,7 +13,6 @@ import 'package:infixedu/utils/Utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-
 import '../Login.dart';
 import 'CommonWidgets/AppBarWidget.dart';
 
