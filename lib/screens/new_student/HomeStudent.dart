@@ -9,7 +9,6 @@ import 'package:infixedu/screens/new_student/ELearningScreen/ElearningScreen.dar
 import 'package:infixedu/screens/new_student/HomeScreen/HomeScreen.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/SettingsScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentScreen.dart';
-import 'package:infixedu/screens/new_student/absent.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,20 +85,10 @@ class _StudentHomeState extends State<StudentHome> {
             onPressed: () {
               clear();
               //getAll();
-              getRemember();
-              if (getRememberMe() == true) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (route) => false);
-              } else {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                    (route) => false);
-              }
-              // Navigator.pushReplacement(context,
-              //     MaterialPageRoute(builder: (context) => LoginPage()));
+              // getRemember();
+              return Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
           Padding(
