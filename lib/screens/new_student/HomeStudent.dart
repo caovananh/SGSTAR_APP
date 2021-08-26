@@ -82,12 +82,13 @@ class _StudentHomeState extends State<StudentHome> {
               backgroundColor: const Color(0xFF7dd3f7),
             ),
             onPressed: () {
-              clear();
               //getAll();
-              // getRemember();
+              clear();
+              //getRemember();
               return Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+                  MaterialPageRoute(builder: (context) => LoginPage())
+              );
             },
           ),
           Padding(

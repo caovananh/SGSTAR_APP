@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/custom_dropdown.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:infixedu/utils/server/Login.dart';
+import 'package:http/http.dart' as http;
 
 class StudentInfoPage extends StatefulWidget {
   const StudentInfoPage({key}) : super(key: key);
@@ -13,7 +18,10 @@ class StudentInfoPage extends StatefulWidget {
 class StudentInfoPageState extends State<StudentInfoPage>
   with SingleTickerProviderStateMixin {
   String name;
-
+  String firstname;
+  String lastname;
+  String gender;
+  String date_of_birth;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +97,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                     ],
                   ),
                 ),
-
+                //Info
                 CusTomDropDown(
                   title: Text('personal'.toUpperCase()),
                   content: Column(
@@ -99,7 +107,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                         child: Row(
                           children: [
                             Text('First name(Given name):'),
-                            Text(' Lorem Ipsum',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
+                            Text(getFirstName() != null ? getFirstName().toUpperCase() : 'null',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -108,7 +116,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                         child: Row(
                           children: [
                             Text('Middle name(if any):'),
-                            Text(' Lorem Ipsum',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
+                            Text('Lorem ipsum',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -117,7 +125,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                         child: Row(
                           children: [
                             Text('Last name(Family name):'),
-                            Text(' Lorem Ipsum',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
+                            Text(getLastName() != null ? getLastName().toUpperCase() : '',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -134,8 +142,8 @@ class StudentInfoPageState extends State<StudentInfoPage>
                         padding: const EdgeInsets.only(left: 20,top: 10),
                         child: Row(
                           children: [
-                            Text('Date of Birth'),
-                            Text(' 01/01/2005',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
+                            Text('Date of Birth: '),
+                            Text(getBirth() != null ? getBirth().toUpperCase() : 'null',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -143,8 +151,8 @@ class StudentInfoPageState extends State<StudentInfoPage>
                         padding: const EdgeInsets.only(left: 20,top: 10),
                         child: Row(
                           children: [
-                            Text('Gender:'),
-                            Text(' Male',style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
+                            Text('Gender: '),
+                            Text(getGender() != null ? getGender()=="1"?"Male":"Female" : 'null' ,style: TextStyle(color: Color(0xff13438f),fontSize: 16,fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -166,11 +174,14 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           ],
                         ),
                       ),
+                      // FlatButton(onPressed: () {
+                      //   getClassName(getFirstName());
+                      // }, child: Text("Test"))
                     
                     
                     ],
-                )),  
-
+                )),
+                //Family
                 CusTomDropDown(
                   title: Text('parents'.toUpperCase()),
                   content: Column(
@@ -413,7 +424,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     
                     ],
                 )),
-
+                //Transport
                 CusTomDropDown(
                   title: Text('transport'.toUpperCase()),
                   content: Column(
@@ -446,8 +457,8 @@ class StudentInfoPageState extends State<StudentInfoPage>
                       ),
                       
                     ],
-                )),  
-
+                )),
+                //Fees
                 CusTomDropDown(
                   title: Text('fee'.toUpperCase()),
                   content: Column(
@@ -530,5 +541,49 @@ class StudentInfoPageState extends State<StudentInfoPage>
       });
     });
     return name;
+  }
+  String getFirstName() {
+    Utils.getStringValue('first_name').then((value) {
+      setState(() {
+        firstname = value;
+      });
+    });
+    return firstname;
+  }
+  String getLastName() {
+    Utils.getStringValue('last_name').then((value) {
+      setState(() {
+        lastname = value;
+      });
+    });
+    return lastname;
+  }
+  String getGender() {
+    Utils.getStringValue('gender').then((value) {
+      setState(() {
+        gender = value;
+      });
+    });
+    return gender;
+  }
+  String getBirth() {
+    Utils.getStringValue('date_of_birth').then((value) {
+      setState(() {
+        date_of_birth = value;
+      });
+    });
+    return date_of_birth;
+  }
+
+  Future<String> getClassName(String name) async {
+    final response = await http.get(Uri.parse(InfixApi.getStudentByName(name)));
+    var jsonData = json.decode(response.body);
+    print(jsonData['data']);
+
+
+    //print(InfixApi.getDemoEmail(schoolId));
+
+    //return jsonData['data'][user]['class_name'];
+    return jsonData['data']['class_name'];
   }
 }
