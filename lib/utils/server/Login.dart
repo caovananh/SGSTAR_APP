@@ -30,6 +30,9 @@ class Login {
     String zoom;
     String token;
     String full_name;
+    String last_name;
+    String first_name;
+
 
     Response response = await get(Uri.parse(InfixApi.login(email, password)));
     if (response.statusCode == 200) {
@@ -98,6 +101,10 @@ class Login {
     String zoom;
     String token;
     String full_name;
+    String last_name;
+    String first_name;
+    String date_of_birth;
+    int gender;
     var message;
 //    InfixApi api = InfixApi();
 
@@ -118,6 +125,10 @@ class Login {
         id = user['data']['user']['id'];
         rule = user['data']['user']['role_id'];
         full_name = user['data']['user']['full_name'];
+        first_name = user['data']['userDetails']['first_name'];
+        last_name = user['data']['userDetails']['last_name'];
+        gender = user['data']['userDetails']['gender_id'];
+        date_of_birth = user['data']['userDetails']['date_of_birth'];
         schoolId = user['data']['user']['school_id'];
         isAdministrator = user['data']['user']['is_administrator'];
         token = user['data']['accessToken'];
@@ -150,6 +161,10 @@ class Login {
           saveStringValue('id', '$id');
           saveStringValue('rule', '$rule');
           saveStringValue('full_name', '$full_name');
+          saveStringValue('last_name', '$last_name');
+          saveStringValue('first_name', '$first_name');
+          saveStringValue('date_of_birth', '$date_of_birth');
+          saveStringValue('gender', gender.toString());
           saveStringValue('schoolId', '$schoolId');
           saveStringValue('image', '$image');
           saveStringValue('isAdministrator', '$isAdministrator');
@@ -169,13 +184,11 @@ class Login {
 
   Future<bool> saveBooleanValue(String key, bool value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-
     return prefs.setBool(key, value);
   }
 
   Future<bool> saveStringValue(String key, String value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-
     return prefs.setString(key, value);
   }
 }
