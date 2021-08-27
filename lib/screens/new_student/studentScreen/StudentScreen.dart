@@ -7,8 +7,12 @@ import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Menu.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoPage.dart';
 import 'package:infixedu/screens/new_student/studentScreen/gallery_screen.dart';
+import 'package:infixedu/screens/new_student/studentScreen/leave.dart';
+import 'package:infixedu/screens/new_student/studentScreen/note.dart';
 import 'package:infixedu/screens/new_student/studentScreen/refunds_screen.dart';
+import 'package:infixedu/screens/new_student/studentScreen/subject.dart';
 import 'package:infixedu/screens/new_student/studentScreen/survey.dart';
+import 'package:infixedu/screens/new_student/studentScreen/teacher.dart';
 
 import 'DailyActivities.dart';
 import 'StudentTransitions.dart';
@@ -28,7 +32,7 @@ class _StudentScreenState extends State<StudentScreen> {
       child: Column(
         children: <Widget>[
           Flexible(
-            flex: 4,
+            flex: 5,
             fit: FlexFit.tight,
             child: Container(
               child: GridView.count(
@@ -317,11 +321,150 @@ class _StudentScreenState extends State<StudentScreen> {
                       ))
                     ],
                   )),
+
+                  Container(
+                      child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(9);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/leave.png')),
+                          )),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'leave'.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xff07509d)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ))
+                    ],
+                  )),
+
+                  Container(
+                      child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(10);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/note.png')),
+                          )),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'note'.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xff07509d)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ))
+                    ],
+                  )),
+
+                  Container(
+                      child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(11);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/subject.png')),
+                          )),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'subject'.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xff07509d)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ))
+                    ],
+                  )),
+
+                  Container(
+                      child: Column(
+                    children: <Widget>[
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              _navigate(12);
+                            },
+                            child: Image(
+                                image: AssetImage(
+                                    'assets/images/icons/teacher.png')),
+                          )),
+                      Flexible(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'teacher'.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0xff07509d)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ))
+                    ],
+                  )),
                   
                 ],
               ),
             ),
-            
             
           ),
           Flexible(
@@ -514,6 +657,30 @@ class _StudentScreenState extends State<StudentScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Camp()),
+        );
+        break;
+      case 9:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LeaveScreen()),
+        );
+        break;
+      case 10:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NoteScreen()),
+        );
+        break;
+      case 11:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SubjectScreen()),
+        );
+        break;
+      case 12:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TeacherScreen()),
         );
         break;
       default:
