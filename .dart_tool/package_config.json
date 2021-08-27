@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "after_layout",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/after_layout-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "age",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/age-0.0.1",
       "packageUri": "lib/",
@@ -884,7 +890,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-26T11:54:19.920854Z",
+  "generated": "2021-08-27T11:09:32.604877Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

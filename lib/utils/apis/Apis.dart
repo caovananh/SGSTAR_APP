@@ -94,6 +94,10 @@ class InfixApi {
     return baseApi + "search-student?name=$name";
   }
 
+  static String getStudentInfo(int id) {
+    return baseApi + "student-view/$id";
+  }
+
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }
