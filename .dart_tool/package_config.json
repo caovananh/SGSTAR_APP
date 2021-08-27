@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "after_layout",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/after_layout-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "age",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/age-0.0.1",
       "packageUri": "lib/",
@@ -884,7 +890,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-26T07:53:40.001194Z",
+  "generated": "2021-08-27T08:09:19.692545Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

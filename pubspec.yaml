@@ -63,6 +63,7 @@ dependencies:
   flutter_collapse: ^0.1.1
   carousel_slider: ^4.0.0
   flutter_secure_storage: ^4.2.1
+  after_layout: ^1.1.0
 
 dev_dependencies:
   flutter_test:

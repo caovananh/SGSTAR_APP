@@ -2,6 +2,13 @@
   <library name="Dart Packages" type="DartPackagesLibraryType">
     <properties>
       <option name="packageNameToDirsMap">
+        <entry key="after_layout">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/after_layout-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="age">
           <value>
             <list>
@@ -1028,6 +1035,7 @@
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../../flutter/.pub-cache/git/pdf_flutter-bb989fc0344653fef19ede7926b1c48987d74a56/lib" />
+      <root url="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/after_layout-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/age-0.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/args-2.0.0/lib" />
