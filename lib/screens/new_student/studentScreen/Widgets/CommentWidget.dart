@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/studentScreen/Widgets/CommentDetail.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class CommentList extends StatefulWidget {
   const CommentList({key}) : super(key: key);
@@ -63,11 +65,21 @@ class _CommentListState extends State<CommentList> {
                       ),
                       Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Read more',
-                            style: TextStyle(
-                                color: Color(0xFF144385),
-                                fontWeight: FontWeight.bold),
+                          child: InkWell(
+                            onTap: () {
+                              pushNewScreen(
+                                context,
+                                screen: CommentDetail(),
+                                withNavBar: true, // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                              );
+                            },
+                            child: Text(
+                              'Read more',
+                              style: TextStyle(
+                                  color: Color(0xFF144385),
+                                  fontWeight: FontWeight.bold),
+                            ),
                           )),
                       Row(
                         mainAxisSize: MainAxisSize.max,
