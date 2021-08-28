@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/model/chatMessageModel.dart';
 
 class ChatDetailPage extends StatefulWidget {
@@ -46,33 +47,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        // automaticallyImplyLeading: false,
-        toolbarHeight: 100,
-        primary: false,
-        centerTitle: false,
-        title: Text("year 1n".toUpperCase()),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.phone),
-            onPressed: () => {},
-          ),
-          IconButton(
-            icon: Icon(Icons.video_call),
-            onPressed: () => {},
-          ),
-          IconButton(
-            icon: Icon(Icons.video_call),
-            color: Colors.transparent,
-            onPressed: () => {},
-          ),
-        ],
-        flexibleSpace: Image(
-          image: AssetImage('assets/images/tool_bar_bg.png'),
-          fit: BoxFit.fill,
-          height: 100.0,
-        ),
-      ),
+      appBar: AppBarWidget(),
       body: Column(
         children: <Widget>[
           Expanded(

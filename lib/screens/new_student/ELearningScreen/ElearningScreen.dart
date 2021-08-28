@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
 
 class ELearningScreen extends StatefulWidget {
   const ELearningScreen({key}) : super(key: key);
@@ -10,9 +11,10 @@ class ELearningScreen extends StatefulWidget {
 class _ELearningScreenState extends State<ELearningScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('This is elearning screen', style: TextStyle(fontSize: 50)),
+    return Scaffold(
+      appBar: AppBarMainScreen(),
+      body: Center(
+        child: Text('This is Elearning screen', style: TextStyle(fontSize: 50)),
       ),
     );
   }

@@ -48,6 +48,7 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    int width = MediaQuery.of(context).size.width.round() - 40;
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
       child: Container(
@@ -69,7 +70,8 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 35,
+              height: 40,
+              width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
                 border: Border(
                   bottom:
@@ -77,19 +79,25 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      getPrevWeekDates();
-                    },
-                    child: Icon(
-                      Icons.navigate_before_outlined,
-                      color: Color(0xff07509d),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        onTap: () {
+                          getPrevWeekDates();
+                        },
+                        child: Icon(
+                          Icons.navigate_before_outlined,
+                          color: Color(0xff07509d),
+                        ),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 60.0, right: 60),
+                  Align(
+                    alignment: Alignment.center,
                     child: TextButton(
                       style: ButtonStyle(
                         foregroundColor:
@@ -102,13 +110,18 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      getNextWeekDates();
-                    },
-                    child: Icon(
-                      Icons.navigate_next,
-                      color: Color(0xff07509d),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          getNextWeekDates();
+                        },
+                        child: Icon(
+                          Icons.navigate_next,
+                          color: Color(0xff07509d),
+                        ),
+                      ),
                     ),
                   ),
                 ],

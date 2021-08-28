@@ -122,6 +122,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "double_back_to_close_app",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/double_back_to_close_app-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "dropdown_below",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/dropdown_below-1.0.0",
       "packageUri": "lib/",
@@ -578,6 +584,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "persistent_bottom_nav_bar",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/persistent_bottom_nav_bar-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "petitparser",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/petitparser-4.1.0",
       "packageUri": "lib/",
@@ -890,7 +902,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-27T11:09:32.604877Z",
+  "generated": "2021-08-28T09:49:27.057835Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

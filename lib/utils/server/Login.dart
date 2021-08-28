@@ -53,21 +53,21 @@ class Login {
       zoom = user['data']['system_settings'] == null
           ? '1'
           : user['data']['system_settings'][0]['Zoom']
-              .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
+          .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
 
       if (rule == 1 || rule == 4) {
         image = user['data']['userDetails']['staff_photo'] == null ||
-                user['data']['userDetails']['staff_photo'] == ''
+            user['data']['userDetails']['staff_photo'] == ''
             ? 'public/uploads/staff/demo/staff.jpg'
             : user['data']['userDetails']['staff_photo'];
       } else if (rule == 2) {
         image = user['data']['userDetails']['student_photo'] == null ||
-                user['data']['userDetails']['student_photo'] == ''
+            user['data']['userDetails']['student_photo'] == ''
             ? 'public/uploads/staff/demo/staff.jpg'
             : user['data']['userDetails']['student_photo'];
       } else if (rule == 3) {
         image = user['data']['userDetails']['guardian_photo'] == null ||
-                user['data']['userDetails']['guardian_photo'] == ''
+            user['data']['userDetails']['guardian_photo'] == ''
             ? 'public/uploads/staff/demo/staff.jpg'
             : user['data']['userDetails']['guardian_photo'];
       }
@@ -105,6 +105,7 @@ class Login {
     String first_name;
     String date_of_birth;
     int StudentId;
+    String class_name;
     int gender;
     var message;
 //    InfixApi api = InfixApi();
@@ -114,7 +115,7 @@ class Login {
     try {
       DIO.Dio dio = DIO.Dio();
       DIO.Response response =
-          await dio.get(InfixApi.login(email, password)).catchError((e) {
+      await dio.get(InfixApi.login(email, password)).catchError((e) {
         message = DioExceptions.fromDioError(e).toString();
         print('DIO ERROR: $message');
       });
@@ -130,7 +131,8 @@ class Login {
         last_name = user['data']['userDetails']['last_name'];
         gender = user['data']['userDetails']['gender_id'];
         date_of_birth = user['data']['userDetails']['date_of_birth'];
-        StudentId=user['data']['userDetails']['id'];
+        StudentId=user['data']['studentDetails']['id'];
+        class_name=user['data']['classesDetail']['class_name'];
         schoolId = user['data']['user']['school_id'];
         isAdministrator = user['data']['user']['is_administrator'];
         token = user['data']['accessToken'];
@@ -139,9 +141,11 @@ class Login {
         zoom = user['data']['system_settings'] == null
             ? '1'
             : user['data']['system_settings'][0]['Zoom']
-                .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
+            .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
 
-        print("STUDENT PHOTO: ${user['data']['userDetails']}");
+        print("STUDENT DETAIL: ${user['data']['userDetails']}");
+        print("STUDENT NEW DETAIL: ${user['data']['studentDetails']}");
+        print("CLASSES DETAIL: ${user['data']['classesDetail']}");
 
         if (rule == 1 || rule == 4) {
           image = isNullOrEmpty(user['data']['userDetails']['staff_photo'])
@@ -166,6 +170,7 @@ class Login {
           saveStringValue('last_name', '$last_name');
           saveStringValue('first_name', '$first_name');
           saveStringValue('StudentId', '$StudentId');
+          saveStringValue('class_name', '$class_name');
           saveStringValue('date_of_birth', '$date_of_birth');
           saveStringValue('gender', gender.toString());
           saveStringValue('schoolId', '$schoolId');

@@ -50,6 +50,7 @@ import 'package:infixedu/screens/student/studyMaterials/StudentAssignment.dart';
 import 'package:infixedu/screens/student/studyMaterials/StudentOtherDownloads.dart';
 import 'package:infixedu/screens/student/studyMaterials/StudentSyllabus.dart';
 import 'package:infixedu/screens/student/studyMaterials/StudyMaterialScreen.dart';
+import 'package:infixedu/screens/new_student/HomeStudent.dart';
 import 'package:infixedu/screens/teacher/ClassAttendanceHome.dart';
 import 'package:infixedu/screens/teacher/TeacherMyAttendance.dart';
 import 'package:infixedu/screens/teacher/academic/AcademicsScreen.dart';
@@ -443,11 +444,11 @@ class AppFunction {
       case '2':
         if (zoom == '1') {
           route = MaterialPageRoute(
-              builder: (context) => StudentHome(students, studentIcons));
+              builder: (context) => HomeStudent(students, studentIcons));
           Navigator.pushReplacement(context, route);
         } else {
           route = MaterialPageRoute(
-              builder: (context) => StudentHome(students2, studentIcons2));
+              builder: (context) => HomeStudent(students2, studentIcons2));
           Navigator.pushReplacement(context, route);
         }
         break;
