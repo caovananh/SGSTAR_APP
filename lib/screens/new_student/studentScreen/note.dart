@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/studentScreen/note_detail.dart';
@@ -15,12 +14,15 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   Color color = Color(0xff13438f);
+  int _selected = null;
   @override
   Widget build(BuildContext context) {
+    final items = List<String>.generate(3, (index) => null);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(),
-      body: ListView(
+      body: Container(
+          child: Column(
         children: [
           SizedBox(
             height: 20,
@@ -44,214 +46,90 @@ class _NoteScreenState extends State<NoteScreen> {
               padding: new EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
             ),
           ),
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Card(
-              color: Color(0xffebf6ff),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: ListTile(
-                  contentPadding: EdgeInsets.only(left: 0.0),
-                  isThreeLine: true,
-                  leading: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF7dd3f7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0),
-                      ),
+          SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                  child: Card(
+                    color: Color(0xffebf6ff),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    width: 35,
-                    height: 30,
-                    child: Center(
-                        child: Text(
-                      '1',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    )),
-                  ),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "notification".toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xff13438f),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          '25/12/2021',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                    child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 0.0),
+                        isThreeLine: true,
+                        leading: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFF7dd3f7),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(30.0),
+                              bottomRight: Radius.circular(30.0),
+                            ),
+                          ),
+                          width: 35,
+                          height: 30,
+                          child: Center(
+                              child: Text(
+                            '1',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          )),
                         ),
-                      )
-                    ],
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            _noteDetails();
-                            
-                          },
-                          child: Text(
-                            'Read more',
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic, color: color),
-                          ))
-                    ],
-                  )),
-            ),
-          ),
-          SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Card(
-              color: Color(0xffebf6ff),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: ListTile(
-                  contentPadding: EdgeInsets.only(left: 0.0),
-                  isThreeLine: true,
-                  leading: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF7dd3f7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0),
-                      ),
-                    ),
-                    width: 35,
-                    height: 30,
-                    child: Center(
-                        child: Text(
-                      '2',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    )),
-                  ),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "notification".toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xff13438f),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          '25/12/2021',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "notification".toUpperCase(),
+                              style: TextStyle(
+                                  color: Color(0xff13438f),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Text(
+                                '25/12/2021',
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 14),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  _noteDetails(index);
+                                },
+                                child: Text(
+                                  'Read more',
+                                  style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      color: _selected == index ? Colors.red: color),
+                                ))
+                          ],
+                        )),
                   ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                             _noteDetails();
-                          },
-                          child: Text(
-                            'Read more',
-                            style: TextStyle(fontStyle: FontStyle.italic,color: color),
-                          ))
-                    ],
-                  )),
-            ),
-          ),
-          SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Card(
-              color: Color(0xffebf6ff),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: ListTile(
-                  contentPadding: EdgeInsets.only(left: 0.0),
-                  isThreeLine: true,
-                  leading: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF7dd3f7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0),
-                      ),
-                    ),
-                    width: 35,
-                    height: 30,
-                    child: Center(
-                        child: Text(
-                      '3',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    )),
-                  ),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "notification".toUpperCase(),
-                        style: TextStyle(
-                            color: Color(0xff13438f),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          '25/12/2021',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                        ),
-                      )
-                    ],
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                              _noteDetails();
-                          },
-                          child: Text(
-                            'Read more',
-                            style: TextStyle(fontStyle: FontStyle.italic,color: color),
-                          ))
-                    ],
-                  )),
+                );
+              },
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 
-  void _noteDetails( ) {
-     setState(() {
-      color = Color(0xffde0084);
+  void _noteDetails(int index) {
+    setState(() {
+      _selected = index;
     });
     Navigator.push(
       context,

@@ -12,9 +12,8 @@ class _NewsState extends State<News> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     var shortestSide = MediaQuery.of(context).size.shortestSide;
-
-    final items = List<String>.generate(5, (i) => "Item $i");
-    double cardHeight = screenHeight * 0.415;
+  
+    final items = List<String>.generate(3, (i) => "Item $i");
     return Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
         child: ListView.separated(
@@ -32,7 +31,7 @@ class _NewsState extends State<News> {
                       width: MediaQuery.of(context).size.width - 40,
                       height: shortestSide >= 600
                           ? screenHeight / 3
-                          : screenHeight / 4,
+                          : screenHeight / 4.5,
                       child: FittedBox(
                         child: Image.asset('assets/images/card-thumb.png'),
                         fit: BoxFit.fill,
@@ -49,10 +48,14 @@ class _NewsState extends State<News> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                              style: TextStyle(color: Colors.black),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                                style: TextStyle(color: Colors.black),
+                              ),
                             ),
+                            SizedBox(height: 5,),
                             Text('25/12/2021 14:30',
                                 style: TextStyle(color: Colors.grey)),
                             Row(
