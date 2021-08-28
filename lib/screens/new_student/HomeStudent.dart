@@ -85,6 +85,7 @@ class _StudentHomeState extends State<StudentHome> {
               clear();
               //getAll();
               // getRemember();
+
               return Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()));
@@ -246,7 +247,7 @@ class _StudentHomeState extends State<StudentHome> {
 
   getRemember() async {
     final pref = await SharedPreferences.getInstance();
-    bool remember = pref.get('remember_me');
+    String remember = pref.get('StudentId');
     print(remember);
   }
 
