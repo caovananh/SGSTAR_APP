@@ -49,7 +49,6 @@ class StudentInfoPageState extends State<StudentInfoPage>
   String guardianPhone;
   String guardianEmail;
 
-
   @override
   void initState() {
     super.initState();
@@ -132,7 +131,9 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           SizedBox(
                             height: 10,
                           ),
-                          Text(getClassName() != null ?'Class: ' + getClassName() : 'Class: '),
+                          Text(getClassName() != null
+                              ? 'Class: ' + getClassName()
+                              : 'Class: '),
                           SizedBox(
                             height: 10,
                           ),
@@ -229,8 +230,8 @@ class StudentInfoPageState extends State<StudentInfoPage>
                               Text(
                                   getGender() != null
                                       ? getGender() == "1"
-                                      ? "Male"
-                                      : "Female"
+                                          ? "Male"
+                                          : "Female"
                                       : 'null',
                                   style: TextStyle(
                                       color: Color(0xff13438f),
@@ -277,12 +278,12 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           width: double.infinity,
                           decoration: BoxDecoration(
                               border: Border(
-                                bottom: BorderSide(
-                                    width: 2.0, color: const Color(0xFF7dd3f7)),
-                              )),
+                            bottom: BorderSide(
+                                width: 2.0, color: const Color(0xFF7dd3f7)),
+                          )),
                           child: Padding(
                             padding:
-                            const EdgeInsets.only(left: 20, bottom: 10),
+                                const EdgeInsets.only(left: 20, bottom: 10),
                             child: Text('Father',
                                 style: TextStyle(
                                     color: Color(0xff13438f),
@@ -367,11 +368,11 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           width: double.infinity,
                           decoration: BoxDecoration(
                               border: Border(
-                                top: BorderSide(
-                                    width: 2.0, color: const Color(0xFF7dd3f7)),
-                                bottom: BorderSide(
-                                    width: 2.0, color: const Color(0xFF7dd3f7)),
-                              )),
+                            top: BorderSide(
+                                width: 2.0, color: const Color(0xFF7dd3f7)),
+                            bottom: BorderSide(
+                                width: 2.0, color: const Color(0xFF7dd3f7)),
+                          )),
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 15, left: 20, bottom: 15),
@@ -415,31 +416,46 @@ class StudentInfoPageState extends State<StudentInfoPage>
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherNationality!=null?'Nationality: '+motherNationality:'Nationality: '),
+                                    child: Text(motherNationality != null
+                                        ? 'Nationality: ' + motherNationality
+                                        : 'Nationality: '),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherCompany!=null?'Company: '+motherCompany:'Company:'),
+                                    child: Text(motherCompany != null
+                                        ? 'Company: ' + motherCompany
+                                        : 'Company:'),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherWorkAddress!=null?'Work Adress: '+motherWorkAddress:'Work Adress:'),
+                                    child: Text(motherWorkAddress != null
+                                        ? 'Work Adress: ' + motherWorkAddress
+                                        : 'Work Adress:'),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherPhone!=null?'Phone: '+motherPhone:'Phone:'),
+                                    child: Text(motherPhone != null
+                                        ? 'Phone: ' + motherPhone
+                                        : 'Phone:'),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherEmail!=null?'Personal Email: '+motherEmail:'Personal Email: '),
+                                    child: Text(motherEmail != null
+                                        ? 'Personal Email: ' + motherEmail
+                                        : 'Personal Email: '),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherFirstLanguage!=null?'First Language: '+motherFirstLanguage:'First Language:'),
+                                    child: Text(motherFirstLanguage != null
+                                        ? 'First Language: ' +
+                                            motherFirstLanguage
+                                        : 'First Language:'),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherEnglishLevel!=null?'English Level: '+motherEnglishLevel:'English Level:'),
+                                    child: Text(motherEnglishLevel != null
+                                        ? 'English Level: ' + motherEnglishLevel
+                                        : 'English Level:'),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -455,11 +471,11 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           width: double.infinity,
                           decoration: BoxDecoration(
                               border: Border(
-                                top: BorderSide(
-                                    width: 2.0, color: const Color(0xFF7dd3f7)),
-                                bottom: BorderSide(
-                                    width: 2.0, color: const Color(0xFF7dd3f7)),
-                              )),
+                            top: BorderSide(
+                                width: 2.0, color: const Color(0xFF7dd3f7)),
+                            bottom: BorderSide(
+                                width: 2.0, color: const Color(0xFF7dd3f7)),
+                          )),
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 15, left: 20, bottom: 15),
@@ -703,6 +719,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     });
     return name;
   }
+
   String getLastName() {
     Utils.getStringValue('last_name').then((value) {
       setState(() {
@@ -711,6 +728,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     });
     return lastname;
   }
+
   String getClassName() {
     Utils.getStringValue('class_name').then((value) {
       setState(() {
@@ -719,6 +737,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     });
     return class_name;
   }
+
   String getGender() {
     Utils.getStringValue('gender').then((value) {
       setState(() {
@@ -727,6 +746,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     });
     return gender;
   }
+
   String getFirstName() {
     Utils.getStringValue('first_name').then((value) {
       setState(() {
@@ -735,6 +755,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
     });
     return firstname;
   }
+
   String getBirth() {
     Utils.getStringValue('date_of_birth').then((value) {
       setState(() {
@@ -747,38 +768,53 @@ class StudentInfoPageState extends State<StudentInfoPage>
   activeParent() async {
     final pref = await SharedPreferences.getInstance();
     String remember = pref.get('StudentId');
-    id=remember;
+    id = remember;
     getParentInfo(int.parse(id));
     print(id);
   }
+
   Future<void> getParentInfo(int id) async {
     final response = await http.get(Uri.parse(InfixApi.getStudentInfo(id)));
     var jsonData = json.decode(response.body);
     print(jsonData['data']['parent_detail']);
-    setState(() {
-      //Father
-      father_name = jsonData['data']['parent_detail']['fathers_name'];
-      father_nationality = jsonData['data']['parent_detail']['fathers_nationality'];
-      father_company = jsonData['data']['parent_detail']['fathers_company'];
-      father_workAddress = jsonData['data']['parent_detail']['fathers_work_address'];
-      father_phone = jsonData['data']['parent_detail']['fathers_mobile'].toString();
-      father_email = jsonData['data']['parent_detail']['fathers_email'];
-      father_first_language = jsonData['data']['parent_detail']['fathers_first_language'];
-      father_english_level = jsonData['data']['parent_detail']['fathers_language_level'];
-      //Mother
-      mother_name = jsonData['data']['parent_detail']['mothers_name'];
-      motherNationality = jsonData['data']['parent_detail']['mothers_nationality'];
-      motherCompany = jsonData['data']['parent_detail']['mothers_company'];
-      motherWorkAddress = jsonData['data']['parent_detail']['mothers_work_address'];
-      motherPhone = jsonData['data']['parent_detail']['mothers_mobile'].toString();
-      motherEmail = jsonData['data']['parent_detail']['mothers_email'];
-      motherFirstLanguage = jsonData['data']['parent_detail']['mothers_first_language'];
-      motherEnglishLevel = jsonData['data']['parent_detail']['mothers_language_level'];
+    if (mounted) {
+      setState(() {
+        setState(() {
+          //Father
+          father_name = jsonData['data']['parent_detail']['fathers_name'];
+          father_nationality =
+              jsonData['data']['parent_detail']['fathers_nationality'];
+          father_company = jsonData['data']['parent_detail']['fathers_company'];
+          father_workAddress =
+              jsonData['data']['parent_detail']['fathers_work_address'];
+          father_phone =
+              jsonData['data']['parent_detail']['fathers_mobile'].toString();
+          father_email = jsonData['data']['parent_detail']['fathers_email'];
+          father_first_language =
+              jsonData['data']['parent_detail']['fathers_first_language'];
+          father_english_level =
+              jsonData['data']['parent_detail']['fathers_language_level'];
+          //Mother
+          mother_name = jsonData['data']['parent_detail']['mothers_name'];
+          motherNationality =
+              jsonData['data']['parent_detail']['mothers_nationality'];
+          motherCompany = jsonData['data']['parent_detail']['mothers_company'];
+          motherWorkAddress =
+              jsonData['data']['parent_detail']['mothers_work_address'];
+          motherPhone =
+              jsonData['data']['parent_detail']['mothers_mobile'].toString();
+          motherEmail = jsonData['data']['parent_detail']['mothers_email'];
+          motherFirstLanguage =
+              jsonData['data']['parent_detail']['mothers_first_language'];
+          motherEnglishLevel =
+              jsonData['data']['parent_detail']['mothers_language_level'];
 
-      //Guardian
-      guardianName = jsonData['data']['parent_detail']['guardians_name'];
-      guardianPhone = jsonData['data']['parent_detail']['guardians_mobile'];
-      guardianEmail = jsonData['data']['parent_detail']['guardians_email'];
-    });
+          //Guardian
+          guardianName = jsonData['data']['parent_detail']['guardians_name'];
+          guardianPhone = jsonData['data']['parent_detail']['guardians_mobile'];
+          guardianEmail = jsonData['data']['parent_detail']['guardians_email'];
+        });
+      });
+    }
   }
 }
