@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infixedu/screens/new_student/ChatScreen/CommitmentsBus.dart';
+import 'package:infixedu/screens/new_student/BusScreen/CommitmentsBus.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 
 class GuardianRegister extends StatefulWidget {

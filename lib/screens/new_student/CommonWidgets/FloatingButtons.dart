@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/login/login_new.dart';
 import 'package:infixedu/utils/Utils.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,11 +30,7 @@ class _FloatingButtonsState extends State<FloatingButtons> {
             backgroundColor: const Color(0xFF7dd3f7),
           ),
           onPressed: () {
-            //getAll();
-            clear();
-            //getRemember();
-            return Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => LoginPage()));
+
           },
         ),
         Padding(
@@ -62,28 +59,5 @@ class _FloatingButtonsState extends State<FloatingButtons> {
     });
   }
 
-  Future<void> clear() async {
-    // print(widget._images);
-    final pref = await SharedPreferences.getInstance();
-    await pref.remove('isLogged');
-    // await pref.clear();
-  }
 
-  getRemember() async {
-    final pref = await SharedPreferences.getInstance();
-    bool remember = pref.get('remember_me');
-    print(remember);
-  }
-
-  void getAll() async {
-    final prefs = await SharedPreferences.getInstance();
-    final keys = prefs.getKeys();
-
-    final prefsMap = Map<String, dynamic>();
-    for (String key in keys) {
-      prefsMap[key] = prefs.get(key);
-    }
-
-    print(prefsMap);
-  }
 }
