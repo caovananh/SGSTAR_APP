@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/login/login_new.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
 import 'package:infixedu/utils/Utils.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,13 +30,7 @@ class _FloatingButtonsState extends State<FloatingButtons> {
             ),
             backgroundColor: const Color(0xFF7dd3f7),
           ),
-          onPressed: () {
-            //getAll();
-            clear();
-            //getRemember();
-            return Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => LoginPage()));
-          },
+          onPressed: () {},
         ),
         Padding(
             padding: const EdgeInsets.only(top: 10.0, bottom: 20),
@@ -67,6 +63,13 @@ class _FloatingButtonsState extends State<FloatingButtons> {
     final pref = await SharedPreferences.getInstance();
     await pref.remove('isLogged');
     // await pref.clear();
+
+    pushNewScreen(
+      context,
+      screen: Logout(),
+      withNavBar: false, // OPTIONAL VALUE. True by default.
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
   }
 
   getRemember() async {
@@ -83,7 +86,6 @@ class _FloatingButtonsState extends State<FloatingButtons> {
     for (String key in keys) {
       prefsMap[key] = prefs.get(key);
     }
-
     print(prefsMap);
   }
 }
