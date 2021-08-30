@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
 import 'package:infixedu/utils/Utils.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBarMainScreen extends StatefulWidget implements PreferredSizeWidget {
   const AppBarMainScreen({Key key}) : super(key: key);
@@ -25,11 +28,34 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: <Widget>[
-                    CircleAvatar(
-                      radius: 35.0,
-                      backgroundImage:
-                          AssetImage('assets/images/icons/student1.png'),
-                      backgroundColor: Colors.white,
+                    GestureDetector(
+                      onTap: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                              content: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                TextButton(
+                                    onPressed: () {
+                                      _logout();
+                                    },
+                                    child: Text(
+                                      'Logout',
+                                      style: TextStyle(fontSize: 25),
+                                    )),
+                              ],
+                            ),
+                          ));
+                        },
+                      ),
+                      child: CircleAvatar(
+                        radius: 35.0,
+                        backgroundImage:
+                            AssetImage('assets/images/icons/student1.png'),
+                        backgroundColor: Colors.white,
+                      ),
                     ),
                     Expanded(
                       child: SingleChildScrollView(
@@ -66,5 +92,19 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
       });
     });
     return name;
+  }
+
+  void _logout() async {
+    // print(widget._images);
+    final pref = await SharedPreferences.getInstance();
+    await pref.remove('isLogged');
+    // await pref.clear();
+
+    pushNewScreen(
+      context,
+      screen: Logout(),
+      withNavBar: false, // OPTIONAL VALUE. True by default.
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
   }
 }
