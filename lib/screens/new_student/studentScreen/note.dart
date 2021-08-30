@@ -14,7 +14,7 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   Color color = Color(0xff13438f);
-  int _selected = null;
+  int _selected;
   @override
   Widget build(BuildContext context) {
     final items = List<String>.generate(3, (index) => null);
@@ -113,7 +113,9 @@ class _NoteScreenState extends State<NoteScreen> {
                                   'Read more',
                                   style: TextStyle(
                                       fontStyle: FontStyle.italic,
-                                      color: _selected == index ? Colors.red: color),
+                                      color: _selected == index
+                                          ? Colors.red
+                                          : color),
                                 ))
                           ],
                         )),

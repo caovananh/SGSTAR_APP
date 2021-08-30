@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/BusScreen/BusWidgets/bus_history.dart';
 import 'package:infixedu/screens/new_student/ChatScreen/GuardianRegister.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/month_calendar.dart';
 
 class BusScreen extends StatefulWidget {
   const BusScreen({key}) : super(key: key);
@@ -17,15 +19,46 @@ class _BusScreenState extends State<BusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarMainScreen(),
-      body: Center(
-        child: FlatButton(
-          child: Text('Register Bus'),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => GuardianRegister()));
-          },
-          color: Color(0xFF9EDEFF),
-        ),
-      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Container(
+              height: 40,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xff7cd3f7),
+              ),
+              child: TextButton(
+                child: Text('Register Bus'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GuardianRegister()));
+                },
+                
+              ),
+            ),
+          ),
+          SizedBox(height: 15),
+          Center(
+            child: Container(
+              height: 40,
+               width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xff7cd3f7),
+              ),
+              child: TextButton(
+                child: Text('History'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BusHistory()));
+                },
+                
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 }
