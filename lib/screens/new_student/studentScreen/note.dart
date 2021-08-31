@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/studentScreen/note_detail.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen({key}) : super(key: key);
@@ -9,7 +14,11 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _NoteScreenState extends State<NoteScreen> {
+  List<dynamic> listNotification;
+
+  String id;
   void initState() {
+    this.getNotification();
     super.initState();
   }
 
@@ -49,7 +58,8 @@ class _NoteScreenState extends State<NoteScreen> {
           SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
-              itemCount: items.length,
+              //itemCount: items.length,
+              itemCount: listNotification==null? 0:listNotification.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
@@ -73,7 +83,7 @@ class _NoteScreenState extends State<NoteScreen> {
                           height: 30,
                           child: Center(
                               child: Text(
-                            '1',
+                                (index+1).toString(),
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           )),
                         ),
@@ -90,7 +100,7 @@ class _NoteScreenState extends State<NoteScreen> {
                             Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: Text(
-                                '25/12/2021',
+                                listNotification[index]["date"],
                                 style:
                                     TextStyle(color: Colors.grey, fontSize: 14),
                               ),
@@ -103,7 +113,8 @@ class _NoteScreenState extends State<NoteScreen> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Text(
-                                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+                                listNotification[index]["message"]
+                                  ),
                             ),
                             TextButton(
                                 onPressed: () {
@@ -116,7 +127,7 @@ class _NoteScreenState extends State<NoteScreen> {
                                       color: _selected == index
                                           ? Colors.red
                                           : color),
-                                ))
+                                )),
                           ],
                         )),
                   ),
@@ -137,5 +148,19 @@ class _NoteScreenState extends State<NoteScreen> {
       context,
       MaterialPageRoute(builder: (context) => NoteDetail()),
     );
+  }
+
+  Future<String> getNotification() async{
+    final pref = await SharedPreferences.getInstance();
+    String idUser = pref.get('id');
+    id = idUser;
+    final response = await http.get(Uri.parse(InfixApi.getNotification(int.parse(id))));
+    Map<String, dynamic> map = json.decode(response.body);
+    setState(() {
+      listNotification = map["data"]["Notification"];
+    });
+    print(listNotification);
+
+    return "Success!";
   }
 }

@@ -97,6 +97,12 @@ class InfixApi {
   static String getStudentInfo(int id) {
     return baseApi + "student-view/$id";
   }
+  static String getNotification(int id) {
+    return baseApi + "notification/$id";
+  }
+  static String getReport(int id) {
+    return baseApi + "report-medical/$id";
+  }
 
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
@@ -12,7 +13,9 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  final items = List<String>.generate(2, (i) => "Item $i");
   bool _expanded = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,87 +60,113 @@ class _MenuState extends State<Menu> {
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: CusTomCollapse(
-                              title: Text('HOT DISHES'),
-                              content: Column(
-                                children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                ],
-                              )),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            child: CusTomCollapse(
+                                title: Text('HOT DISHES'),
+                                content: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemCount: items.length,
+                                          itemBuilder: (context, index) {
+                                            return Center(child: Text('hot soup'));
+                                          }),
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: CusTomCollapse(
                               title: Text('VEGETARIAN'),
-                              content: Column(
+                              content: Row(
                                 children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) {
+                                          return Center(child: Text('hot soup'));
+                                        }),
+                                  ),
                                 ],
                               )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: CusTomCollapse(
-                              title: Text('SALAD & VEGETABLES'),
-                              content: Column(
+                              title: Text('Salad & vegetables'.toUpperCase()),
+                              content: Row(
                                 children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) {
+                                          return Center(child: Text('hot soup'));
+                                        }),
+                                  ),
                                 ],
                               )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: CusTomCollapse(
-                              title: Text('HAMS'),
-                              content: Column(
+                              title: Text('hams'.toUpperCase()),
+                              content: Row(
                                 children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) {
+                                          return Center(child: Text('hot soup'));
+                                        }),
+                                  ),
                                 ],
                               )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: CusTomCollapse(
-                              title: Text('DESSERTS'),
-                              content: Column(
+                              title: Text('desserts'.toUpperCase()),
+                              content: Row(
                                 children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) {
+                                          return Center(child: Text('hot soup'));
+                                        }),
+                                  ),
                                 ],
                               )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: CusTomCollapse(
-                              title: Text('SNACK'),
-                              content: Column(
+                              title: Text('Snack'),
+                              content: Row(
                                 children: [
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
-                                  Text('hot soup'),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) {
+                                          return Center(child: Text('hot soup'));
+                                        }),
+                                  ),
                                 ],
                               )),
                         ),

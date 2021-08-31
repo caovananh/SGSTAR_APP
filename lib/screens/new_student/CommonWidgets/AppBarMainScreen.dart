@@ -29,27 +29,27 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
                 child: Row(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () => showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                              content: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      _logout();
-                                    },
-                                    child: Text(
-                                      'Logout',
-                                      style: TextStyle(fontSize: 25),
-                                    )),
-                              ],
-                            ),
-                          ));
-                        },
-                      ),
+                      // onTap: () => showDialog<String>(
+                      //   context: context,
+                      //   builder: (BuildContext context) {
+                      //     return AlertDialog(
+                      //         content: SingleChildScrollView(
+                      //       child: Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //         children: <Widget>[
+                      //           TextButton(
+                      //               onPressed: () {
+                      //                 _logout();
+                      //               },
+                      //               child: Text(
+                      //                 'Logout',
+                      //                 style: TextStyle(fontSize: 25),
+                      //               )),
+                      //         ],
+                      //       ),
+                      //     ));
+                      //   },
+                      // ),
                       child: CircleAvatar(
                         radius: 35.0,
                         backgroundImage:

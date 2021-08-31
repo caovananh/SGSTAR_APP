@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/CardHeader.dart';
 import 'package:infixedu/screens/new_student/studentScreen/ClinicWidget/General.dart';
+import 'package:infixedu/screens/new_student/studentScreen/ClinicWidget/Records.dart';
 import 'package:infixedu/utils/Utils.dart';
 
 class ClinicPage extends StatefulWidget {
@@ -81,7 +82,7 @@ class ClinicPageState extends State<ClinicPage>
                                   color: Color(0xFF9EDEFF), width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("MEDICALRECORDS",
+                            child: Text("MEDICAL RECORDS",
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w700)),
                           ),
@@ -94,10 +95,7 @@ class ClinicPageState extends State<ClinicPage>
                 Expanded(
                   child: TabBarView(children: [
                     GeneralInfo(),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
-                      child: Text('No data availabe'),
-                    ),
+                    RecordScreen(),
                   ]),
                 ),
               ],
@@ -114,4 +112,5 @@ class ClinicPageState extends State<ClinicPage>
     });
     return name;
   }
+
 }

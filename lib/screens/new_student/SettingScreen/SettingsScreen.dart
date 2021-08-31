@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/login/login_new.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/BankAccount.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/Contact.dart';
 import 'package:infixedu/screens/new_student/SettingScreen/ContributionFeedback.dart';
@@ -289,7 +290,7 @@ class _SettingScreenState extends State<SettingScreen> {
         );
         break;
       case 6:
-        clear();
+        _logout();
         break;
       default:
         break;
@@ -324,5 +325,18 @@ class _SettingScreenState extends State<SettingScreen> {
       prefsMap[key] = prefs.get(key);
     }
     print(prefsMap);
+  }
+  void _logout() async {
+    // print(widget._images);
+    final pref = await SharedPreferences.getInstance();
+    await pref.remove('isLogged');
+    // await pref.clear();
+
+    pushNewScreen(
+      context,
+      screen: Logout(),
+      withNavBar: false, // OPTIONAL VALUE. True by default.
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
   }
 }
