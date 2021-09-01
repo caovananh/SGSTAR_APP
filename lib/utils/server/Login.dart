@@ -106,6 +106,7 @@ class Login {
     String date_of_birth;
     int StudentId;
     String class_name;
+    int class_id;
     int gender;
     var message;
 //    InfixApi api = InfixApi();
@@ -133,6 +134,7 @@ class Login {
         date_of_birth = user['data']['userDetails']['date_of_birth'];
         StudentId=user['data']['studentDetails']['id'];
         class_name=user['data']['classesDetail']['class_name'];
+        class_id=user['data']['classesDetail']['id'];
         schoolId = user['data']['user']['school_id'];
         isAdministrator = user['data']['user']['is_administrator'];
         token = user['data']['accessToken'];
@@ -171,6 +173,7 @@ class Login {
           saveStringValue('first_name', '$first_name');
           saveStringValue('StudentId', '$StudentId');
           saveStringValue('class_name', '$class_name');
+          saveStringValue('class_id', '$class_id').toString();
           saveStringValue('date_of_birth', '$date_of_birth');
           saveStringValue('gender', gender.toString());
           saveStringValue('schoolId', '$schoolId');

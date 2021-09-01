@@ -103,10 +103,22 @@ class InfixApi {
   static String getReport(int id) {
     return baseApi + "report-medical/$id";
   }
+<<<<<<< HEAD
    static String getNewsList() {
     return baseApi + "news-list";
   }
 
+=======
+  static String getMenu(String type) {
+    return baseApi + "menu-food-day/$type";
+  }
+  static String getHomeWorkClass(int idClass) {
+    return baseApi + "homework-class/$idClass";
+  }
+  static String getMenuType(String type,int id) {
+    return baseApi + "menu-food-day-type/$type/$id";
+  }
+>>>>>>> 485b3ae74ddec93f3d1d663265db0d61af711109
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }
