@@ -103,7 +103,15 @@ class InfixApi {
   static String getReport(int id) {
     return baseApi + "report-medical/$id";
   }
-
+  static String getMenu(String type) {
+    return baseApi + "menu-food-day/$type";
+  }
+  static String getHomeWorkClass(int idClass) {
+    return baseApi + "homework-class/$idClass";
+  }
+  static String getMenuType(String type,int id) {
+    return baseApi + "menu-food-day-type/$type/$id";
+  }
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }

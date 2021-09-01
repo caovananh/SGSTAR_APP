@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:http/http.dart' as http;
 
 class AppBarMainScreen extends StatefulWidget implements PreferredSizeWidget {
   const AppBarMainScreen({Key key}) : super(key: key);
@@ -13,6 +18,13 @@ class AppBarMainScreen extends StatefulWidget implements PreferredSizeWidget {
 
 class _AppBarMainScreenState extends State<AppBarMainScreen> {
   String name;
+  String id;
+  String studentPhoto;
+  @override
+  void initState() {
+    getParentInfo();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
@@ -53,7 +65,8 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
                       child: CircleAvatar(
                         radius: 35.0,
                         backgroundImage:
-                            AssetImage('assets/images/icons/student1.png'),
+                        NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()),
+                            //AssetImage('assets/images/icons/student1.png'),
                         backgroundColor: Colors.white,
                       ),
                     ),
@@ -75,6 +88,11 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
               ),
             ],
           ),
+          actions: [
+            TextButton(onPressed: () {
+              getParentInfo();
+            }, child: Text('Test'))
+          ],
           flexibleSpace: Image(
             image: AssetImage('assets/images/tool_bar_bg.png'),
             fit: BoxFit.fill,
@@ -92,6 +110,22 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
       });
     });
     return name;
+  }
+
+  Future<String> getParentInfo() async {
+    final pref = await SharedPreferences.getInstance();
+    String remember = pref.get('StudentId');
+    id = remember;
+    final response = await http.get(Uri.parse(InfixApi.getStudentInfo(int.parse(id))));
+    var jsonData = json.decode(response.body);
+    print(jsonData['data']['student_detail']);
+    if (mounted) {
+      setState(() {
+        studentPhoto=jsonData['data']['student_detail']['student_photo'];
+      });
+    }
+    print(studentPhoto);
+    return "Success!";
   }
 
   void _logout() async {

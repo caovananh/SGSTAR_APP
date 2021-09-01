@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WeekCalendarWidget extends StatefulWidget {
   const WeekCalendarWidget({key}) : super(key: key);
@@ -12,6 +13,8 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
   DateTime nextWeek;
   DateTime prevWeek;
   DateTime today = DateTime.now();
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+
 
   DateTime sunday_obj;
   DateTime monday_obj;
@@ -400,13 +403,18 @@ class _WeekCalendarWidgetState extends State<WeekCalendarWidget> {
   }
 
   void changeSelectedDate(date) {
+    final prefs = SharedPreferences.getInstance();
     setState(() {
       today = date;
       //selectedDate = date;
     });
+    saveStringValue('weekday',dateFormat.format(today));
     getThisWeekDates(today);
   }
-
+  Future<bool> saveStringValue(String key, String value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(key, value);
+  }
   void getNextWeekDates() {
     DateTime now = nextWeek;
     DateFormat formatter = DateFormat('dd');
