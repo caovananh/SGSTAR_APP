@@ -103,6 +103,9 @@ class InfixApi {
   static String getReport(int id) {
     return baseApi + "report-medical/$id";
   }
+   static String getNewsList() {
+    return baseApi + "news-list";
+  }
 
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";

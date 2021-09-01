@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class News extends StatefulWidget {
   const News({key}) : super(key: key);
@@ -8,6 +13,11 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
+  List<dynamic> listNews;
+  void initState() {
+    this.getNewsList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -19,7 +29,7 @@ class _NewsState extends State<News> {
         child: ListView.separated(
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
-          itemCount: items.length,
+          itemCount: listNews==null? 0:listNews.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               shape: RoundedRectangleBorder(
@@ -31,9 +41,9 @@ class _NewsState extends State<News> {
                       width: MediaQuery.of(context).size.width - 40,
                       height: shortestSide >= 600
                           ? screenHeight / 3
-                          : screenHeight / 4.5,
+                          : screenHeight / 4,
                       child: FittedBox(
-                        child: Image.asset('assets/images/card-thumb.png'),
+                        child: Image.network("https://sgstar.asia/"+ listNews[index]["image"]),
                         fit: BoxFit.fill,
                       )),
                   DefaultTextStyle(
@@ -51,12 +61,12 @@ class _NewsState extends State<News> {
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
                               child: Text(
-                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                                listNews[index]["description"].substring(0,60),
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
                             SizedBox(height: 5,),
-                            Text('25/12/2021 14:30',
+                            Text(listNews[index]["publish_date"],
                                 style: TextStyle(color: Colors.grey)),
                             Row(
                               children: [
@@ -146,5 +156,16 @@ class _NewsState extends State<News> {
             );
           },
         ));
+  }
+  Future<String> getNewsList() async{
+
+    final response = await http.get(Uri.parse(InfixApi.getNewsList()));
+    Map<String, dynamic> map = json.decode(response.body);
+    setState(() {
+      listNews = map["data"]["News"];
+    });
+    print(listNews);
+
+    return "Success!";
   }
 }
