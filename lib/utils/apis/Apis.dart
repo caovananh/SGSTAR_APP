@@ -93,7 +93,7 @@ class InfixApi {
   static String getStudentByName(String name) {
     return baseApi + "search-student?name=$name";
   }
-
+//Khoa start
   static String getStudentInfo(int id) {
     return baseApi + "student-view/$id";
   }
@@ -115,6 +115,10 @@ class InfixApi {
   static String getMenuType(String type,int id) {
     return baseApi + "menu-food-day-type/$type/$id";
   }
+  static String getTeacherList(int id) {
+    return baseApi + "studentTeacher/$id";
+  }
+  //khoa end
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }
