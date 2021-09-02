@@ -49,8 +49,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
               margin: EdgeInsets.only(top: 8),
               child: CircleAvatar(
                 radius: 17.0,
-                backgroundImage: NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()),
-                //AssetImage('assets/images/icons/student1.png'),
+                backgroundImage: studentPhoto!=null?NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()):AssetImage('assets/images/icons/student1.png'),
                 backgroundColor: Colors.white,
               ),
             ),

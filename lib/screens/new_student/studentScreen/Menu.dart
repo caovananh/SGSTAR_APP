@@ -191,9 +191,6 @@ class _MenuState extends State<Menu> {
                                 ],
                               )),
                         ),
-                        TextButton(onPressed: () {
-                          getMenu();
-                        }, child: Text("Test"))
                       ],
                     ),
                   ),
@@ -212,7 +209,7 @@ class _MenuState extends State<Menu> {
     String dayWeek;
     final pref = await SharedPreferences.getInstance();
     String weekday = pref.get('weekday');
-
+    print(DateFormat('EEEE').format(dateFormat.parse(weekday)));
     DateFormat('EEEE').format(dateFormat.parse(weekday))==null?dayWeek=DateFormat("EEEE").format(date):dayWeek=DateFormat('EEEE').format(dateFormat.parse(weekday));
     //print(dayWeek);
     //final response = await http.get(Uri.parse(InfixApi.getMenu(DateFormat('EEEE').format(date))));
@@ -233,7 +230,7 @@ class _MenuState extends State<Menu> {
         salad = map_3["data"]["Foods"];
         hams = map_4["data"]["Foods"];
         snack = map_5["data"]["Foods"];
-        
+        pref.remove('weekday');
       });
     }
     dayWeek=DateFormat('EEEE').format(dateFormat.parse(weekday));

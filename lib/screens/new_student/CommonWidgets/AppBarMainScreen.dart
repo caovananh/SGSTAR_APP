@@ -65,8 +65,7 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
                       child: CircleAvatar(
                         radius: 35.0,
                         backgroundImage:
-                        NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()),
-                            //AssetImage('assets/images/icons/student1.png'),
+                        studentPhoto!=null?NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()):AssetImage('assets/images/icons/student1.png'),
                         backgroundColor: Colors.white,
                       ),
                     ),
@@ -88,11 +87,6 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
               ),
             ],
           ),
-          actions: [
-            TextButton(onPressed: () {
-              getParentInfo();
-            }, child: Text('Test'))
-          ],
           flexibleSpace: Image(
             image: AssetImage('assets/images/tool_bar_bg.png'),
             fit: BoxFit.fill,
