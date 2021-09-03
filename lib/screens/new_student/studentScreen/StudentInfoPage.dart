@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -48,10 +49,12 @@ class StudentInfoPageState extends State<StudentInfoPage>
   String guardianName;
   String guardianPhone;
   String guardianEmail;
-
+  String studentPhoto;
+  String classTeacher;
   @override
   void initState() {
     super.initState();
+    getClassTeacher();
     activeParent();
   }
 
@@ -112,7 +115,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                             ),
                             shape: BoxShape.circle,
                             color: Colors.white),
-                        child: Image.asset('assets/images/icons/student1.png'),
+                        child: studentPhoto!=null?Image.network('https://sgstar.asia/'+ studentPhoto.toString()):Image.asset('assets/images/icons/student1.png'),
                       ),
                       SizedBox(
                         width: 30,
@@ -137,7 +140,7 @@ class StudentInfoPageState extends State<StudentInfoPage>
                           SizedBox(
                             height: 10,
                           ),
-                          Text('Teacher:')
+                          Text(classTeacher==null?'Teacher:':"Teacher: " +classTeacher),
                         ],
                       ),
                     ],
@@ -779,7 +782,6 @@ class StudentInfoPageState extends State<StudentInfoPage>
     print(jsonData['data']['parent_detail']);
     if (mounted) {
       setState(() {
-        setState(() {
           //Father
           father_name = jsonData['data']['parent_detail']['fathers_name'];
           father_nationality =
@@ -813,8 +815,21 @@ class StudentInfoPageState extends State<StudentInfoPage>
           guardianName = jsonData['data']['parent_detail']['guardians_name'];
           guardianPhone = jsonData['data']['parent_detail']['guardians_mobile'];
           guardianEmail = jsonData['data']['parent_detail']['guardians_email'];
-        });
+
+          //Student
+          studentPhoto=jsonData['data']['student_detail']['student_photo'];
       });
+    }
+  }
+  Future<void> getClassTeacher() async {
+    final pref = await SharedPreferences.getInstance();
+    String remember = pref.get('StudentId');
+    id = remember;
+    final response = await http.get(Uri.parse(InfixApi.getTeacherList(int.parse(id))));
+    var jsonData = json.decode(response.body);
+    print(jsonData['data']['class_teacher']);
+    if (mounted) {
+      classTeacher=jsonData['data']['class_teacher']['full_name'];
     }
   }
 }

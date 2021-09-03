@@ -26,12 +26,14 @@ class _MenuState extends State<Menu> {
   List<dynamic> desserts;
   List<dynamic> snack;
   var date = DateTime.now();
+  String dayWeek;
   String id;
   Timer timer;
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
   bool _expanded = false;
   @override
   void initState() {
+    setTime();
     //timer = Timer.periodic(Duration(seconds: 4), (Timer t) => getMenu());
     getMenu();
     super.initState();
@@ -191,9 +193,6 @@ class _MenuState extends State<Menu> {
                                 ],
                               )),
                         ),
-                        TextButton(onPressed: () {
-                          getMenu();
-                        }, child: Text("Test"))
                       ],
                     ),
                   ),
@@ -203,19 +202,16 @@ class _MenuState extends State<Menu> {
           ),
         ));
   }
-  void showTime() async{
+  void setTime() async{
     final pref = await SharedPreferences.getInstance();
-    String idUser = pref.get('weekday');
-    print(DateFormat('EEEE').format(dateFormat.parse(idUser)));
+    pref.setString('weekday', dateFormat.format(date));
   }
   Future<String> getMenu() async{
-    String dayWeek;
+
     final pref = await SharedPreferences.getInstance();
     String weekday = pref.get('weekday');
-
+    //print(DateFormat('EEEE').format(dateFormat.parse(weekday)));
     DateFormat('EEEE').format(dateFormat.parse(weekday))==null?dayWeek=DateFormat("EEEE").format(date):dayWeek=DateFormat('EEEE').format(dateFormat.parse(weekday));
-    //print(dayWeek);
-    //final response = await http.get(Uri.parse(InfixApi.getMenu(DateFormat('EEEE').format(date))));
     final response_1 = await http.get(Uri.parse(InfixApi.getMenuType(dayWeek,1)));
     final response_2 = await http.get(Uri.parse(InfixApi.getMenuType(dayWeek,2)));
     final response_3 = await http.get(Uri.parse(InfixApi.getMenuType(dayWeek,3)));
@@ -233,10 +229,10 @@ class _MenuState extends State<Menu> {
         salad = map_3["data"]["Foods"];
         hams = map_4["data"]["Foods"];
         snack = map_5["data"]["Foods"];
-        
       });
     }
-    dayWeek=DateFormat('EEEE').format(dateFormat.parse(weekday));
+    pref.setString('weekday', dateFormat.format(date));
+    print(dateFormat.format(date));
     print(hotDishes);
     print(vegetarian);
     print(salad);
