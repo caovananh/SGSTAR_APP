@@ -95,7 +95,7 @@ class InfixApi {
   }
 //Khoa start
   static String getStudentInfo(int id) {
-    return baseApi + "student-view/$id";
+    return baseApi + "students-view/$id";
   }
   static String getNotification(int id) {
     return baseApi + "notification/$id";
@@ -116,7 +116,10 @@ class InfixApi {
     return baseApi + "menu-food-day-type/$type/$id";
   }
   static String getTeacherList(int id) {
-    return baseApi + "studentTeacher/$id";
+    return baseApi + "student-teacher/$id";
+  }
+  static String getSubjectTeacher(int id) {
+    return baseApi + "subject-teacher/$id";
   }
   //khoa end
   static String getStudentByRoll(String roll) {

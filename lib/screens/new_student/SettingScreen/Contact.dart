@@ -80,8 +80,6 @@ class _ContactState extends State<Contact> {
                                   Container(
                                     width: 60,
                                     height: 60,
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                           width: 2,
@@ -89,8 +87,10 @@ class _ContactState extends State<Contact> {
                                         ),
                                         shape: BoxShape.circle,
                                         color: Colors.white),
-                                    child: Image.asset(
-                                        'assets/images/icons/student1.png'),
+                                    child: CircleAvatar(
+                                      backgroundImage: listTeacher[index]['staff_photo']!=null?NetworkImage('https://sgstar.asia/'+ listTeacher[index]['staff_photo'].toString()):AssetImage('assets/images/icons/student1.png'),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ),
                                   SizedBox(width: 10),
                                   Column(
