@@ -67,6 +67,9 @@ dependencies:
   carousel_slider: ^4.0.0
   flutter_secure_storage: ^4.2.1
   after_layout: ^1.1.0
+  google_maps_flutter: ^1.2.0
+  location: ^2.5.4
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

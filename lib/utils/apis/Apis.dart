@@ -123,6 +123,15 @@ class InfixApi {
     return baseApi + "subject-teacher/$id";
   }
   //khoa end
+  //Hai start
+  static String vehiclesList() {
+    return baseApi + "vehicle-list";
+  }
+
+  static String vehiclesLocation(id) {
+    return baseApi + "vehicle-location/$id";
+  }
+  //Hai end
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }
