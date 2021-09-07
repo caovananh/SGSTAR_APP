@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/BusScreen/BusWidgets/ChangeCancel.dart';
 import 'package:infixedu/screens/new_student/BusScreen/BusWidgets/bus_history.dart';
 import 'package:infixedu/screens/new_student/BusScreen/GuardianRegister.dart';
 import 'package:infixedu/screens/new_student/BusScreen/RegisterBus.dart';
@@ -46,7 +47,7 @@ class _BusScreenState extends State<BusScreen> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/images/icons/route.jpg')),
+                            image: AssetImage('assets/images/icons/survey.png')),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           width: 2,
@@ -119,8 +120,7 @@ class _BusScreenState extends State<BusScreen> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image:
-                                AssetImage('assets/images/icons/survey.png')),
+                            image:AssetImage('assets/images/icons/route.jpg')),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           width: 2,
@@ -143,6 +143,42 @@ class _BusScreenState extends State<BusScreen> {
                   ))
                 ],
               )),
+              Container(
+                  child: Column(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          _navigate(4);
+                        },
+                        child: Container(
+                          height: 100,
+                          padding: const EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image:AssetImage('assets/images/icons/cancel.jpg')),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              width: 2,
+                              color: const Color(0xFF7dd3f7),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              'change/cancel'.toUpperCase(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: Color(0xff07509d)),
+                              textAlign: TextAlign.center,
+                            ),
+                          ))
+                    ],
+                  )),
             ],
           ),
         ),
@@ -172,6 +208,14 @@ class _BusScreenState extends State<BusScreen> {
         pushNewScreen(
           context,
           screen: RouteTracking(),
+          withNavBar: true, // OPTIONAL VALUE. True by default.
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
+        break;
+      case 4:
+        pushNewScreen(
+          context,
+          screen: ChangeCancel(),
           withNavBar: true, // OPTIONAL VALUE. True by default.
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );

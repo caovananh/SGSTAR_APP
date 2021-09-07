@@ -81,22 +81,86 @@ class _CommentListState extends State<CommentList> {
                                   fontWeight: FontWeight.bold),
                             ),
                           )),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 0),
+                      width:
+                      (MediaQuery.of(context).size.width - 90) /
+                          3,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
-                              icon: Image.asset('assets/images/icons/4. LIKE.png'),
-                              color: Colors.grey,
-                              tooltip: 'Like',
-                              onPressed: () {}),
-                          IconButton(
-                              icon: Image.asset('assets/images/icons/5. COMMENT.png'),
-                              color: Colors.grey,
-                              tooltip: 'Comments',
-                              onPressed: () {}),
+                          Container(
+                            width: 25,
+                            child: IconButton(
+                                padding: EdgeInsets.all(0),
+                                icon: Image.asset(
+                                  'assets/images/icons/4. LIKE.png',
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                color: Colors.grey,
+                                onPressed: () {
+
+                                }),
+                          ),
+                          Text("0"),
                         ],
                       ),
+                    ),
+                    Container(
+                      width:
+                      (MediaQuery.of(context).size.width - 30) /
+                          3,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 25,
+                            child: IconButton(
+                                padding: EdgeInsets.all(0),
+                                icon: Image.asset(
+                                  'assets/images/icons/5. COMMENT.png',
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                color: Colors.grey,
+                                tooltip: 'Comment',
+                                onPressed: () {}),
+                          ),
+                          Text(
+                            '0 Comment',
+                            textAlign: TextAlign.right,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width:
+                      (MediaQuery.of(context).size.width - 90) /
+                          3,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 25,
+                            child: IconButton(
+                                padding: EdgeInsets.all(0),
+                                icon: Image.asset(
+                                  'assets/images/icons/6. SHARE.png',
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                color: Colors.grey,
+                                onPressed: () {}),
+                          ),
+                          Text('0 Share'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
                     ],
                   )),
             ),
