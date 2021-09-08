@@ -70,6 +70,7 @@ dependencies:
   google_maps_flutter: ^1.2.0
   location: ^2.5.4
   sliding_up_panel: ^2.0.0+1
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

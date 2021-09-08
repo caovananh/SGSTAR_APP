@@ -120,28 +120,30 @@ class StudentInfoPageState extends State<StudentInfoPage>
                       SizedBox(
                         width: 30,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              getName() != null
-                                  ? getName().toUpperCase()
-                                  : 'null',
-                              style: TextStyle(
-                                  color: Color(0xff13438f),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(getClassName() != null
-                              ? 'Class: ' + getClassName()
-                              : 'Class: '),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(classTeacher==null?'Teacher:':"Teacher: " +classTeacher),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                getName() != null
+                                    ? getName().toUpperCase()
+                                    : 'null',
+                                style: TextStyle(
+                                    color: Color(0xff13438f),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700)),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(getClassName() != null
+                                ? 'Class: ' + getClassName()
+                                : 'Class: '),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(classTeacher==null?'Teacher:':"Teacher: " +classTeacher),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -316,53 +318,55 @@ class StudentInfoPageState extends State<StudentInfoPage>
                               SizedBox(
                                 width: 5,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(father_name != null
-                                        ? 'Full name: ' + father_name
-                                        : 'Full name:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(father_nationality != null
-                                        ? 'Nationality: ' + father_nationality
-                                        : 'Nationality:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Company:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Work Adress:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(father_phone != null
-                                        ? 'Phone: ' + father_phone.toString()
-                                        : 'Phone:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Personal Email:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('First Language:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('English Level:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Home address in Ho Chi Minh city:'),
-                                  )
-                                ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(father_name != null
+                                          ? 'Full name: ' + father_name
+                                          : 'Full name:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(father_nationality != null
+                                          ? 'Nationality: ' + father_nationality
+                                          : 'Nationality:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Company:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Work Adress:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(father_phone != null
+                                          ? 'Phone: ' + father_phone.toString()
+                                          : 'Phone:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Personal Email:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('First Language:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('English Level:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Home address in Ho Chi Minh city:'),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -408,64 +412,66 @@ class StudentInfoPageState extends State<StudentInfoPage>
                               SizedBox(
                                 width: 5,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(mother_name != null
-                                        ? 'Full name: ' + mother_name
-                                        : 'Full name:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherNationality != null
-                                        ? 'Nationality: ' + motherNationality
-                                        : 'Nationality: '),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherCompany != null
-                                        ? 'Company: ' + motherCompany
-                                        : 'Company:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherWorkAddress != null
-                                        ? 'Work Adress: ' + motherWorkAddress
-                                        : 'Work Adress:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherPhone != null
-                                        ? 'Phone: ' + motherPhone
-                                        : 'Phone:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherEmail != null
-                                        ? 'Personal Email: ' + motherEmail
-                                        : 'Personal Email: '),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherFirstLanguage != null
-                                        ? 'First Language: ' +
-                                            motherFirstLanguage
-                                        : 'First Language:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(motherEnglishLevel != null
-                                        ? 'English Level: ' + motherEnglishLevel
-                                        : 'English Level:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Home address in Ho Chi Minh city:'),
-                                  )
-                                ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(mother_name != null
+                                          ? 'Full name: ' + mother_name
+                                          : 'Full name:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherNationality != null
+                                          ? 'Nationality: ' + motherNationality
+                                          : 'Nationality: '),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherCompany != null
+                                          ? 'Company: ' + motherCompany
+                                          : 'Company:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherWorkAddress != null
+                                          ? 'Work Adress: ' + motherWorkAddress
+                                          : 'Work Adress:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherPhone != null
+                                          ? 'Phone: ' + motherPhone
+                                          : 'Phone:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherEmail != null
+                                          ? 'Personal Email: ' + motherEmail
+                                          : 'Personal Email: '),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherFirstLanguage != null
+                                          ? 'First Language: ' +
+                                              motherFirstLanguage
+                                          : 'First Language:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(motherEnglishLevel != null
+                                          ? 'English Level: ' + motherEnglishLevel
+                                          : 'English Level:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Home address in Ho Chi Minh city:'),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -511,53 +517,55 @@ class StudentInfoPageState extends State<StudentInfoPage>
                               SizedBox(
                                 width: 5,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(guardianName != null
-                                        ? 'FUll name: ' + guardianName
-                                        : 'Full name:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Nationality:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Company:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Work Adress:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(guardianPhone != null
-                                        ? 'Phone: ' + guardianPhone.toString()
-                                        : 'Phone:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(guardianEmail != null
-                                        ? 'Email: ' + guardianEmail
-                                        : 'Email:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('First Language:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('English Level:'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Home address in Ho Chi Minh city:'),
-                                  )
-                                ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(guardianName != null
+                                          ? 'FUll name: ' + guardianName
+                                          : 'Full name:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Nationality:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Company:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Work Adress:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(guardianPhone != null
+                                          ? 'Phone: ' + guardianPhone.toString()
+                                          : 'Phone:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(guardianEmail != null
+                                          ? 'Email: ' + guardianEmail
+                                          : 'Email:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('First Language:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('English Level:'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Home address in Ho Chi Minh city:'),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),

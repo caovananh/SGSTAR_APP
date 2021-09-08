@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsContent.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -62,9 +64,20 @@ class _NewsState extends State<News> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                listNews[index]["description"],maxLines: 1,overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.black),
+                              child: InkWell(
+                                onTap: (){
+                                  saveId(listNews[index]["id"].toString());
+                                  pushNewScreen(
+                                    context,
+                                    screen: NewsContent(),
+                                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                  );
+                                },
+                                child: Text(
+                                  listNews[index]["description"],maxLines: 1,overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(color: Colors.black),
+                                ),
                               ),
                             ),
                             SizedBox(height: 5,),
@@ -177,5 +190,12 @@ class _NewsState extends State<News> {
     final response = await http.get(Uri.parse(InfixApi.likeNews($id)));
     getNewsList();
     print("Success!");
+  }
+  void saveId(String $id){
+    saveStringValue('NewsId',$id);
+  }
+  Future<bool> saveStringValue(String key, String value) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(key, value);
   }
 }

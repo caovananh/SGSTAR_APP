@@ -126,6 +126,9 @@ class InfixApi {
   static String getEvents() {
     return baseApi + "events";
   }
+  static String getNewsContent(int id) {
+    return baseApi + "news-content/$id";
+  }
   //khoa end
   static String getNewsList() {
     return baseApi + "news-list";

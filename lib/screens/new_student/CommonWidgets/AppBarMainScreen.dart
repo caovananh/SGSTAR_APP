@@ -112,13 +112,11 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
     id = remember;
     final response = await http.get(Uri.parse(InfixApi.getStudentInfo(int.parse(id))));
     var jsonData = json.decode(response.body);
-    print(jsonData['data']['student_detail']);
     if (mounted) {
       setState(() {
         studentPhoto=jsonData['data']['student_detail']['student_photo'];
       });
     }
-    print(studentPhoto);
     return "Success!";
   }
 
