@@ -93,35 +93,44 @@ class InfixApi {
   static String getStudentByName(String name) {
     return baseApi + "search-student?name=$name";
   }
+
 //Khoa start
   static String getStudentInfo(int id) {
     return baseApi + "students-view/$id";
   }
+
   static String getNotification(int id) {
     return baseApi + "notification/$id";
   }
+
   static String getReport(int id) {
     return baseApi + "report-medical/$id";
   }
-   static String getNewsList() {
+
+  static String getNewsList() {
     return baseApi + "news-list";
   }
 
   static String getMenu(String type) {
     return baseApi + "menu-food-day/$type";
   }
+
   static String getHomeWorkClass(int idClass) {
     return baseApi + "homework-class/$idClass";
   }
-  static String getMenuType(String type,int id) {
+
+  static String getMenuType(String type, int id) {
     return baseApi + "menu-food-day-type/$type/$id";
   }
+
   static String getTeacherList(int id) {
     return baseApi + "student-teacher/$id";
   }
+
   static String getSubjectTeacher(int id) {
     return baseApi + "subject-teacher/$id";
   }
+
   //khoa end
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
@@ -234,6 +243,7 @@ class InfixApi {
     // return 'https://zoom.us/wc/$mid/join?prefer=1'; // web
     return 'zoomus://zoom.us/join?confno=$mid'; // android
   }
+
   static String getJoinMeetingUrlWeb({mid}) {
     // return 'https://zoom.us/wc/$mid/start';
     return 'https://zoom.us/wc/$mid/join?prefer=1';
@@ -334,6 +344,7 @@ class InfixApi {
         "&user_id=" +
         uid;
   }
+
   static String transportRoute = baseApi + 'transport-route';
 
   static String addVehicle(String vehicleNo, String model, String driverId,
@@ -349,6 +360,7 @@ class InfixApi {
         note +
         "&year_made=$year";
   }
+
   static String vehicles = baseApi + "vehicle";
 
   static String addDormitory(String name, String type, String intake,
@@ -500,11 +512,15 @@ class InfixApi {
     return baseApi + "reject-leave/$id";
   }
 
-  static String homeworkEvaluationList(classId,sectionId,homeworkId) {
+  static String homeworkEvaluationList(classId, sectionId, homeworkId) {
     return baseApi + "evaluation-homework/$classId/$sectionId/$homeworkId";
   }
 
   static String evaluateHomework = baseApi + "evaluate-homework";
 
   static String assignVehicle = baseApi + "assign-vehicle";
+
+  static String updateNewsList( int id) {
+    return baseApi + "increase-like-post";  
+  }
 }
