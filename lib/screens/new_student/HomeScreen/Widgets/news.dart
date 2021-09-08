@@ -22,18 +22,19 @@ class _NewsState extends State<News> {
     this.getNewsList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     var shortestSide = MediaQuery.of(context).size.shortestSide;
-  
+
     final items = List<String>.generate(3, (i) => "Item $i");
     return Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
         child: ListView.builder(
           // separatorBuilder: (BuildContext context, int index) =>
           //     const Divider(),
-          itemCount: listNews==null? 0:listNews.length,
+          itemCount: listNews == null ? 0 : listNews.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               shape: RoundedRectangleBorder(
@@ -47,7 +48,8 @@ class _NewsState extends State<News> {
                           ? screenHeight / 3
                           : screenHeight / 4,
                       child: FittedBox(
-                        child: Image.network("https://sgstar.asia/"+ listNews[index]["image"]),
+                        child: Image.network(
+                            "https://sgstar.asia/" + listNews[index]["image"]),
                         fit: BoxFit.fill,
                       )),
                   DefaultTextStyle(
@@ -80,7 +82,9 @@ class _NewsState extends State<News> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 5,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(listNews[index]["publish_date"],
                                 style: TextStyle(color: Colors.grey)),
                             Row(
@@ -99,8 +103,8 @@ class _NewsState extends State<News> {
                                             padding: EdgeInsets.all(0),
                                             icon: Image.asset(
                                               'assets/images/icons/4. LIKE.png',
-                                              width: 20,
-                                              height: 20,
+                                              width: 25,
+                                              height: 25,
                                             ),
                                             color: Colors.grey,
                                             onPressed: () {
@@ -124,8 +128,8 @@ class _NewsState extends State<News> {
                                             padding: EdgeInsets.all(0),
                                             icon: Image.asset(
                                               'assets/images/icons/5. COMMENT.png',
-                                              width: 20,
-                                              height: 20,
+                                              width: 25,
+                                              height: 25,
                                             ),
                                             color: Colors.grey,
                                             tooltip: 'Comment',
@@ -151,8 +155,8 @@ class _NewsState extends State<News> {
                                             padding: EdgeInsets.all(0),
                                             icon: Image.asset(
                                               'assets/images/icons/6. SHARE.png',
-                                              width: 20,
-                                              height: 20,
+                                              width: 25,
+                                              height: 25,
                                             ),
                                             color: Colors.grey,
                                             onPressed: () {}),
@@ -174,8 +178,8 @@ class _NewsState extends State<News> {
           },
         ));
   }
-  Future<String> getNewsList() async{
 
+  Future<String> getNewsList() async {
     final response = await http.get(Uri.parse(InfixApi.getNewsList()));
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
@@ -185,7 +189,6 @@ class _NewsState extends State<News> {
 
     return "Success!";
   }
-
   Future<void> storeLike(int $id) async{
     final response = await http.get(Uri.parse(InfixApi.likeNews($id)));
     getNewsList();
