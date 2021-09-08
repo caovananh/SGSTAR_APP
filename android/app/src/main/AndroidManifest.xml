@@ -11,7 +11,9 @@
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true">
-        <activity
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBOi4nvFYvlQbMD8d_yQD8fUmeNH3ljftg"/>
+        <activity 
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

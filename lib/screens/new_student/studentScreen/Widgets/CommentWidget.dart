@@ -82,19 +82,53 @@ class _CommentListState extends State<CommentList> {
                             ),
                           )),
                       Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(
-                              icon: Image.asset('assets/images/icons/4. LIKE.png'),
-                              color: Colors.grey,
-                              tooltip: 'Like',
-                              onPressed: () {}),
-                          IconButton(
-                              icon: Image.asset('assets/images/icons/5. COMMENT.png'),
-                              color: Colors.grey,
-                              tooltip: 'Comments',
-                              onPressed: () {}),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 25,
+                                  child: IconButton(
+                                      padding: EdgeInsets.all(0),
+                                      icon: Image.asset(
+                                        'assets/images/icons/4. LIKE.png',
+                                        width: 20,
+                                        height: 20,
+                                      ),
+                                      color: Colors.grey,
+                                      onPressed: () {
+                                      }),
+                                ),
+                                Text("0"),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 25,
+                                  child: IconButton(
+                                      padding: EdgeInsets.all(0),
+                                      icon: Image.asset(
+                                        'assets/images/icons/5. COMMENT.png',
+                                        width: 20,
+                                        height: 20,
+                                      ),
+                                      color: Colors.grey,
+                                      tooltip: 'Comment',
+                                      onPressed: () {}),
+                                ),
+                                Text(
+                                  '0 Comment',
+                                  textAlign: TextAlign.right,
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ],

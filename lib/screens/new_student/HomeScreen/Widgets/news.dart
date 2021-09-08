@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,8 +15,7 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   List<dynamic> listNews;
-  bool _isLiked = false;
- 
+  @override
   void initState() {
     this.getNewsList();
     super.initState();
@@ -29,9 +29,9 @@ class _NewsState extends State<News> {
     final items = List<String>.generate(3, (i) => "Item $i");
     return Padding(
         padding: EdgeInsets.only(left: 20, right: 20),
-        child: ListView.separated(
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
+        child: ListView.builder(
+          // separatorBuilder: (BuildContext context, int index) =>
+          //     const Divider(),
           itemCount: listNews == null ? 0 : listNews.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
@@ -65,7 +65,9 @@ class _NewsState extends State<News> {
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
                               child: Text(
-                                listNews[index]["description"].substring(0, 60),
+                                listNews[index]["description"],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
@@ -95,16 +97,7 @@ class _NewsState extends State<News> {
                                             ),
                                             color: Colors.grey,
                                             onPressed: () {
-                                              if (_isLiked) {
-                                                setState(() {
-                                                  _isLiked = false;
-                                                });
-                                              } else {
-                                                setState(() {
-                                                  _isLiked = true;
-                                                  
-                                                });
-                                              }
+                                              storeLike(listNews[index]["id"]);
                                             }),
                                       ),
                                       Text(listNews[index]["like_count"]),
@@ -185,7 +178,9 @@ class _NewsState extends State<News> {
 
     return "Success!";
   }
-
- 
-
+  Future<void> storeLike(int $id) async{
+    final response = await http.get(Uri.parse(InfixApi.likeNews($id)));
+    getNewsList();
+    print("Success!");
+  }
 }

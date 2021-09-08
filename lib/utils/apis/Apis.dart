@@ -107,9 +107,6 @@ class InfixApi {
     return baseApi + "report-medical/$id";
   }
 
-  static String getNewsList() {
-    return baseApi + "news-list";
-  }
 
   static String getMenu(String type) {
     return baseApi + "menu-food-day/$type";
@@ -130,8 +127,25 @@ class InfixApi {
   static String getSubjectTeacher(int id) {
     return baseApi + "subject-teacher/$id";
   }
-
+  static String likeNews(int id) {
+    return baseApi + "like-new/$id";
+  }
+  static String getEvents() {
+    return baseApi + "events";
+  }
   //khoa end
+  static String getNewsList() {
+    return baseApi + "news-list";
+  }
+  //Hai start
+  static String vehiclesList() {
+    return baseApi + "vehicle-list";
+  }
+
+  static String vehiclesLocation(id) {
+    return baseApi + "vehicle-location/$id";
+  }
+  //Hai end
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
   }

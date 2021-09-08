@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/BusScreen/GuardianRegister.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 
 class RegisterBus extends StatefulWidget {
   const RegisterBus({key}) : super(key: key);
@@ -16,7 +17,7 @@ class _RegisterBusState extends State<RegisterBus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarMainScreen(),
+      appBar: AppBarWidget(),
       body: Scaffold(
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(

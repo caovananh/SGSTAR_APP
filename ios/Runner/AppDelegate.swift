@@ -11,7 +11,7 @@ import Firebase
   FirebaseApp.configure()
     var flutter_native_splash = 1
     UIApplication.shared.isStatusBarHidden = false
-
+    GMSServices.provideAPIKey("AIzaSyBOi4nvFYvlQbMD8d_yQD8fUmeNH3ljftg")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
