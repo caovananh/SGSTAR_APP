@@ -198,7 +198,7 @@ class _RouteTrackingState extends State<RouteTracking> {
               child: FloatingActionButton(
                 child: Icon(Icons.location_searching),
                 onPressed: () {
-                 // getVehiclesLocation(_selectedBus);
+                  getVehiclesLocation(_selectedBus);
                   moveToRoute();
                 },
               ),
