@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
+import 'package:geolocator/geolocator.dart' as geo;
 import 'package:dropdown_below/dropdown_below.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
@@ -23,7 +24,8 @@ class RouteTracking extends StatefulWidget {
 
 class _RouteTrackingState extends State<RouteTracking> {
   StreamSubscription _locationSubcription;
-
+  double latitudeNow=10.76619;
+  double longtitudeNow=106.7610729;
   Marker marker; //khởi tạo marker
   GoogleMapController _controller; // khởi tạo controller
   double bus_latitude; // khởi tạo kinh độ trống
@@ -86,9 +88,17 @@ class _RouteTrackingState extends State<RouteTracking> {
         bus_longtitude = jsonData['data']['longtitude'];
       });
       getCurrentLocation(); // sau khi có dữ liệu kinh, vĩ độ mới thì gọi hàm này để set lại vị trí marker
+      print("get bus location");
     } else {
       throw Exception('failed to load');
     }
+  }
+  getUserLocation() async{
+    final positionGeo= await geo.Geolocator.getCurrentPosition(desiredAccuracy: geo.LocationAccuracy.high);
+    setState(() {
+      latitudeNow=positionGeo.latitude.toDouble();
+      longtitudeNow=positionGeo.longitude.toDouble();
+    });
   }
 
   void getCurrentLocation() async {
@@ -127,17 +137,24 @@ class _RouteTrackingState extends State<RouteTracking> {
     timer?.cancel();
     super.dispose();
   }
+  Future<void> updateLocation(int $id,double latitude,double longtitude) async{
+    final response = await http.get(Uri.parse(InfixApi.updateLocationBus($id,latitude,longtitude)));
+    getVehiclesLocation(_selectedBus);
+    moveToRoute();
+    print("Success!");
+  }
 
   @override
   void initState() {
+    getUserLocation();//lấy thông tin vị trí của user khi mở App - Khoa
     //Ngay khi screen được khởi tạo xong
     _currentPosition = CameraPosition(
-        target: LatLng(route_latitude, route_longtitude),
+        target: LatLng(latitudeNow, longtitudeNow),
         zoom: 14); // lia camera đến vị trí tương ứng
     getListVehicles(); // và gọi method lấy danh sách các phương tiện
     if (_selectedBus != null) {
       timer = Timer.periodic(
-          Duration(seconds: 5), (Timer t) => getVehiclesLocation(_selectedBus));
+          Duration(seconds: 5), (timer) => getVehiclesLocation(_selectedBus));
       //Cứ mỗi 5 giây, gửi yêu cầu lên server để lấy về vị trí của phương tiện đã chọn
     }
 
@@ -171,20 +188,68 @@ class _RouteTrackingState extends State<RouteTracking> {
           },
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 100.0),
-        child: FloatingActionButton(
-          child: Icon(Icons.location_searching),
-          onPressed: () {
-            moveToRoute();
-          },
+
+      floatingActionButton:Padding(
+        padding: EdgeInsets.only(top: 100.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: FloatingActionButton(
+                child: Icon(Icons.location_searching),
+                onPressed: () {
+                 // getVehiclesLocation(_selectedBus);
+                  moveToRoute();
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: FloatingActionButton(
+                child: Icon(Icons.refresh),
+                onPressed: () {
+                  updateLocation(_selectedBus,latitudeNow,longtitudeNow);
+                },
+              ),
+            ),
+          ],
         ),
       ),
+        // floatingActionButton:Padding(
+        //   padding: EdgeInsets.only(top: 100.0),
+        //   child: Column(
+        //     children: [
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 10.0),
+        //         child: FloatingActionButton(
+        //           child: Icon(Icons.location_searching),
+        //           onPressed: () {
+        //             getVehiclesLocation(_selectedBus);
+        //             moveToRoute();
+        //           },
+        //         ),
+        //       ),
+        //       Padding(
+        //         padding: const EdgeInsets.only(bottom: 10.0),
+        //         child: FloatingActionButton(
+        //           child: Icon(Icons.refresh),
+        //           onPressed: () {
+        //             getVehiclesLocation(_selectedBus);
+        //             moveToRoute();
+        //           },
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+
+
     );
   }
 
   Widget slideUp() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           height: 50,
@@ -224,13 +289,46 @@ class _RouteTrackingState extends State<RouteTracking> {
                         return DropdownMenuItem(
                           value: valueItem['id'],
                           child: Text(
-                              '${valueItem["route"]} - BUS ${valueItem["vehicle_no"]}'),
+                              '${valueItem["route"]} - BUS ${valueItem["vehicle_no"]}',style: TextStyle(fontSize: 15),),
                         );
                       }).toList()
                     : null),
           ),
-        )
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 20.0),
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0,right: 20.0),
+                  child: Container(
+                    child: Text("pick-up".toUpperCase(),style: TextStyle(color: Color(0xFF7dd3f7),fontWeight: FontWeight.bold),),
+                  ),
+                ),
+                Container(
+                  child: Divider(color: Color(0xFF7dd3f7),thickness: 2.0,),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0,right: 20.0),
+                  child: Container(
+                    child: Text("drop-off".toUpperCase(),style: TextStyle(color: Color(0xFF7dd3f7),fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 20.0,right: 20.0),
+                //   child: Container(
+                //     child: Text(latitudeNow.toString(),style: TextStyle(color: Color(0xFF7dd3f7),fontWeight: FontWeight.bold),),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
+
 }

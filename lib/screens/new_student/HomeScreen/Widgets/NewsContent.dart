@@ -81,26 +81,43 @@ class _NewsContentState extends State<NewsContent> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 10.0, left: 20.0, right: 20.0, bottom: 5.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Center(
+                    child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+                        child: Text(newsBody != null ? newsBody : "",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff07509d)))),
+                  ),
+                ),
+              ),
             ],
         ),
       ),
     );
   }
 
-  Future<String> getNewsContent() async {
+  Future<void> getNewsContent() async {
     final pref = await SharedPreferences.getInstance();
     String newIds = pref.get('NewsId');
     idNews = newIds;
     final response = await http.get(Uri.parse(InfixApi.getNewsContent(int.parse(idNews))));
     var jsonData = json.decode(response.body);
     if (mounted) {
-      newsTitle = jsonData['data']['News']['news_title'];
-      newsImage = jsonData['data']['News']['image'];
-      newsBody = jsonData['data']['News']['news_body'];
-      newsPublishDate = jsonData['data']['News']['publish_date'];
-      //classTeacher=jsonData['data']['class_teacher']['full_name'];
+      setState(() {
+        newsTitle = jsonData['data']['News']['news_title'];
+        newsImage = jsonData['data']['News']['image'];
+        newsBody = jsonData['data']['News']['news_body'];
+        newsPublishDate = jsonData['data']['News']['publish_date'];
+      });
     }
-    return "Success";
     //print(newsImage);
   }
 }

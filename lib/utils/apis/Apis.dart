@@ -136,6 +136,9 @@ class InfixApi {
   static String getNewsContent(int id) {
     return baseApi + "news-content/$id";
   }
+  static String updateLocationBus(int id,double latitude,double longtitude) {
+    return baseApi + "vehicle-location-update/$id/$latitude/$longtitude";
+  }
   //khoa end
   static String getNewsList() {
     return baseApi + "news-list";

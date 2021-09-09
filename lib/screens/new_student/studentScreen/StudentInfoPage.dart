@@ -837,7 +837,9 @@ class StudentInfoPageState extends State<StudentInfoPage>
     var jsonData = json.decode(response.body);
     print(jsonData['data']['class_teacher']);
     if (mounted) {
-      classTeacher=jsonData['data']['class_teacher']['full_name'];
+      setState(() {
+        classTeacher=jsonData['data']['class_teacher']['full_name'];
+      });
     }
   }
 }

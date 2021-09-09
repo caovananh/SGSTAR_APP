@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/BusScreen/GuardianRegister.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/utils/Utils.dart';
 
 class RegisterBus extends StatefulWidget {
   const RegisterBus({key}) : super(key: key);
@@ -12,15 +13,21 @@ class RegisterBus extends StatefulWidget {
 }
 
 class _RegisterBusState extends State<RegisterBus> {
-  bool isChecked = false;
-
+  bool isCheckedHome = false;
+  String name;
+  bool isCheckedPoint = false;
+  @override
+  void initState() {
+    getName();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
       appBar: AppBarWidget(),
-      body: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
             child: Column(
@@ -108,8 +115,8 @@ class _RegisterBusState extends State<RegisterBus> {
                         ),
                         child: Center(
                           child: Text(
-                            'student name'.toUpperCase(),
-                            style: TextStyle(color: Colors.white),
+                            name!=null?name.toUpperCase():"Student's name".toUpperCase(),
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -119,10 +126,10 @@ class _RegisterBusState extends State<RegisterBus> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Checkbox(
-                              value: false,
+                              value: isCheckedHome,
                               onChanged: (bool value) {
                                 setState(() {
-                                  isChecked = value;
+                                  isCheckedHome = value;
                                 });
                               },
                             ),
@@ -145,7 +152,7 @@ class _RegisterBusState extends State<RegisterBus> {
                                 ),
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.7,
+                                      MediaQuery.of(context).size.width * 0.65,
                                   child: TextField(
                                     maxLines: null,
                                   ),
@@ -161,10 +168,10 @@ class _RegisterBusState extends State<RegisterBus> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Checkbox(
-                              value: false,
+                              value: isCheckedPoint,
                               onChanged: (bool value) {
                                 setState(() {
-                                  isChecked = value;
+                                  isCheckedPoint = value;
                                 });
                               },
                             ),
@@ -180,7 +187,7 @@ class _RegisterBusState extends State<RegisterBus> {
                                 ),
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.7,
+                                      MediaQuery.of(context).size.width * 0.65,
                                   child: TextField(
                                     maxLines: null,
                                     decoration: new InputDecoration(
@@ -232,7 +239,14 @@ class _RegisterBusState extends State<RegisterBus> {
             ),
           ),
         ),
-      ),
     );
+  }
+  String getName() {
+    Utils.getStringValue('full_name').then((value) {
+      setState(() {
+        name = value;
+      });
+    });
+    return name;
   }
 }

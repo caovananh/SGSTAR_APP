@@ -185,7 +185,7 @@ class _NewsState extends State<News> {
     setState(() {
       listNews = map["data"]["News"];
     });
-    print(listNews);
+    //print(listNews);
 
     return "Success!";
   }

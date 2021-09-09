@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/BusScreen/CommitmentsBus.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/utils/Utils.dart';
 
 class GuardianRegister extends StatefulWidget {
   const GuardianRegister({key}) : super(key: key);
@@ -15,7 +16,7 @@ class _GuardianRegisterState extends State<GuardianRegister> {
   bool isChecked_1 = false;
   bool isChecked_2 = false;
   bool isChecked_3 = false;
-
+  String name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,8 +111,8 @@ class _GuardianRegisterState extends State<GuardianRegister> {
                         ),
                         child: Center(
                           child: Text(
-                            'student name'.toUpperCase(),
-                            style: TextStyle(color: Colors.white),
+                            getName()!=null?getName().toUpperCase():'student name'.toUpperCase(),
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -284,5 +285,14 @@ class _GuardianRegisterState extends State<GuardianRegister> {
         ),
       ),
     );
+  }
+
+  String getName() {
+    Utils.getStringValue('full_name').then((value) {
+      setState(() {
+        name = value;
+      });
+    });
+    return name;
   }
 }
