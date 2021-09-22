@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
@@ -89,12 +89,12 @@ class _NewsContentState extends State<NewsContent> {
                   child: Center(
                     child: Padding(
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15),
-                        child: Text(newsBody != null ? newsBody : "",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff07509d)))),
+                        child:
+                        HtmlWidget(
+                         newsBody != null ? newsBody : "",
+                          //textStyle: TextStyle(fontSize: 22,color: Color(0xff07509d)),
+                      )
+                    ),
                   ),
                 ),
               ),
