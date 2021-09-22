@@ -74,7 +74,7 @@ class _ELearningScreenState extends State<ELearningScreen> {
                                     color: Colors.grey),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width - 40,
-                                  height: screenHeight / 4,
+                                  height: MediaQuery.of(context).size.height*0.35,
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 25),
                                     child: Column(
@@ -135,7 +135,7 @@ class _ELearningScreenState extends State<ELearningScreen> {
                                             )
                                           ],
                                         ),
-                                        SizedBox(height: 20),
+                                        SizedBox(height: 40),
                                         Center(
                                           child: Container(
                                             height: 40,

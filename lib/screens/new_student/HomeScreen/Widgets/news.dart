@@ -7,6 +7,7 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 class News extends StatefulWidget {
   const News({key}) : super(key: key);
@@ -159,7 +160,9 @@ class _NewsState extends State<News> {
                                               height: 25,
                                             ),
                                             color: Colors.grey,
-                                            onPressed: () {}),
+                                            onPressed: () {
+                                              Share.share('https://sgstar.asia/news-list/'+listNews[index]["id"].toString());
+                                            }),
                                       ),
                                       Text('0 Share'),
                                     ],

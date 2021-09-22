@@ -106,6 +106,7 @@ class Login {
     String date_of_birth;
     int StudentId;
     String class_name;
+    String studentBus;
     int class_id;
     int gender;
     var message;
@@ -137,6 +138,7 @@ class Login {
         class_id=user['data']['classesDetail']['id'];
         schoolId = user['data']['user']['school_id'];
         isAdministrator = user['data']['user']['is_administrator'];
+        studentBus=user['data']['studentDetails']['vechile_id'].toString();
         token = user['data']['accessToken'];
         // print('Access token: $token');
         // print("ZOOM: ${user['data']['system_settings']}");
@@ -148,7 +150,7 @@ class Login {
         print("STUDENT DETAIL: ${user['data']['userDetails']}");
         print("STUDENT NEW DETAIL: ${user['data']['studentDetails']}");
         print("CLASSES DETAIL: ${user['data']['classesDetail']}");
-
+        print("Student bus: " + studentBus);
         if (rule == 1 || rule == 4) {
           image = isNullOrEmpty(user['data']['userDetails']['staff_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'
@@ -173,6 +175,7 @@ class Login {
           saveStringValue('first_name', '$first_name');
           saveStringValue('StudentId', '$StudentId');
           saveStringValue('class_name', '$class_name');
+          saveStringValue('busId', '$studentBus');
           saveStringValue('class_id', '$class_id').toString();
           saveStringValue('date_of_birth', '$date_of_birth');
           saveStringValue('gender', gender.toString());

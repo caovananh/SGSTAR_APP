@@ -554,6 +554,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mime",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/mime-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/nested-1.0.0",
       "packageUri": "lib/",
@@ -696,6 +702,12 @@
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/service_worker-0.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "share",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/share-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences",
@@ -968,7 +980,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-09-22T09:16:01.146949Z",
+  "generated": "2021-09-22T11:21:23.290428Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

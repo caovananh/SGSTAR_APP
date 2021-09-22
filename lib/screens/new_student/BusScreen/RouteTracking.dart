@@ -12,6 +12,7 @@ import 'package:infixedu/screens/new_student/studentScreen/StudentInfoWidget/Stu
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:location/location.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,10 +38,12 @@ class _RouteTrackingState extends State<RouteTracking> {
   double rotate = 0; // khởi tạo đôj xoay của camera mặc định là 0 độ
   CameraPosition _currentPosition;
   Timer timer;
-
+  String busId;
   int _selectedBus; //khởi tạo xe bus đang được chọn
   List _listBus; //khởi tạo danh sách tất cả xe bus.
-
+  String btn1;
+  String btn2;
+  String studentBusId;
   Future<Uint8List> getMarker() async {
     // Method lấy icon marker phân giải nó sang định dạng mà google map flutter có thể đọc được.
     ByteData byData = await DefaultAssetBundle.of(context)
@@ -77,7 +80,17 @@ class _RouteTrackingState extends State<RouteTracking> {
       throw Exception('failed to load');
     }
   }
-
+  void getStudentBus() async{
+    final pref = await SharedPreferences.getInstance();
+    studentBusId = pref.get('busId');
+    if(studentBusId!="null"){
+      getVehiclesLocation(studentBusId.toString());
+      moveToRoute();
+      print("upload location");
+    }
+    else
+      print("No assign bus yet");
+  }
   void getVehiclesLocation(id) async {
     // Method lấy vị trí theo id phương tiện từ server
     final response = await http.get(Uri.parse(InfixApi.vehiclesLocation(id)));
@@ -146,17 +159,20 @@ class _RouteTrackingState extends State<RouteTracking> {
 
   @override
   void initState() {
+    print(studentBusId);
     getUserLocation();//lấy thông tin vị trí của user khi mở App - Khoa
     //Ngay khi screen được khởi tạo xong
     _currentPosition = CameraPosition(
         target: LatLng(latitudeNow, longtitudeNow),
         zoom: 14); // lia camera đến vị trí tương ứng
     getListVehicles(); // và gọi method lấy danh sách các phương tiện
-    if (_selectedBus != null) {
+
+
       timer = Timer.periodic(
-          Duration(seconds: 5), (timer) => getVehiclesLocation(_selectedBus));
+          Duration(seconds: 5), (timer) => getStudentBus()
+      );
       //Cứ mỗi 5 giây, gửi yêu cầu lên server để lấy về vị trí của phương tiện đã chọn
-    }
+
 
     super.initState();
   }
@@ -196,6 +212,7 @@ class _RouteTrackingState extends State<RouteTracking> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: FloatingActionButton(
+                heroTag: btn1,
                 child: Icon(Icons.location_searching),
                 onPressed: () {
                   getVehiclesLocation(_selectedBus);
@@ -206,6 +223,7 @@ class _RouteTrackingState extends State<RouteTracking> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: FloatingActionButton(
+                heroTag: btn2,
                 child: Icon(Icons.refresh),
                 onPressed: () {
                   updateLocation(_selectedBus,latitudeNow,longtitudeNow);
@@ -215,33 +233,6 @@ class _RouteTrackingState extends State<RouteTracking> {
           ],
         ),
       ),
-        // floatingActionButton:Padding(
-        //   padding: EdgeInsets.only(top: 100.0),
-        //   child: Column(
-        //     children: [
-        //       Padding(
-        //         padding: const EdgeInsets.only(bottom: 10.0),
-        //         child: FloatingActionButton(
-        //           child: Icon(Icons.location_searching),
-        //           onPressed: () {
-        //             getVehiclesLocation(_selectedBus);
-        //             moveToRoute();
-        //           },
-        //         ),
-        //       ),
-        //       Padding(
-        //         padding: const EdgeInsets.only(bottom: 10.0),
-        //         child: FloatingActionButton(
-        //           child: Icon(Icons.refresh),
-        //           onPressed: () {
-        //             getVehiclesLocation(_selectedBus);
-        //             moveToRoute();
-        //           },
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
 
 
     );
