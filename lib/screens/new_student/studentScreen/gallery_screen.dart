@@ -45,7 +45,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
       appBar: AppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-        child: Column(
+        child: ListView(
           children: [
             Center(
               child: Container(
@@ -217,9 +217,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             ),
                           ),
                         ),
-                        
+
                       ],
                     ),
+                    SizedBox(height: 50,)
                   ],
                 ),
               ),
