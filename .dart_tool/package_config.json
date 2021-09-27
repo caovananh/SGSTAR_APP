@@ -110,6 +110,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "device_info",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/device_info-0.4.2+10",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "device_info_platform_interface",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/device_info_platform_interface-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "device_preview",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/device_preview-0.7.3",
       "packageUri": "lib/",
@@ -144,6 +156,12 @@
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/edge_alert-0.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "emoji_picker",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker-0.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "equatable",
@@ -534,6 +552,12 @@
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-4.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "keyboard_visibility",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/keyboard_visibility-0.5.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
     },
     {
       "name": "location",
@@ -980,7 +1004,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-09-23T09:58:05.928449Z",
+  "generated": "2021-09-27T09:27:34.856216Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

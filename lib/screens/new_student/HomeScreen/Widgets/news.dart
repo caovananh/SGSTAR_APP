@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsComment.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsContent.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -138,7 +139,13 @@ class _NewsState extends State<News> {
                                                       ),
                                                       color: Colors.grey,
                                                       tooltip: 'Comment',
-                                                      onPressed: () {}),
+                                                      onPressed: () {
+                                                        saveId(listNews[index]["id"].toString());
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(builder: (context) => const NewsComment()),
+                                                        );
+                                                      }),
                                                 ),
                                                 Text(
                                                   '0 Comment',
@@ -201,9 +208,9 @@ class _NewsState extends State<News> {
       hasData=true;
     });
     //print(listNews);
-
     return "Success!";
   }
+
   Future<void> storeLike(int $id) async{
     final response = await http.get(Uri.parse(InfixApi.likeNews($id)));
     getNewsList();

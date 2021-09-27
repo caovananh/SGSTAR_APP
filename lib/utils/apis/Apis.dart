@@ -139,6 +139,12 @@ class InfixApi {
   static String updateLocationBus(int id,double latitude,double longtitude) {
     return baseApi + "vehicle-location-update/$id/$latitude/$longtitude";
   }
+  static String getCommentContent(int id) {
+    return baseApi + "comment-content/$id";
+  }
+  static String storeCommentNews(int newsId,int userId,String content) {
+    return baseApi + "store-comment-content/$newsId/$userId/$content";
+  }
   //khoa end
   static String getNewsList() {
     return baseApi + "news-list";
