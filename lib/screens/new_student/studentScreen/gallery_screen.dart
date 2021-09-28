@@ -17,6 +17,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   String name;
 
   List<dynamic> ImageList;
+  List<dynamic> AlbumTitle;
   bool hasData = false;
   @override
   void initState() {
@@ -25,6 +26,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
     super.initState();
   }
 
+  int countphoto;
   int _currentIndex = 0;
   //var imagesList = new List();
   List<String> imagesList = [];
@@ -83,12 +85,12 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('album name'.toUpperCase(),
+                    Text(AlbumTitle[0]["title"].toUpperCase(),
                         style: TextStyle(
                             color: Color(0xff13438f),
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
-                    Text('1',
+                    Text(countphoto.toString(),
                         style: TextStyle(
                             color: Color(0xff13438f),
                             fontSize: 18,
@@ -121,7 +123,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             _currentIndex = index;
                           });
                         },
-                        viewportFraction: 0.6,
+                        viewportFraction: 0.7,
                         enlargeCenterPage: true,
                         autoPlay: false,
                         autoPlayInterval: Duration(seconds: 3),
@@ -141,7 +143,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                       //           "/" +
                                       //           e),
                                       // )
-                                      Image.network("https://sgstar.asia/public/uploads/category/" +"/"+e,fit: BoxFit.cover)
+                                      Image.network(
+                                          "https://sgstar.asia/public/uploads/category/" +
+                                              "/" +
+                                              e,
+                                          fit: BoxFit.cover)
                                     ],
                                   ),
                                 ),
@@ -270,11 +276,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
       ImageList = map["data"]["photo"];
-
+      AlbumTitle = map["data"]["title"];
       for (int i = 0; i < ImageList.length; i++) {
         imagesList.add(ImageList[i]["path"]);
       }
-
+      countphoto = ImageList.length;
       hasData = true;
     });
     return "Success!";
