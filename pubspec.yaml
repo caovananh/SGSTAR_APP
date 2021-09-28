@@ -75,7 +75,7 @@ dependencies:
   flutter_speed_dial: ^4.3.0
   share: ^2.0.4
   emoji_picker: ^0.0.2
-  keyboard_visibility: ^0.5.6
+  
 
 dev_dependencies:
   flutter_test:

@@ -15,7 +15,7 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   String name;
-  // ignore: non_constant_identifier_names
+  
   List<dynamic> ImageList;
   bool hasData = false;
   @override
@@ -26,13 +26,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   int _currentIndex = 0;
-  final List<String> imagesList = [
-    "https://sgstar.edu.vn/public/images/pic3.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-  ];
+  //var imagesList = new List();
+  List<String> imagesList = [];
+  
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -105,7 +101,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               padding: const EdgeInsets.only(top: 15),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image.network(imagesList.first)),
+                  child: Image.network("https://sgstar.asia/public/uploads/category/" +"/"+ ImageList[0]["path"])),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -136,7 +132,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   child: Stack(
                                     fit: StackFit.expand,
                                     children: [
-                                      Image.network(e, fit: BoxFit.cover)
+                                      Image.network("https://sgstar.asia/public/uploads/category/" +"/"+e, fit: BoxFit.cover),
+                                      
                                     ],
                                   ),
                                 ),
@@ -160,83 +157,83 @@ class _GalleryScreenState extends State<GalleryScreen> {
                         );
                       }),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Color(0xff7cd3f7))),
-                            child: TextButton(
-                              child: Text(
-                                '<',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 20),
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            child: TextButton(
-                              child: Text(
-                                '1',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Color(0xff7cd3f7))),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Color(0xff7cd3f7))),
-                            child: TextButton(
-                              child: Text(
-                                '2',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 20),
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Color(0xff7cd3f7))),
-                            child: TextButton(
-                              child: Text(
-                                '>',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 20),
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '<',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '1',
+                    //             style: TextStyle(
+                    //                 color: Colors.white, fontSize: 20),
+                    //           ),
+                    //           style: ButtonStyle(
+                    //               backgroundColor: MaterialStateProperty.all(
+                    //                   Color(0xff7cd3f7))),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '2',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '>',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(
                       height: 50,
                     )
@@ -260,13 +257,19 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   Future<String> getPhotoAlbum() async {
-    final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+   // final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+   final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
       ImageList = map["data"]["photo"];
+     
+      for (int i = 0; i < ImageList.length; i++) {
+         imagesList.add(ImageList[i]["path"]);
+        		
+      }
+      
       hasData = true;
     });
-    print(ImageList);
     return "Success!";
   }
 }
