@@ -232,7 +232,6 @@ class _NewsState extends State<News> {
       listNews = map["data"]["News"];
       hasData = true;
     });
-    print(classId);
     return "Success!";
   }
 
