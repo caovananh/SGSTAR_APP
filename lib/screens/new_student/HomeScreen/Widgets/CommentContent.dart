@@ -162,6 +162,9 @@ class _CommentStateContent extends State<CommentContent> {
   Widget showEmoji() => Container(
         margin: EdgeInsets.symmetric(horizontal: 4),
         child: IconButton(
+          onPressed: () {
+            
+          },
           icon: Icon(Icons.emoji_emotions_outlined),
         ),
       );

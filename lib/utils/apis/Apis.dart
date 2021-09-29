@@ -149,8 +149,8 @@ class InfixApi {
     return baseApi + "store-comment-content/$newsId/$userId/$content";
   }
   //khoa end
-  static String getNewsList() {
-    return baseApi + "news-list";
+  static String getNewsList(int id) {
+    return baseApi + "news-list/$id";
   }
 
   static String getPhotoAlbum() {
