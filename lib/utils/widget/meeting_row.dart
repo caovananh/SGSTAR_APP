@@ -83,131 +83,178 @@ class _DormitoryScreenState extends State<ZoomMeetingRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              zoomMeeting.topic,
-              textAlign: TextAlign.start,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(fontSize: ScreenUtil().setSp(15)),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Start Date',
-                          maxLines: 1,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          '${zoomMeeting.startDate}',
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Text(
-                          'Time',
-                          maxLines: 1,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          '${zoomMeeting.startTime} - ${DateFormat('hh:mm a').format(zoomMeeting.endTime)}',
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Password',
-                          maxLines: 1,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                          '${zoomMeeting.password}',
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: OutlinedButton(
-                        child: Text(
-                          'Join',
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                        // borderSide:
-                        //     BorderSide(width: 1, color: Colors.deepPurple),
-                        onPressed: () async {
-                          final _url = InfixApi.getJoinMeetingUrlApp(
-                              mid: zoomMeeting.meetingId);
+    final double screenHeight = MediaQuery.of(context).size.height;
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
 
-                          print('App URL: ${InfixApi.getJoinMeetingUrlApp(mid: zoomMeeting.meetingId)}');
-                          print('Web URL: ${InfixApi.getJoinMeetingUrlWeb(mid: zoomMeeting.meetingId)}');
-                          if (await canLaunch(_url)) {
-                            await launch(_url);
-                          } else {
-                            Navigator.push(
-                                context,
-                                ScaleRoute(
-                                    page: ZoomLaunchMeeting(
-                                        meetingUrl: InfixApi.getJoinMeetingUrlWeb(
-                                            mid: zoomMeeting.meetingId),meetingName: zoomMeeting.topic,)));
-                          }
-                        }),
-                  ),
-                ],
-              ),
-            ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(color: Color(0xff7cd3f7), width: 1)),
+        child: Column(
+          children: [
             Container(
-              height: 0.5,
-              margin: EdgeInsets.only(top: 10.0),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: [Colors.purple, Colors.deepPurple]),
+                width: MediaQuery.of(context).size.width - 40,
+                height:
+                    shortestSide >= 600 ? screenHeight / 3 : screenHeight / 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset('assets/images/pic4.png',
+                        fit: BoxFit.cover),
+                  ),
+                )),
+            DefaultTextStyle(
+              style: TextStyle(
+                  fontSize: shortestSide >= 600 ? 20 : 14, color: Colors.grey),
+              child: Container(
+                width: MediaQuery.of(context).size.width - 40,
+                height: MediaQuery.of(context).size.height * 0.50,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Topic name: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.topic,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Meeting id: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.meetingId,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Meeting password: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.password,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Meeting date: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.startDate,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Meeting time: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.startTime,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        children: [
+                          Text(
+                            'Teacher: ',
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          Text(
+                            zoomMeeting.teacherName,
+                            style: TextStyle(
+                                color: Color(0xff7cd3f7),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 40),
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Color(0xff7cd3f7),
+                          ),
+                          child: TextButton(
+                            onPressed: () async {
+                              final _url = InfixApi.getJoinMeetingUrlApp(
+                                  mid: zoomMeeting.meetingId);
+
+                              print(
+                                  'App URL: ${InfixApi.getJoinMeetingUrlApp(mid: zoomMeeting.meetingId)}');
+                              print(
+                                  'Web URL: ${InfixApi.getJoinMeetingUrlWeb(mid: zoomMeeting.meetingId)}');
+                              if (await canLaunch(_url)) {
+                                await launch(_url);
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    ScaleRoute(
+                                        page: ZoomLaunchMeeting(
+                                      meetingUrl: InfixApi.getJoinMeetingUrlWeb(
+                                          mid: zoomMeeting.meetingId),
+                                      meetingName: zoomMeeting.topic,
+                                    )));
+                              }
+                            },
+                            child: Text('join'.toUpperCase(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

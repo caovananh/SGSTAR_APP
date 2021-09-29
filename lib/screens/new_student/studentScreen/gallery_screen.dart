@@ -1,9 +1,11 @@
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:http/http.dart' as http;
+import 'package:infixedu/utils/apis/Apis.dart';
 
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({key}) : super(key: key);
@@ -13,20 +15,20 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   String name;
-
+  
+  List<dynamic> ImageList;
+  bool hasData = false;
+  @override
   void initState() {
-    super.initState();
     name = getName();
+    this.getPhotoAlbum();
+    super.initState();
   }
 
   int _currentIndex = 0;
-  final List<String> imagesList = [
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-    "https://sgstar.edu.vn/public/images/pic4.png",
-  ];
+  //var imagesList = new List();
+  List<String> imagesList = [];
+  
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -34,7 +36,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
     }
     return result;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
               padding: const EdgeInsets.only(top: 15),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image.asset('assets/images/pic4.png')),
+                  child: Image.network("https://sgstar.asia/public/uploads/category/" +"/"+ ImageList[0]["path"])),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -117,7 +118,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             _currentIndex = index;
                           });
                         },
-                        viewportFraction: 0.6 ,
+                        viewportFraction: 0.6,
                         enlargeCenterPage: false,
                         autoPlay: true,
                         autoPlayInterval: Duration(seconds: 3),
@@ -131,96 +132,111 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   child: Stack(
                                     fit: StackFit.expand,
                                     children: [
-                                      Image.network(e, fit: BoxFit.cover)
+                                      Image.network("https://sgstar.asia/public/uploads/category/" +"/"+e, fit: BoxFit.cover),
+                                      
                                     ],
                                   ),
                                 ),
                               ))
                           .toList(),
                     ),
-                     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: map<Widget>(imagesList, (index, url) {
                         return Container(
                           width: 10.0,
                           height: 10.0,
-                          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 2.0),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                            color: _currentIndex == index
+                                ? Colors.blueAccent
+                                : Colors.grey,
                           ),
                         );
                       }),
                     ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Color(0xff7cd3f7))
-                            ),
-                            child: TextButton(
-                                child: Text('<',style: TextStyle(color: Colors.grey,fontSize: 20),),
-                                
-                                onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            child: TextButton(
-                                child: Text('1',style: TextStyle(color: Colors.white,fontSize: 20),),
-                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xff7cd3f7))),
-                                onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Color(0xff7cd3f7))
-                            ),
-                            child: TextButton(
-                                child: Text('2',style: TextStyle(color: Colors.grey,fontSize: 20),),
-                                
-                                onPressed: () {},
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Color(0xff7cd3f7))
-                            ),
-                            child: TextButton(
-                                child: Text('>',style: TextStyle(color: Colors.grey,fontSize: 20),),
-                                
-                                onPressed: () {},
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    SizedBox(height: 50,)
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '<',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '1',
+                    //             style: TextStyle(
+                    //                 color: Colors.white, fontSize: 20),
+                    //           ),
+                    //           style: ButtonStyle(
+                    //               backgroundColor: MaterialStateProperty.all(
+                    //                   Color(0xff7cd3f7))),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '2',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(3.0),
+                    //       child: Container(
+                    //         width: 40,
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(color: Color(0xff7cd3f7))),
+                    //         child: TextButton(
+                    //           child: Text(
+                    //             '>',
+                    //             style:
+                    //                 TextStyle(color: Colors.grey, fontSize: 20),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    SizedBox(
+                      height: 50,
+                    )
                   ],
                 ),
               ),
@@ -238,5 +254,22 @@ class _GalleryScreenState extends State<GalleryScreen> {
       });
     });
     return name;
+  }
+
+  Future<String> getPhotoAlbum() async {
+   // final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+   final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+    Map<String, dynamic> map = json.decode(response.body);
+    setState(() {
+      ImageList = map["data"]["photo"];
+     
+      for (int i = 0; i < ImageList.length; i++) {
+         imagesList.add(ImageList[i]["path"]);
+        		
+      }
+      
+      hasData = true;
+    });
+    return "Success!";
   }
 }

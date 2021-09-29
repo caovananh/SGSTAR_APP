@@ -107,7 +107,6 @@ class InfixApi {
     return baseApi + "report-medical/$id";
   }
 
-
   static String getMenu(String type) {
     return baseApi + "menu-food-day/$type";
   }
@@ -127,16 +126,20 @@ class InfixApi {
   static String getSubjectTeacher(int id) {
     return baseApi + "subject-teacher/$id";
   }
+
   static String likeNews(int id) {
     return baseApi + "like-new/$id";
   }
+
   static String getEvents() {
     return baseApi + "events";
   }
+
   static String getNewsContent(int id) {
     return baseApi + "news-content/$id";
   }
-  static String updateLocationBus(int id,double latitude,double longtitude) {
+
+  static String updateLocationBus(int id, double latitude, double longtitude) {
     return baseApi + "vehicle-location-update/$id/$latitude/$longtitude";
   }
   static String getCommentContent(int id) {
@@ -145,10 +148,18 @@ class InfixApi {
   static String storeCommentNews(int newsId,int userId,String content) {
     return baseApi + "store-comment-content/$newsId/$userId/$content";
   }
+  static String virtualClass(int classId,int academicId) {
+    return baseApi + "virtual-class/$classId/$academicId";
+  }
   //khoa end
   static String getNewsList() {
     return baseApi + "news-list";
   }
+
+  static String getPhotoAlbum() {
+    return baseApi + "photo-ablum";
+  }
+
   //Hai start
   static String vehiclesList() {
     return baseApi + "vehicle-list";
@@ -157,6 +168,7 @@ class InfixApi {
   static String vehiclesLocation(id) {
     return baseApi + "vehicle-location/$id";
   }
+
   //Hai end
   static String getStudentByRoll(String roll) {
     return baseApi + "search-student?roll_no=$roll";
@@ -272,7 +284,7 @@ class InfixApi {
 
   static String getJoinMeetingUrlWeb({mid}) {
     // return 'https://zoom.us/wc/$mid/start';
-    return 'https://zoom.us/wc/$mid/join?prefer=1';
+    return 'https://zoom.us/wc/$mid/join';
   }
 
   static String feesDataSend(String name, String description) {
@@ -546,7 +558,7 @@ class InfixApi {
 
   static String assignVehicle = baseApi + "assign-vehicle";
 
-  static String updateNewsList( int id) {
-    return baseApi + "increase-like-post";  
+  static String updateNewsList(int id) {
+    return baseApi + "increase-like-post";
   }
 }
