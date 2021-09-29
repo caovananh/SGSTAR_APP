@@ -43,71 +43,74 @@ class _CommentStateContent extends State<CommentContent> {
     return Column(
       children: <Widget>[
         Expanded(
-            child: ListView.builder(
-                itemCount: listComment == null ? 0 : listComment.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    padding: EdgeInsets.only(
-                        left: 14, right: 14, top: 10, bottom: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          // padding: EdgeInsets.only(left: 10),
-                          decoration: new BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: new Border.all(
-                              color: Color(0xFF9EDEFF),
-                              width: 1.0,
-                            ),
-                          ),
-                          child: CircleAvatar(
-                            radius: 25.0,
-                            backgroundImage:
-                                listComment[index]['student_photo'] != null
-                                    ? NetworkImage('https://sgstar.asia/' +
-                                        listComment[index]['student_photo']
-                                            .toString())
-                                    : AssetImage(
-                                        'assets/images/icons/student1.png'),
-                            backgroundColor: Colors.white,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+            child: RefreshIndicator(
+              onRefresh: getNewsComment,
+              child: ListView.builder(
+                  itemCount: listComment == null ? 0 : listComment.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      padding: EdgeInsets.only(
+                          left: 14, right: 14, top: 10, bottom: 10),
+                      child: Row(
+                        children: [
+                          Container(
+                            // padding: EdgeInsets.only(left: 10),
+                            decoration: new BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: new Border.all(
                                 color: Color(0xFF9EDEFF),
+                                width: 1.0,
                               ),
-                              padding: EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    listComment[index]['full_name'],
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    listComment[index]['comment_content'],
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white),
-                                  ),
-                                ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 25.0,
+                              backgroundImage:
+                                  listComment[index]['student_photo'] != null
+                                      ? NetworkImage('https://sgstar.asia/' +
+                                          listComment[index]['student_photo']
+                                              .toString())
+                                      : AssetImage(
+                                          'assets/images/icons/student1.png'),
+                              backgroundColor: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Color(0xFF9EDEFF),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      listComment[index]['full_name'],
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      listComment[index]['comment_content'],
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                })),
+                        ],
+                      ),
+                    );
+                  }),
+            )),
         Divider(),
 
         ListTile(
