@@ -148,6 +148,9 @@ class InfixApi {
   static String storeCommentNews(int newsId,int userId,String content) {
     return baseApi + "store-comment-content/$newsId/$userId/$content";
   }
+  static String virtualClass(int classId,int academicId) {
+    return baseApi + "virtual-class/$classId/$academicId";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
@@ -281,7 +284,7 @@ class InfixApi {
 
   static String getJoinMeetingUrlWeb({mid}) {
     // return 'https://zoom.us/wc/$mid/start';
-    return 'https://zoom.us/wc/$mid/join?prefer=1';
+    return 'https://zoom.us/wc/$mid/join';
   }
 
   static String feesDataSend(String name, String description) {

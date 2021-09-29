@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
@@ -71,7 +72,7 @@ class _ZoomLaunchMeetingState extends State<ZoomLaunchMeeting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBarWidget(title: widget.meetingName,),
+        appBar: AppBarWidget(),
         body: SafeArea(
             child: Column(children: <Widget>[
               Expanded(

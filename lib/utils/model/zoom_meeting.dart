@@ -7,7 +7,7 @@ class ZoomMeeting {
   DateTime endTime;
   final topic;
   final description;
-
+  final teacherName;
   ZoomMeeting(
       {this.id,
       this.password,
@@ -16,7 +16,8 @@ class ZoomMeeting {
       this.topic,
       this.description,
       this.meetingId,
-      this.startDate});
+      this.startDate,
+      this.teacherName});
 
   factory ZoomMeeting.fromJson(Map<String, dynamic> json) {
     return ZoomMeeting(
@@ -28,6 +29,7 @@ class ZoomMeeting {
       startDate: json['date_of_meeting'],
       description: json['description'],
       topic: json['topic'],
+      teacherName: json['full_name'],
     );
   }
 }
