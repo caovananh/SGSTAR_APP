@@ -21,8 +21,8 @@ class _CommentStateContent extends State<CommentContent> {
   List<dynamic> listComment;
   String idNews;
   bool emojiStatus=false;
-  FocusNode focusNode = FocusNode();
-  Icon _emojiIcon=Icon(Icons.emoji_emotions_outlined);
+  FocusNode focusNode =FocusNode();
+  Icon emojiIcon=Icon(Icons.emoji_emotions_outlined);
   @override
   void initState() {
     getNewsComment();
@@ -30,109 +30,107 @@ class _CommentStateContent extends State<CommentContent> {
       if(focusNode.hasFocus){
         setState(() {
           emojiStatus=false;
-          _emojiIcon=Icon(Icons.emoji_emotions_outlined);
+          emojiIcon=Icon(Icons.emoji_emotions_outlined);
         });
       }
+
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: getNewsComment,
-      child: Column(
-        children: <Widget>[
-          Expanded(
-              child: ListView.builder(
-                  itemCount: listComment == null ? 0 : listComment.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
-                      child: Row(
-                        children: [
-                          Container(
-                            // padding: EdgeInsets.only(left: 10),
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: new Border.all(
+    return Column(
+      children: <Widget>[
+        Expanded(
+            child: ListView.builder(
+                itemCount: listComment == null ? 0 : listComment.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    padding: EdgeInsets.only(
+                        left: 14, right: 14, top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        Container(
+                          // padding: EdgeInsets.only(left: 10),
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: new Border.all(
+                              color: Color(0xFF9EDEFF),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: CircleAvatar(
+                            radius: 25.0,
+                            backgroundImage:
+                                listComment[index]['student_photo'] != null
+                                    ? NetworkImage('https://sgstar.asia/' +
+                                        listComment[index]['student_photo']
+                                            .toString())
+                                    : AssetImage(
+                                        'assets/images/icons/student1.png'),
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
                                 color: Color(0xFF9EDEFF),
-                                width: 1.0,
                               ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 25.0,
-                              backgroundImage:
-                                  listComment[index]['student_photo'] != null
-                                      ? NetworkImage('https://sgstar.asia/' +
-                                          listComment[index]['student_photo']
-                                              .toString())
-                                      : AssetImage(
-                                          'assets/images/icons/student1.png'),
-                              backgroundColor: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color(0xFF9EDEFF),
-                                ),
-                                padding: EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      listComment[index]['full_name'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      listComment[index]['comment_content'],
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    listComment[index]['full_name'],
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    listComment[index]['comment_content'],
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  })),
-          Divider(),
-          ListTile(
-            leading: showEmoji(),
-            title: TextFormField(
-              focusNode: focusNode,
-              maxLines: null,
-              controller: commentController,
-              decoration: InputDecoration(labelText: "Write a comment..."),
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.send),
-              onPressed: () {
-                storeComment();
-                //print('Add comment');
-              },
-            ),
+                        ),
+                      ],
+                    ),
+                  );
+                })),
+        Divider(),
+
+        ListTile(
+          leading: showEmoji(),
+          title: TextFormField(
+            focusNode: focusNode,
+            maxLines: null,
+            controller: commentController,
+            decoration: InputDecoration(labelText: "Write a comment..."),
           ),
-          emojiStatus? showEmojiPicker():Container(),
-          Divider(),
-          SizedBox(
-            height: 15,
-          )
-        ],
-      ),
+          trailing: IconButton(
+            icon: Icon(Icons.send),
+            onPressed: () {
+              storeComment();
+            },
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        emojiStatus ? showEmojiPicker() : Container(),
+        Divider()
+      ],
     );
   }
 
@@ -148,6 +146,8 @@ class _CommentStateContent extends State<CommentContent> {
       listComment = map["data"]["commentContent"];
       // hasData=true;
     });
+    //print(listComment);
+    return "Success!";
   }
 
   Future<void> storeComment() async {
@@ -158,8 +158,7 @@ class _CommentStateContent extends State<CommentContent> {
         int.parse(newIds), int.parse(userId), commentController.text)));
     commentController.clear();
     getNewsComment();
-    //print("Success!");
-    print(response.body);
+    print("Success!");
   }
 
   Widget showEmojiPicker() {
@@ -168,7 +167,6 @@ class _CommentStateContent extends State<CommentContent> {
       columns: 7,
       numRecommended: 10,
       onEmojiSelected: (emoji, category) {
-    //    print(emoji);
         commentController.text=commentController.text+emoji.emoji;
       },
     );
@@ -177,15 +175,15 @@ class _CommentStateContent extends State<CommentContent> {
   Widget showEmoji() => Container(
         margin: EdgeInsets.symmetric(horizontal: 4),
         child: IconButton(
-          icon: _emojiIcon,
-          onPressed: (){
+          onPressed: () {
             focusNode.unfocus();
             focusNode.canRequestFocus=false;
             setState(() {
               emojiStatus=!emojiStatus;
-              _emojiIcon=Icon(Icons.keyboard);
+              emojiIcon=Icon(Icons.keyboard);
             });
           },
+          icon: emojiIcon,
         ),
       );
 }

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:photo_view/photo_view.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -15,8 +15,9 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> {
   String name;
-  
+
   List<dynamic> ImageList;
+  List<dynamic> AlbumTitle;
   bool hasData = false;
   @override
   void initState() {
@@ -25,10 +26,11 @@ class _GalleryScreenState extends State<GalleryScreen> {
     super.initState();
   }
 
+  int countphoto;
   int _currentIndex = 0;
   //var imagesList = new List();
   List<String> imagesList = [];
-  
+
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -40,7 +42,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    double imgHeight = screenHeight * 0.15;
+    double imgHeight = screenHeight * 0.18;
 
     return Scaffold(
       appBar: AppBarWidget(),
@@ -83,12 +85,12 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('album name'.toUpperCase(),
+                    Text(AlbumTitle[0]["title"].toUpperCase(),
                         style: TextStyle(
                             color: Color(0xff13438f),
                             fontSize: 18,
                             fontWeight: FontWeight.w700)),
-                    Text('1',
+                    Text(countphoto.toString(),
                         style: TextStyle(
                             color: Color(0xff13438f),
                             fontSize: 18,
@@ -101,7 +103,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
               padding: const EdgeInsets.only(top: 15),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image.network("https://sgstar.asia/public/uploads/category/" +"/"+ ImageList[0]["path"])),
+                  child: Image.network(
+                      "https://sgstar.asia/public/uploads/category/" +
+                          "/" +
+                          ImageList[0]["path"])),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -118,9 +123,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
                             _currentIndex = index;
                           });
                         },
-                        viewportFraction: 0.6,
-                        enlargeCenterPage: false,
-                        autoPlay: true,
+                        viewportFraction: 0.7,
+                        enlargeCenterPage: true,
+                        autoPlay: false,
                         autoPlayInterval: Duration(seconds: 3),
                         autoPlayAnimationDuration: Duration(milliseconds: 800),
                       ),
@@ -132,8 +137,17 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   child: Stack(
                                     fit: StackFit.expand,
                                     children: [
-                                      Image.network("https://sgstar.asia/public/uploads/category/" +"/"+e, fit: BoxFit.cover),
-                                      
+                                      // PhotoView(
+                                      //   imageProvider: NetworkImage(
+                                      //       "https://sgstar.asia/public/uploads/category/" +
+                                      //           "/" +
+                                      //           e),
+                                      // )
+                                      Image.network(
+                                          "https://sgstar.asia/public/uploads/category/" +
+                                              "/" +
+                                              e,
+                                          fit: BoxFit.cover)
                                     ],
                                   ),
                                 ),
@@ -257,17 +271,16 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 
   Future<String> getPhotoAlbum() async {
-   // final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
-   final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+    // final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
+    final response = await http.get(Uri.parse(InfixApi.getPhotoAlbum()));
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
       ImageList = map["data"]["photo"];
-     
+      AlbumTitle = map["data"]["title"];
       for (int i = 0; i < ImageList.length; i++) {
-         imagesList.add(ImageList[i]["path"]);
-        		
+        imagesList.add(ImageList[i]["path"]);
       }
-      
+      countphoto = ImageList.length;
       hasData = true;
     });
     return "Success!";
