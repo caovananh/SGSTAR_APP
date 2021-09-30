@@ -9,6 +9,7 @@ import 'package:infixedu/utils/apis/Apis.dart';
 
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({key}) : super(key: key);
+
   @override
   _GalleryScreenState createState() => _GalleryScreenState();
 }
@@ -18,7 +19,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   List<dynamic> ImageList;
   List<dynamic> AlbumTitle;
+  String title;
   bool hasData = false;
+  String imgUrl;
+
   @override
   void initState() {
     name = getName();
@@ -28,6 +32,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
   int countphoto;
   int _currentIndex = 0;
+
   //var imagesList = new List();
   List<String> imagesList = [];
 
@@ -85,7 +90,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AlbumTitle[0]["title"].toUpperCase(),
+                    Text(title != null ? title.toUpperCase() : ' ',
                         style: TextStyle(
                             color: Color(0xff13438f),
                             fontSize: 18,
@@ -103,10 +108,9 @@ class _GalleryScreenState extends State<GalleryScreen> {
               padding: const EdgeInsets.only(top: 15),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Image.network(
-                      "https://sgstar.asia/public/uploads/category/" +
-                          "/" +
-                          ImageList[0]["path"])),
+                  child: imgUrl != null
+                      ? Image.network(imgUrl)
+                      : Image.asset('assets/images/icons/no_image.png')),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -121,6 +125,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
                         onPageChanged: (index, reason) {
                           setState(() {
                             _currentIndex = index;
+                            imgUrl =
+                                "https://sgstar.asia/public/uploads/category/" +
+                                    "/" +
+                                    ImageList[index]["path"];
                           });
                         },
                         viewportFraction: 0.7,
@@ -154,100 +162,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
                               ))
                           .toList(),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: map<Widget>(imagesList, (index, url) {
-                        return Container(
-                          width: 10.0,
-                          height: 10.0,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 2.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _currentIndex == index
-                                ? Colors.blueAccent
-                                : Colors.grey,
-                          ),
-                        );
-                      }),
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Padding(
-                    //       padding: const EdgeInsets.all(3.0),
-                    //       child: Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(5),
-                    //             border: Border.all(color: Color(0xff7cd3f7))),
-                    //         child: TextButton(
-                    //           child: Text(
-                    //             '<',
-                    //             style:
-                    //                 TextStyle(color: Colors.grey, fontSize: 20),
-                    //           ),
-                    //           onPressed: () {},
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Padding(
-                    //       padding: const EdgeInsets.all(3.0),
-                    //       child: Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         child: TextButton(
-                    //           child: Text(
-                    //             '1',
-                    //             style: TextStyle(
-                    //                 color: Colors.white, fontSize: 20),
-                    //           ),
-                    //           style: ButtonStyle(
-                    //               backgroundColor: MaterialStateProperty.all(
-                    //                   Color(0xff7cd3f7))),
-                    //           onPressed: () {},
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Padding(
-                    //       padding: const EdgeInsets.all(3.0),
-                    //       child: Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(5),
-                    //             border: Border.all(color: Color(0xff7cd3f7))),
-                    //         child: TextButton(
-                    //           child: Text(
-                    //             '2',
-                    //             style:
-                    //                 TextStyle(color: Colors.grey, fontSize: 20),
-                    //           ),
-                    //           onPressed: () {},
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Padding(
-                    //       padding: const EdgeInsets.all(3.0),
-                    //       child: Container(
-                    //         width: 40,
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(5),
-                    //             border: Border.all(color: Color(0xff7cd3f7))),
-                    //         child: TextButton(
-                    //           child: Text(
-                    //             '>',
-                    //             style:
-                    //                 TextStyle(color: Colors.grey, fontSize: 20),
-                    //           ),
-                    //           onPressed: () {},
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     SizedBox(
                       height: 50,
                     )
@@ -277,6 +191,10 @@ class _GalleryScreenState extends State<GalleryScreen> {
     setState(() {
       ImageList = map["data"]["photo"];
       AlbumTitle = map["data"]["title"];
+      title = AlbumTitle[0]["title"];
+      imgUrl = "https://sgstar.asia/public/uploads/category/" +
+          "/" +
+          ImageList[0]["path"];
       for (int i = 0; i < ImageList.length; i++) {
         imagesList.add(ImageList[i]["path"]);
       }
