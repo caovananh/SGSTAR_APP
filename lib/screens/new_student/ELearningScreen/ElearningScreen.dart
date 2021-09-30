@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:infixedu/screens/new_student/CommonWidgets/AppBarMainScreen.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -41,7 +42,7 @@ class _ELearningScreenState extends State<ELearningScreen> {
     return Padding(
       padding: EdgeInsets.only(top: statusBarHeight),
       child: Scaffold(
-        appBar: AppBarWidget(),
+        appBar: AppBarMainScreen(),
         backgroundColor: Colors.white,
         body: Column(
           children: [
@@ -104,7 +105,7 @@ class _ELearningScreenState extends State<ELearningScreen> {
     final response = await http.get(Uri.parse(InfixApi.virtualClass(int.parse(classId), int.parse(academicId))));
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-      print(jsonData['data']['zoom']);
+     // print(jsonData['data']['zoom']);
 
       return ZoomMeetingList.fromJson(jsonData['data']['zoom']);
     } else {
