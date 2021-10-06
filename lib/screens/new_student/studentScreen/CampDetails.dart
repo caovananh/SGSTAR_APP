@@ -1,14 +1,35 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:fwfh_chewie/fwfh_chewie.dart';
 
 class CampDetails extends StatefulWidget {
-  const CampDetails({Key key}) : super(key: key);
-
+  const CampDetails(this.id, {Key key}) : super(key: key);
+  final int id;
   @override
   _CampDetailsState createState() => _CampDetailsState();
 }
 
 class _CampDetailsState extends State<CampDetails> {
+  Future<void> getContent;
+  String newsTitle;
+  String newsDescription;
+  String newsImage;
+  String newsBody;
+  String newsPublishDate;
+  String idNews;
+  bool hasData = false;
+
+  @override
+  void initState() {
+    getNewsContent();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +37,8 @@ class _CampDetailsState extends State<CampDetails> {
       appBar: AppBarWidget(),
       body: Container(
         color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+
           children: [
             Padding(
               padding:
@@ -38,7 +59,7 @@ class _CampDetailsState extends State<CampDetails> {
                 child: Center(
                   child: Padding(
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
-                      child: Text('SUMMER CAMP 2021',
+                      child: Text(newsTitle!=null?newsTitle.toUpperCase():'',
                           style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -50,9 +71,12 @@ class _CampDetailsState extends State<CampDetails> {
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image(
-                      image:
-                          AssetImage('assets/images/icons/summer_camp.png'))),
+                  child:
+                      newsImage != null
+                          ? Image.network('https://sgstar.asia/' +
+                          newsImage.toString())
+                          : Image.asset(
+                          'assets/images/icons/summer_camp.png')),
             ),
             Padding(
               padding:
@@ -60,39 +84,48 @@ class _CampDetailsState extends State<CampDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('SUMMER CAMP 2021'),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 10.0, left: 20.0, right: 20.0, bottom: 5.0),
+                    child: Container(
+                      width: double.infinity,
+                      child: Center(
+                        child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 15.0, bottom: 15),
+                            child: HtmlWidget(
+                              newsBody != null ? newsBody : "",
+                            )
+
+                          // print(document.outerHtml),
+                        ),
+                      ),
+                    ),
+                  ),
                   Container(height: 10),
-                  Text('Skills & Attitude:'),
-                  Container(height: 10),
-                  Text('Field trips:'),
-                  Container(height: 10),
-                  Text('Student grouping by age:'),
-                  Container(height: 10),
-                  Text('Simple week:'),
-                  Container(height: 10),
-                  Text('Fee:'),
                 ],
               ),
             ),
-            Container(
-              height: 100,
-              child: Center(
-                child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('REGISTERED'),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xffe4087e)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        )))),
-              ),
-            )
           ],
         ),
       ),
     );
+  }
+
+  Future<void> getNewsContent() async {
+
+    final response =
+    await http.get(Uri.parse(InfixApi.getNewsContent((this.widget.id))));
+    var jsonData = json.decode(response.body);
+    if (mounted) {
+      setState(() {
+        newsTitle = jsonData['data']['News']['news_title'];
+        newsImage = jsonData['data']['News']['image'];
+        newsBody = jsonData['data']['News']['news_body'];
+        newsPublishDate = jsonData['data']['News']['publish_date'];
+        hasData = true;
+      });
+    }
+    print(jsonData['data']);
   }
 }

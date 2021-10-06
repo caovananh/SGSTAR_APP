@@ -151,6 +151,12 @@ class InfixApi {
   static String virtualClass(int classId,int academicId) {
     return baseApi + "virtual-class/$classId/$academicId";
   }
+  static String schoolCamp() {
+    return baseApi + "school-camp";
+  }
+  static String schoolEvent() {
+    return baseApi + "school-event";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";

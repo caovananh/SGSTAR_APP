@@ -73,7 +73,7 @@ class _EventListViewState extends State<EventListView> {
 
   Future<String> getEventList() async{
 
-    final response = await http.get(Uri.parse(InfixApi.getEvents()));
+    final response = await http.get(Uri.parse(InfixApi.schoolEvent()));
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
       eventList = map["data"]["events"];
