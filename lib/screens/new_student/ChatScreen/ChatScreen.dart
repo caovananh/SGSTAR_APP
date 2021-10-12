@@ -14,7 +14,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final items = List<String>.generate(5, (i) => "Item $i");
+  final items = List<String>.generate(3, (i) => "Item $i");
 
   @override
   Widget build(BuildContext context) {

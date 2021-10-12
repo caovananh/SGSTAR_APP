@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/model/chatMessageModel.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class ChatDetailPage extends StatefulWidget {
   @override
@@ -9,10 +10,10 @@ class ChatDetailPage extends StatefulWidget {
 
 List<ChatMessage> messages = [
   ChatMessage(
-      messageContent: "Lorem Ipsum is simply dummy text",
+      messageContent: "dam nhau ko?",
       messageType: "receiver"),
   ChatMessage(
-      messageContent: "Lorem Ipsum is simply dummy text",
+      messageContent: "đấm, sợ gì",
       messageType: "receiver"),
   ChatMessage(
       messageContent: "Lorem Ipsum is simply dummy text",

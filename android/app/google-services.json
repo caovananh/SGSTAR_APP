@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "636666845268",
-    "project_id": "infixedu-app",
-    "storage_bucket": "infixedu-app.appspot.com"
+    "project_number": "598032976358",
+    "project_id": "flutter-chat-f8fc3",
+    "storage_bucket": "flutter-chat-f8fc3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:636666845268:android:abe44f1089d0316ad3b5c1",
+        "mobilesdk_app_id": "1:598032976358:android:d7038a4ed5d91421ea6e27",
         "android_client_info": {
           "package_name": "com.edu.infix.infixedu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "636666845268-urk14jmk9hesfgge64cngei3qo09fjkk.apps.googleusercontent.com",
+          "client_id": "598032976358-32epagb2seebst738qvasgdq482daoio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edu.infix.infixedu",
+            "certificate_hash": "e72dc9e64acc38e1972d0b95d0781ad93b2aaffa"
+          }
+        },
+        {
+          "client_id": "598032976358-8bl9hc53p32dr616c0gvn9eg0vviiogt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADf-SJ2o6YXHoMJ92Q-Vc2yCvOIKd0F-c"
+          "current_key": "AIzaSyCUjCJkAE_KFBXdVKTospWq2LH7y25y_EE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "636666845268-urk14jmk9hesfgge64cngei3qo09fjkk.apps.googleusercontent.com",
+              "client_id": "598032976358-8bl9hc53p32dr616c0gvn9eg0vviiogt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
