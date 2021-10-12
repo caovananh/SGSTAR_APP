@@ -5,7 +5,7 @@ import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:http/http.dart' as http;
 
