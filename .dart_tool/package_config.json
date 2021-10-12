@@ -236,6 +236,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "firebase_database",
+      "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_database-6.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "firebase_messaging",
       "rootUri": "file:///C:/Users/PC/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_messaging-8.0.0-dev.15",
       "packageUri": "lib/",
@@ -1004,7 +1010,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-10-11T10:33:49.874943Z",
+  "generated": "2021-10-12T02:34:13.342972Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }

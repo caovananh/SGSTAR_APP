@@ -157,6 +157,12 @@ class InfixApi {
   static String schoolEvent() {
     return baseApi + "school-event";
   }
+  static String schoolLeaveType(int id) {
+    return baseApi + "school-leave-type/$id";
+  }
+  static String storeSchoolLeave(int userId,int leaveId,String fromDate,String toDate,String reason,int schoolId,int academicId) {
+    return baseApi + "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
