@@ -13,10 +13,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/exception/DioException.dart';
+//Firebase
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login {
   final String email;
   final String password;
+  FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
+
+  get user =>_firebaseAuth.currentUser;
 
   Login(this.email, this.password);
 
@@ -92,6 +97,11 @@ class Login {
   }
 
   Future<String> getData2(BuildContext context) async {
+
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    var _email = _prefs.getString("email") ?? "";
+    var _password = _prefs.getString("password") ?? "";
+
     bool isSuccessed = false;
     dynamic id;
     dynamic rule;
@@ -188,6 +198,7 @@ class Login {
           saveStringValue('lang', 'en');
           saveStringValue('token', token.toString());
           saveStringValue('zoom', zoom.toString());
+          await _firebaseAuth.signInWithEmailAndPassword(email: _email, password: _password);
           AppFunction.getFunctions(context, rule.toString(), zoom.toString());
         }
         return message;
