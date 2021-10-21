@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infixedu/screens/new_student/ChatScreen/ChatScreen.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/model/chatMessageModel.dart';
@@ -12,17 +13,35 @@ import 'package:intl/intl.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 
 class ChatDetailPage extends StatefulWidget {
+  final int roomId;
+  final int userId_1;
+  final int userId_2;
+  const ChatDetailPage({key, this.roomId, this.userId_1,this.userId_2}) : super(key: key);
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
+  int sender;
+  int receive;
+  int idRoomChat;
   bool isFocus = false;
+  final messageDb = FirebaseDatabase.instance.reference().child("messages").orderByChild('roomId');
   FocusNode _focus = new FocusNode();
   final textController = TextEditingController();
   final dataBaseReference = FirebaseDatabase.instance.reference();
   final db = FirebaseDatabase.instance.reference().child("messages");
+  void initState() {
+    idStudent=getStudentId();
+    idRoomChat=widget.roomId;
+
+    final Future<FirebaseApp> _future = Firebase.initializeApp();
+    super.initState();
+  }
+
   int idStudent;
+
+
   void addData(String data) async {
     var now = DateTime.now().toUtc();
     final convertLocal = now.toLocal();
@@ -30,17 +49,36 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     dynamic currentTime = dateFormat.format(convertLocal);
     print(currentTime);
 
+
+
     final pref = await SharedPreferences.getInstance();
-    String id = pref.get('StudentId');
+    String id = pref.get('id');
+
+    if(widget.userId_1==int.parse(id))
+      {
+        setState(() {
+          sender=int.parse(id);
+          receive=widget.userId_2;
+        });
+      }
+    else if(widget.userId_2==int.parse(id))
+      {
+        setState(() {
+          sender=int.parse(id);
+          receive=widget.userId_1;
+        });
+      }
+
     db.push().set({
       'content': data,
-      'IdFrom': int.parse(id),
-      'IdTo': 1,
+      'IdFrom': sender,
+      'IdTo': receive,
+      'roomId': widget.roomId,
       'dateTime': currentTime
     });
   }
   int getStudentId() {
-    Utils.getStringValue('StudentId').then((value) {
+    Utils.getStringValue('id').then((value) {
       setState(() {
         idStudent = int.parse(value);
       });
@@ -57,17 +95,14 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   }
 
   @override
-  void initState() {
-    final Future<FirebaseApp> _future = Firebase.initializeApp();
-    super.initState();
-  }
+
 
   Widget _message({Map messages}) {
     return Container(
       padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
       child: Row(
         children: [
-          messages['IdTo'] != idStudent
+          messages['IdFrom'] != idStudent
               ? Container(
                   // padding: EdgeInsets.only(left: 10),
                   decoration: new BoxDecoration(
@@ -85,15 +120,16 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   ),
                 )
               : Text(""),
+          SizedBox(width: 10.0),
           Expanded(
             child: Align(
-              alignment: (messages['IdTo'] != idStudent
+              alignment: (messages['IdFrom'] != idStudent
                   ? Alignment.topLeft
                   : Alignment.topRight),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: (messages['IdTo'] != idStudent
+                  color: (messages['IdFrom'] != idStudent
                       ? Color(0xFFE1EBF1)
                       : Color(0xFF9EDEFF)),
                 ),
@@ -102,7 +138,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   messages['content'],
                   style: TextStyle(
                       fontSize: 15,
-                      color: (messages['IdTo'] != idStudent
+                      color: (messages['IdFrom'] != idStudent
                           ? Colors.grey[600]
                           : Colors.white)),
                 ),
@@ -148,7 +184,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         children: <Widget>[
           Expanded(
             child: FirebaseAnimatedList(
-              query: db,
+              query: messageDb.equalTo(idRoomChat),
               itemBuilder: (BuildContext context, DataSnapshot snapshot,
                   Animation<double> animation, int index) {
                 Map test = snapshot.value;
@@ -264,6 +300,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           isFocus = false;
           addData(textController.text);
           print(textController.text);
+          textController.clear();
         });
       },
       child: Icon(

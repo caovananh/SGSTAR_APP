@@ -24,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    getCharRoom();
+    getChatRoom();
     super.initState();
   }
 
@@ -110,9 +110,10 @@ class _ChatScreenState extends State<ChatScreen> {
                                 ),
                                 FlatButton(
                                   onPressed: () {
+
                                     pushNewScreen(
                                       context,
-                                      screen: ChatDetailPage(),
+                                      screen: ChatDetailPage(roomId: listRoom[index]["id"],userId_1: int.parse(listRoom[index]["user_id_1"]),userId_2: int.parse(listRoom[index]["user_id_2"])),
                                       withNavBar:
                                           false, // OPTIONAL VALUE. True by default.
                                       pageTransitionAnimation:
@@ -217,9 +218,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<String> getCharRoom() async {
+  Future<String> getChatRoom() async {
     final pref = await SharedPreferences.getInstance();
-    String id = pref.get('StudentId');
+    String id = pref.get('id');
     
     final response = await http.get(Uri.parse(InfixApi.chatRoom(int.parse(id))));
     Map<String, dynamic> map = json.decode(response.body);

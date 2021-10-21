@@ -13,15 +13,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:infixedu/utils/FunctinsData.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:infixedu/utils/exception/DioException.dart';
-//Firebase
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Login {
   final String email;
   final String password;
-  FirebaseAuth _firebaseAuth=FirebaseAuth.instance;
-
-  get user =>_firebaseAuth.currentUser;
 
   Login(this.email, this.password);
 
@@ -158,7 +153,7 @@ class Login {
             ? '1'
             : user['data']['system_settings'][0]['Zoom']
             .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
-
+        print("User ID: ${user['data']['user']['id']}");
         print("STUDENT DETAIL: ${user['data']['userDetails']}");
         print("STUDENT NEW DETAIL: ${user['data']['studentDetails']}");
         print("CLASSES DETAIL: ${user['data']['classesDetail']}");
@@ -198,7 +193,6 @@ class Login {
           saveStringValue('lang', 'en');
           saveStringValue('token', token.toString());
           saveStringValue('zoom', zoom.toString());
-          await _firebaseAuth.signInWithEmailAndPassword(email: _email, password: _password);
           AppFunction.getFunctions(context, rule.toString(), zoom.toString());
         }
         return message;

@@ -20,6 +20,7 @@ class News extends StatefulWidget {
 class _NewsState extends State<News> {
   List<dynamic> listNews;
   bool hasData = false;
+
   @override
   void initState() {
     this.getNewsList();
@@ -69,19 +70,20 @@ class _NewsState extends State<News> {
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top: 5),
                                         child: InkWell(
                                           onTap: () {
-                                            saveId(
-                                                listNews[index]["id"].toString());
+                                            saveId(listNews[index]["id"]
+                                                .toString());
                                             pushNewScreen(
                                               context,
                                               screen: NewsContent(),
-                                              withNavBar:
-                                                  true, // OPTIONAL VALUE. True by default.
+                                              withNavBar: true,
+                                              // OPTIONAL VALUE. True by default.
                                               pageTransitionAnimation:
                                                   PageTransitionAnimation
                                                       .cupertino,
@@ -91,7 +93,8 @@ class _NewsState extends State<News> {
                                             listNews[index]["description"],
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.black),
+                                            style:
+                                                TextStyle(color: Colors.black),
                                           ),
                                         ),
                                       ),
@@ -116,7 +119,8 @@ class _NewsState extends State<News> {
                                                 Container(
                                                   width: 25,
                                                   child: IconButton(
-                                                      padding: EdgeInsets.all(0),
+                                                      padding:
+                                                          EdgeInsets.all(0),
                                                       icon: Image.asset(
                                                         'assets/images/icons/4. LIKE.png',
                                                         width: 25,
@@ -124,8 +128,9 @@ class _NewsState extends State<News> {
                                                       ),
                                                       color: Colors.grey,
                                                       onPressed: () {
-                                                        storeLike(listNews[index]
-                                                            ["id"]);
+                                                        storeLike(
+                                                            listNews[index]
+                                                                ["id"]);
                                                       }),
                                                 ),
                                                 Text(listNews[index]
@@ -146,7 +151,8 @@ class _NewsState extends State<News> {
                                                 Container(
                                                   width: 25,
                                                   child: IconButton(
-                                                      padding: EdgeInsets.all(0),
+                                                      padding:
+                                                          EdgeInsets.all(0),
                                                       icon: Image.asset(
                                                         'assets/images/icons/5. COMMENT.png',
                                                         width: 25,
@@ -186,7 +192,8 @@ class _NewsState extends State<News> {
                                                 Container(
                                                   width: 25,
                                                   child: IconButton(
-                                                      padding: EdgeInsets.all(0),
+                                                      padding:
+                                                          EdgeInsets.all(0),
                                                       icon: Image.asset(
                                                         'assets/images/icons/6. SHARE.png',
                                                         width: 25,
@@ -229,7 +236,8 @@ class _NewsState extends State<News> {
   Future<String> getNewsList() async {
     final pref = await SharedPreferences.getInstance();
     String classId = pref.get('class_id');
-    final response = await http.get(Uri.parse(InfixApi.getNewsList(int.parse(classId))));
+    final response =
+        await http.get(Uri.parse(InfixApi.getNewsList(int.parse(classId))));
     Map<String, dynamic> map = json.decode(response.body);
     setState(() {
       listNews = map["data"]["News"];

@@ -72,11 +72,12 @@ class Utils {
   static void showToast(String message) {
     Fluttertoast.showToast(
         msg: message,
-        textColor: Colors.white,
-        backgroundColor: Colors.purple,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1);
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.purple,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   static BoxDecoration gradientBtnDecoration = BoxDecoration(
