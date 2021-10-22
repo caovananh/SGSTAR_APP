@@ -45,9 +45,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   void addData(String data) async {
     var now = DateTime.now().toUtc();
     final convertLocal = now.toLocal();
-    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-    dynamic currentTime = dateFormat.format(convertLocal);
-    print(currentTime);
+    // DateFormat dateFormat = DateFormat("HH:mm  dd/MM/yyyy");
+    // dynamic currentTime = dateFormat.format(convertLocal);
+    // print(currentTime);
 
 
 
@@ -74,7 +74,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       'IdFrom': sender,
       'IdTo': receive,
       'roomId': widget.roomId,
-      'dateTime': currentTime
+      'dateTime': DateFormat.Hm().add_yMMMd().format(convertLocal)
     });
   }
   int getStudentId() {
@@ -126,22 +126,32 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               alignment: (messages['IdFrom'] != idStudent
                   ? Alignment.topLeft
                   : Alignment.topRight),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: (messages['IdFrom'] != idStudent
-                      ? Color(0xFFE1EBF1)
-                      : Color(0xFF9EDEFF)),
-                ),
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  messages['content'],
-                  style: TextStyle(
-                      fontSize: 15,
+              child: Column(
+                crossAxisAlignment: messages['IdFrom']!= idStudent? CrossAxisAlignment.start : CrossAxisAlignment.end,
+
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
                       color: (messages['IdFrom'] != idStudent
-                          ? Colors.grey[600]
-                          : Colors.white)),
-                ),
+                          ? Color(0xFFE1EBF1)
+                          : Color(0xFF9EDEFF)),
+                    ),
+                    padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
+                    child: Text(
+                      messages['content'],
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: (messages['IdFrom'] != idStudent
+                              ? Colors.grey[600]
+                              : Colors.white)),
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  Text(messages['dateTime'],style: TextStyle(
+                    fontSize: 10
+                  ),)
+                ],
               ),
             ),
           ),
@@ -150,30 +160,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     );
   }
 
-  Widget _buildMessage({Map messages}) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFF9EDEFF),
-              ),
-              padding: EdgeInsets.all(16),
-              child: Text(
-                messages['content'],
-                style: TextStyle(fontSize: 15, color: Colors.white),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

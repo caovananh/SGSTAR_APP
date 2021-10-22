@@ -166,6 +166,10 @@ class InfixApi {
   static String chatRoom(int id) {
     return baseApi + "school-chat-room/$id";
   }
+
+  static String getStudentListChat(int id) {
+    return baseApi + "student-list-chat/$id";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
