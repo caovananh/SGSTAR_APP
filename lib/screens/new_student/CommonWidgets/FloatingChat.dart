@@ -1,14 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:infixedu/screens/login/login_new.dart';
-import 'package:infixedu/screens/new_student/CommonWidgets/Logout.dart';
-import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:http/http.dart' as http;
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FloatingChat extends StatefulWidget {
   const FloatingChat({Key key}) : super(key: key);
@@ -23,8 +17,6 @@ class _FloatingChatState extends State<FloatingChat> {
   String name;
   String _chosenValue;
   List<String> student_List = [];
-  List<String> _locations = ['A', 'B', 'C', 'D']; // Option 2
-  String _selectedLocation; // Option 2
   @override
   void initState() {
     this.getStudentList();
@@ -65,26 +57,31 @@ class _FloatingChatState extends State<FloatingChat> {
                         width: 300,
                         child: Column(
                           children: <Widget>[
-                            new DropdownButton<String>(
-                              value: _chosenValue,
-                              underline: Container(),
-                              items: student_List.map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: new Text(
-                                    value,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w500),
-                                  ),
-                                );
-                              }).toList(),
-                              hint: Text("Select item"),
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  _chosenValue = newValue;
-                                  print(newValue);
-                                });
-                              },
+                            Container(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  value: _chosenValue,
+                                  underline: Container(),
+                                  items: student_List.map((String value) {
+                                    return new DropdownMenuItem<String>(
+                                      value: value,
+                                      child: new Text(
+                                        value,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  hint: Text("Select item"),
+                                  menuMaxHeight: 400,
+                                  onChanged: (String newValue) {
+                                    setState(() {
+                                      _chosenValue = newValue;
+                                      print(newValue);
+                                    });
+                                  },
+                                ),
+                              ),
                             ),
                             Card(
                                 color: Colors.white,
@@ -135,9 +132,9 @@ class _FloatingChatState extends State<FloatingChat> {
       hasData = true;
     });
     for (int i = 0; i < studentList.length; i++) {
-      student_List.add(studentList[i]["first_name"]);
+      student_List.add(studentList[i]["full_name"]);
     }
-    //print(student_List);
+    print(student_List);
     return "Success!";
   }
 }

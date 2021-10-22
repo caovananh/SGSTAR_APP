@@ -106,156 +106,173 @@ class _ChatScreenState extends State<ChatScreen>
                 ),
                 Expanded(
                   child: TabBarView(children: [
-                    Flexible(
-                      flex: 5,
-                      fit: FlexFit.loose,
-                      child: ListView.builder(
-                          itemCount: listRoom == null ? 0 : listRoom.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  top: mediaQueryData.size.height * 0.03,
-                                  left: 20,
-                                  right: 20),
-                              child: Container(
-                                height: mediaQueryData.size.height * 0.2,
-                                padding: EdgeInsets.all(
-                                    mediaQueryData.size.height * 0.02),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  border: Border.all(
-                                      color:
-                                          Color(0xFF9EDEFF), // Set border color
-                                      width: 1.0),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      listRoom[index]["name"].toUpperCase(),
-                                      style: TextStyle(
-                                        color: Color(0xFF144385),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                    Column(
+                      children: [
+                        Flexible(
+                          flex: 9,
+                          fit: FlexFit.loose,
+                          child: ListView.builder(
+                              itemCount: listRoom == null ? 0 : listRoom.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: mediaQueryData.size.height * 0.03,
+                                      left: 20,
+                                      right: 20),
+                                  child: Container(
+                                    height: mediaQueryData.size.height * 0.2,
+                                    padding: EdgeInsets.all(
+                                        mediaQueryData.size.height * 0.02),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15.0)),
+                                      border: Border.all(
+                                          color: Color(
+                                              0xFF9EDEFF), // Set border color
+                                          width: 1.0),
                                     ),
-                                    Text(
-                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          "20 second ago",
+                                          listRoom[index]["name"].toUpperCase(),
                                           style: TextStyle(
-                                              color: Colors.grey[400]),
-                                        ),
-                                        FlatButton(
-                                          onPressed: () {
-                                            pushNewScreen(
-                                              context,
-                                              screen: ChatDetailPage(
-                                                  roomId: listRoom[index]["id"],
-                                                  userId_1: int.parse(
-                                                      listRoom[index]
-                                                          ["user_id_1"]),
-                                                  userId_2: int.parse(
-                                                      listRoom[index]
-                                                          ["user_id_2"])),
-                                              withNavBar:
-                                                  false, // OPTIONAL VALUE. True by default.
-                                              pageTransitionAnimation:
-                                                  PageTransitionAnimation
-                                                      .cupertino,
-                                            );
-                                          },
-                                          child: Text(
-                                            "JOIN",
-                                            style:
-                                                TextStyle(color: Colors.white),
+                                            color: Color(0xFF144385),
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                          color: Color(0xFF9EDEFF),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(18.0),
-                                              side: BorderSide(
-                                                  color: Color(0xFF9EDEFF))),
-                                        )
+                                        ),
+                                        Text(
+                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "20 second ago",
+                                              style: TextStyle(
+                                                  color: Colors.grey[400]),
+                                            ),
+                                            TextButton(
+                                                onPressed: () {
+                                                  pushNewScreen(
+                                                    context,
+                                                    screen: ChatDetailPage(
+                                                        roomId: listRoom[index]
+                                                            ["id"],
+                                                        userId_1: int.parse(
+                                                            listRoom[index]
+                                                                ["user_id_1"]),
+                                                        userId_2: int.parse(
+                                                            listRoom[index]
+                                                                ["user_id_2"])),
+                                                    withNavBar:
+                                                        false, // OPTIONAL VALUE. True by default.
+                                                    pageTransitionAnimation:
+                                                        PageTransitionAnimation
+                                                            .cupertino,
+                                                  );
+                                                },
+                                                child: Text(
+                                                  "JOIN",
+                                                  style: TextStyle(
+                                                      color: Color(0xFF9EDEFF)),
+                                                ),
+                                                style: ButtonStyle(
+                                                    shape: MaterialStateProperty.all<
+                                                            RoundedRectangleBorder>(
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        18.0),
+                                                            side: BorderSide(
+                                                                color: Color(
+                                                                    0xFF9EDEFF))))))
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
                     ),
-                    Flexible(
-                      flex: 4,
-                      fit: FlexFit.loose,
-                      child: ListView.builder(
-                          itemCount: items.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  top: mediaQueryData.size.height * 0.03,
-                                  left: 20,
-                                  right: 20),
-                              child: Container(
-                                height: mediaQueryData.size.height * 0.2,
-                                padding: EdgeInsets.all(
-                                    mediaQueryData.size.height * 0.02),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  border: Border.all(
-                                      color:
-                                          Color(0xFF9EDEFF), // Set border color
-                                      width: 1.0),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "Year 1N".toUpperCase(),
-                                      style: TextStyle(
-                                        color: Color(0xFF144385),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                    Column(
+                      children: [
+                        Flexible(
+                          flex: 4,
+                          fit: FlexFit.loose,
+                          child: ListView.builder(
+                              itemCount: items.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: mediaQueryData.size.height * 0.03,
+                                      left: 20,
+                                      right: 20),
+                                  child: Container(
+                                    height: mediaQueryData.size.height * 0.2,
+                                    padding: EdgeInsets.all(
+                                        mediaQueryData.size.height * 0.02),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15.0)),
+                                      border: Border.all(
+                                          color: Color(
+                                              0xFF9EDEFF), // Set border color
+                                          width: 1.0),
                                     ),
-                                    Text(
-                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          "20 second ago",
+                                          "Year 1N".toUpperCase(),
                                           style: TextStyle(
-                                              color: Colors.grey[400]),
-                                        ),
-                                        FlatButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            "JOIN",
-                                            style:
-                                                TextStyle(color: Colors.white),
+                                            color: Color(0xFF144385),
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                          color: Color(0xFF9EDEFF),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(18.0),
-                                              side: BorderSide(
-                                                  color: Color(0xFF9EDEFF))),
-                                        )
+                                        ),
+                                        Text(
+                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry"),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "20 second ago",
+                                              style: TextStyle(
+                                                  color: Colors.grey[400]),
+                                            ),
+                                            FlatButton(
+                                              onPressed: () {},
+                                              child: Text(
+                                                "JOIN",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              color: Color(0xFF9EDEFF),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  side: BorderSide(
+                                                      color:
+                                                          Color(0xFF9EDEFF))),
+                                            )
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
                     ),
                   ]),
                 ),

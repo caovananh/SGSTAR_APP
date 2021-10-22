@@ -3,7 +3,6 @@ import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/CardHeader.dart';
 import 'package:infixedu/utils/Utils.dart';
 
-
 class RefundPage extends StatefulWidget {
   const RefundPage({key}) : super(key: key);
 
@@ -14,7 +13,6 @@ class RefundPage extends StatefulWidget {
 class RefundPageState extends State<RefundPage>
     with SingleTickerProviderStateMixin {
   String name;
-  String _chosenValue;
   String dropdownValue = 'Refund List';
 
   @override
@@ -60,14 +58,15 @@ class RefundPageState extends State<RefundPage>
                       padding: EdgeInsets.only(left: 10.0, right: 10.0),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
-                          icon: Icon(Icons.arrow_drop_down,
-                          size: 30,),
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            size: 30,
+                          ),
                           iconEnabledColor: Color(0xff13438f),
                           value: dropdownValue,
                           style: TextStyle(
                               color: Color(0xFF58595B),
                               fontWeight: FontWeight.bold),
-                              
                           menuMaxHeight: 200,
                           onChanged: (String newValue) {
                             setState(() {
@@ -93,8 +92,6 @@ class RefundPageState extends State<RefundPage>
                     ),
                   ),
                 ),
-
-            
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                   child: Container(
