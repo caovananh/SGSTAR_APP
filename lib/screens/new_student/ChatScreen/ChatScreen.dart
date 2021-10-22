@@ -155,7 +155,14 @@ class _ChatScreenState extends State<ChatScreen>
                                           onPressed: () {
                                             pushNewScreen(
                                               context,
-                                              screen: ChatDetailPage(),
+                                              screen: ChatDetailPage(
+                                                  roomId: listRoom[index]["id"],
+                                                  userId_1: int.parse(
+                                                      listRoom[index]
+                                                          ["user_id_1"]),
+                                                  userId_2: int.parse(
+                                                      listRoom[index]
+                                                          ["user_id_2"])),
                                               withNavBar:
                                                   false, // OPTIONAL VALUE. True by default.
                                               pageTransitionAnimation:
