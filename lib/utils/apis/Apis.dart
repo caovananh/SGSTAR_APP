@@ -142,27 +142,37 @@ class InfixApi {
   static String updateLocationBus(int id, double latitude, double longtitude) {
     return baseApi + "vehicle-location-update/$id/$latitude/$longtitude";
   }
+
   static String getCommentContent(int id) {
     return baseApi + "comment-content/$id";
   }
-  static String storeCommentNews(int newsId,int userId,String content) {
+
+  static String storeCommentNews(int newsId, int userId, String content) {
     return baseApi + "store-comment-content/$newsId/$userId/$content";
   }
-  static String virtualClass(int classId,int academicId) {
+
+  static String virtualClass(int classId, int academicId) {
     return baseApi + "virtual-class/$classId/$academicId";
   }
+
   static String schoolCamp() {
     return baseApi + "school-camp";
   }
+
   static String schoolEvent() {
     return baseApi + "school-event";
   }
+
   static String schoolLeaveType(int id) {
     return baseApi + "school-leave-type/$id";
   }
-  static String storeSchoolLeave(int userId,int leaveId,String fromDate,String toDate,String reason,int schoolId,int academicId) {
-    return baseApi + "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId";
+
+  static String storeSchoolLeave(int userId, int leaveId, String fromDate,
+      String toDate, String reason, int schoolId, int academicId) {
+    return baseApi +
+        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId";
   }
+
   static String chatRoom(int id) {
     return baseApi + "school-chat-room/$id";
   }
@@ -170,6 +180,7 @@ class InfixApi {
   static String getStudentListChat(int id) {
     return baseApi + "student-list-chat/$id";
   }
+
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
@@ -177,6 +188,10 @@ class InfixApi {
 
   static String getPhotoAlbum() {
     return baseApi + "photo-ablum";
+  }
+
+  static String getStudentList() {
+    return baseApi + "student-list";
   }
 
   //Hai start
