@@ -194,6 +194,10 @@ class InfixApi {
     return baseApi + "student-list";
   }
 
+  static String studentStoreChat(int userId1,int userId2,String roomName) {
+    return baseApi + "store-chat-room/$userId1/$userId2/$roomName";
+  }
+
   //Hai start
   static String vehiclesList() {
     return baseApi + "vehicle-list";
