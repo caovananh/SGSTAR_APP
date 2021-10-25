@@ -298,6 +298,7 @@ class _ChatScreenState extends State<ChatScreen>
                                     print(_chosenValue);
                                   });
                                 },
+                                menuMaxHeight: 400,
                                 items: studentList.map((item) {
                                   return DropdownMenuItem<String>(
                                     value: item['id'].toString(),
