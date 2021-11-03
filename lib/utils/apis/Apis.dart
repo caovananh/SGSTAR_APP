@@ -131,6 +131,14 @@ class InfixApi {
     return baseApi + "like-new/$id";
   }
 
+  static String deletePost(int id) {
+    return baseApi + "delete-post/$id";
+  }
+
+  static String pinTop(int id) {
+    return baseApi + "pin-to-top/$id";
+  }
+
   static String getEvents() {
     return baseApi + "events";
   }
@@ -194,7 +202,7 @@ class InfixApi {
     return baseApi + "student-list";
   }
 
-  static String studentStoreChat(int userId1,int userId2,String roomName) {
+  static String studentStoreChat(int userId1, int userId2, String roomName) {
     return baseApi + "store-chat-room/$userId1/$userId2/$roomName";
   }
 

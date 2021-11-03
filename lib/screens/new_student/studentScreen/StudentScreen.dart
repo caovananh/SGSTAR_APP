@@ -9,10 +9,12 @@ import 'package:infixedu/screens/new_student/studentScreen/FeesAndPayment.dart';
 import 'package:infixedu/screens/new_student/studentScreen/GradeBook.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Menu.dart';
 import 'package:infixedu/screens/new_student/studentScreen/StudentInfoPage.dart';
+import 'package:infixedu/screens/new_student/studentScreen/activityScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/gallery_screen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/leave.dart';
 import 'package:infixedu/screens/new_student/studentScreen/note.dart';
 import 'package:infixedu/screens/new_student/studentScreen/refunds_screen.dart';
+import 'package:infixedu/screens/new_student/studentScreen/studentPostScreen.dart';
 import 'package:infixedu/screens/new_student/studentScreen/subject.dart';
 import 'package:infixedu/screens/new_student/studentScreen/survey.dart';
 import 'package:infixedu/screens/new_student/studentScreen/teacher.dart';
@@ -463,6 +465,42 @@ class _StudentScreenState extends State<StudentScreen> {
                         ))
                       ],
                     )),
+                    Container(
+                        child: Column(
+                      children: <Widget>[
+                        Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 2,
+                                color: const Color(0xFF7dd3f7),
+                              ),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                _navigate(13);
+                              },
+                              child: Icon(
+                                Icons.lightbulb,
+                                color: Color(0xff13438f),
+                                size: 50,
+                              ),
+                            )),
+                        Flexible(
+                            child: Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            'activity'.toUpperCase(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color(0xff07509d)),
+                            textAlign: TextAlign.center,
+                          ),
+                        ))
+                      ],
+                    )),
                   ],
                 ),
               ),
@@ -743,7 +781,22 @@ class _StudentScreenState extends State<StudentScreen> {
           withNavBar: true, // OPTIONAL VALUE. True by default.
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
-
+        break;
+      case 13:
+        pushNewScreen(
+          context,
+          screen: ActivityScreen(),
+          withNavBar: true, // OPTIONAL VALUE. True by default.
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
+        break;
+      case 14:
+        pushNewScreen(
+          context,
+          screen: StudentPostScreen(),
+          withNavBar: true, // OPTIONAL VALUE. True by default.
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
         break;
       default:
         break;
