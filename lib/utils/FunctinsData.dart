@@ -466,11 +466,11 @@ class AppFunction {
       case '4':
         if (zoom == '1') {
           route = MaterialPageRoute(
-              builder: (context) => Home(teachers, teachersIcons));
+              builder: (context) => HomeStudent(students, studentIcons));
           Navigator.pushReplacement(context, route);
         } else {
           route = MaterialPageRoute(
-              builder: (context) => Home(teachers2, teachersIcons2));
+              builder: (context) => HomeStudent(students2, studentIcons2));
           Navigator.pushReplacement(context, route);
         }
         break;

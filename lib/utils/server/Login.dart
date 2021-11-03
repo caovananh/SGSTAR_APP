@@ -128,36 +128,43 @@ class Login {
         print('DIO ERROR: $message');
       });
       if (response.statusCode == 200) {
-        print(response.data);
+        //print(response.data);
         var user = response.data;
         isSuccessed = user['success'];
         message = user['message'];
         id = user['data']['user']['id'];
         rule = user['data']['user']['role_id'];
         full_name = user['data']['user']['full_name'];
+        isAdministrator = user['data']['user']['is_administrator'];
+        schoolId = user['data']['user']['school_id'];
+        if(rule==2)
+          {
+            // print('student');
+            academicId=user['data']['studentDetails']['academic_id'];
+            studentBus=user['data']['studentDetails']['vechile_id'].toString();
+            StudentId=user['data']['studentDetails']['id'];
+            class_name=user['data']['classesDetail']['class_name'];
+            class_id=user['data']['classesDetail']['id'];
+          }
+        else if(rule==4)
+          {
+            print('teacher');
+          }
         first_name = user['data']['userDetails']['first_name'];
         last_name = user['data']['userDetails']['last_name'];
         gender = user['data']['userDetails']['gender_id'];
         date_of_birth = user['data']['userDetails']['date_of_birth'];
-        StudentId=user['data']['studentDetails']['id'];
-        class_name=user['data']['classesDetail']['class_name'];
-        class_id=user['data']['classesDetail']['id'];
-        schoolId = user['data']['user']['school_id'];
-        academicId=user['data']['studentDetails']['academic_id'];
-        isAdministrator = user['data']['user']['is_administrator'];
-        studentBus=user['data']['studentDetails']['vechile_id'].toString();
+
         token = user['data']['accessToken'];
-        // print('Access token: $token');
-        // print("ZOOM: ${user['data']['system_settings']}");
         zoom = user['data']['system_settings'] == null
             ? '1'
             : user['data']['system_settings'][0]['Zoom']
             .toString(); // TODO:: CHANGE LATER WHEN API AVAILABLE
-        print("User ID: ${user['data']['user']['id']}");
-        print("STUDENT DETAIL: ${user['data']['userDetails']}");
-        print("STUDENT NEW DETAIL: ${user['data']['studentDetails']}");
-        print("CLASSES DETAIL: ${user['data']['classesDetail']}");
-        print("Student bus: " + studentBus);
+        // print("User ID: ${user['data']['user']['id']}");
+        // print("STUDENT DETAIL: ${user['data']['userDetails']}");
+        // print("STUDENT NEW DETAIL: ${user['data']['studentDetails']}");
+        // print("CLASSES DETAIL: ${user['data']['classesDetail']}");
+        // print("Student bus: " + studentBus);
         if (rule == 1 || rule == 4) {
           image = isNullOrEmpty(user['data']['userDetails']['staff_photo'])
               ? 'public/uploads/staff/demo/staff.jpg'

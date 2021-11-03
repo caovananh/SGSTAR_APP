@@ -19,7 +19,7 @@ class AppBarMainScreen extends StatefulWidget implements PreferredSizeWidget {
 class _AppBarMainScreenState extends State<AppBarMainScreen> {
   String name;
   String id;
-  String studentPhoto;
+  String userPhoto;
   @override
   void initState() {
     getParentInfo();
@@ -65,7 +65,7 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
                       child: CircleAvatar(
                         radius: 35.0,
                         backgroundImage:
-                        studentPhoto!=null?NetworkImage('https://sgstar.asia/'+ studentPhoto.toString()):AssetImage('assets/images/icons/student1.png'),
+                        userPhoto!=null?NetworkImage('https://sgstar.asia/'+ userPhoto.toString()):AssetImage('assets/images/icons/student1.png'),
                         backgroundColor: Colors.white,
                       ),
                     ),
@@ -110,12 +110,32 @@ class _AppBarMainScreenState extends State<AppBarMainScreen> {
     final pref = await SharedPreferences.getInstance();
     String remember = pref.get('StudentId');
     id = remember;
-    final response = await http.get(Uri.parse(InfixApi.getStudentInfo(int.parse(id))));
-    var jsonData = json.decode(response.body);
-    if (mounted) {
-      setState(() {
-        studentPhoto=jsonData['data']['student_detail']['student_photo'];
-      });
+    String userId=pref.get('id');
+    String rule=pref.get('rule');
+
+    if(int.parse(rule)==2)
+    {
+      final response =
+      await http.get(Uri.parse(InfixApi.getStudentInfo(int.parse(id))));
+      var jsonData = json.decode(response.body);
+      //print(jsonData['data']['student_detail']);
+      if (mounted) {
+        setState(() {
+          userPhoto = jsonData['data']['student_detail']['student_photo'];
+        });
+      }
+    }
+    else if(int.parse(rule)==4)
+    {
+      final response =
+      await http.get(Uri.parse(InfixApi.getTeacherInfo(int.parse(userId))));
+      var jsonData = json.decode(response.body);
+      //print(jsonData['data']['student_detail']);
+      if (mounted) {
+        setState(() {
+          userPhoto = jsonData['data']['teacher']['staff_photo'];
+        });
+      }
     }
     return "Success!";
   }
