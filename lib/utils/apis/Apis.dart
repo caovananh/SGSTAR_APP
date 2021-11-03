@@ -180,7 +180,18 @@ class InfixApi {
   static String getStudentListChat(int id) {
     return baseApi + "student-list-chat/$id";
   }
-
+  static String getTeacherInfo(int id){
+    return baseApi + "school-teacher-information/$id";
+  }
+static String getStudentSkill(int id){
+    return baseApi + "school-student-skill/$id";
+}
+  static String getStudentSkillDetail(int id){
+    return baseApi + "school-student-skill-detail/$id";
+  }
+  static String storeStudentSkill(int id,int skill_1,int skill_2,int skill_3,int skill_4){
+    return baseApi+ "school-student-skill-store/$id/$skill_1/$skill_2/$skill_3/$skill_4";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";

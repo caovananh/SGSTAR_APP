@@ -7,6 +7,8 @@ import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Notification/SendNotification.dart';
+
 class NoteScreen extends StatefulWidget {
   const NoteScreen({key}) : super(key: key);
   @override
@@ -137,6 +139,19 @@ class _NoteScreenState extends State<NoteScreen> {
           ),
         ],
       )),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: 15.0),
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SendNote()),
+            );
+          },
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.green,
+        ),
+      ),
     );
   }
 
