@@ -145,12 +145,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
                                   child: Stack(
                                     fit: StackFit.expand,
                                     children: [
-                                      // PhotoView(
-                                      //   imageProvider: NetworkImage(
-                                      //       "https://sgstar.asia/public/uploads/category/" +
-                                      //           "/" +
-                                      //           e),
-                                      // )
                                       Image.network(
                                           "https://sgstar.asia/public/uploads/category/" +
                                               "/" +

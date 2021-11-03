@@ -17,7 +17,6 @@ class ChatScreen extends StatefulWidget {
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
-
 }
 
 class _ChatScreenState extends State<ChatScreen>
@@ -61,87 +60,84 @@ class _ChatScreenState extends State<ChatScreen>
       body: Container(
         color: Colors.white,
         child: DefaultTabController(
-            length: 2,
-            child: Column(
-              children: [
-                CardHeader(child: Text('chat'.toUpperCase())),
-                SizedBox(
-                  height: 20,
-                ),
-                TabBar(
-                    unselectedLabelColor: Color(0xFF144385),
-                    indicatorSize: TabBarIndicatorSize.label,
-                    labelColor: Colors.white,
-                    indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Color(0xFF9EDEFF)),
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(
-                                  color: Color(0xFF9EDEFF), width: 1)),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "CLASS GROUP",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w700),
-                            ),
-                          ),
+          length: 2,
+          child: Column(children: [
+            CardHeader(child: Text('chat'.toUpperCase())),
+            SizedBox(
+              height: 20,
+            ),
+            TabBar(
+                unselectedLabelColor: Color(0xFF144385),
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: Colors.white,
+                indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Color(0xFF9EDEFF)),
+                tabs: [
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border:
+                              Border.all(color: Color(0xFF9EDEFF), width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "CLASS GROUP",
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w700),
                         ),
                       ),
-                      Tab(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              border: Border.all(
-                                  color: Color(0xFF9EDEFF), width: 1)),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text("TEACHER",
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w700)),
-                          ),
-                        ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border:
+                              Border.all(color: Color(0xFF9EDEFF), width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text("TEACHER",
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.w700)),
                       ),
-                    ]),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: TabBarView(children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: ListView.builder(
-                          itemCount: listRoom == null ? 0 : listRoom.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  bottom:45.0,
-                                  left: 20,
-                                  right: 20),
-                              child: Container(
-                                height: mediaQueryData.size.height * 0.12,
-                                padding: EdgeInsets.all(
-                                    mediaQueryData.size.height * 0.02),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                                  border: Border.all(
-                                      color:
-                                      Color(0xFF9EDEFF), // Set border color
-                                      width: 1.0),
-                                ),
-                                child: Column(
+                    ),
+                  ),
+                ]),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    child: ListView.builder(
+                        itemCount: listRoom == null ? 0 : listRoom.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 45.0, left: 20, right: 20),
+                            child: Container(
+                              height: mediaQueryData.size.height * 0.12,
+                              padding: EdgeInsets.all(
+                                  mediaQueryData.size.height * 0.02),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0)),
+                                border: Border.all(
+                                    color:
+                                        Color(0xFF9EDEFF), // Set border color
+                                    width: 1.0),
+                              ),
+                              child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           listRoom[index]["name"].toUpperCase(),
@@ -158,108 +154,105 @@ class _ChatScreenState extends State<ChatScreen>
                                                   roomId: listRoom[index]["id"],
                                                   userId_1: int.parse(
                                                       listRoom[index]
-                                                      ["user_id_1"]),
+                                                          ["user_id_1"]),
                                                   userId_2: int.parse(
                                                       listRoom[index]
-                                                      ["user_id_2"])),
+                                                          ["user_id_2"])),
                                               withNavBar: false,
                                               // OPTIONAL VALUE. True by default.
                                               pageTransitionAnimation:
-                                              PageTransitionAnimation
-                                                  .cupertino,
+                                                  PageTransitionAnimation
+                                                      .cupertino,
                                             );
                                           },
                                           child: Text(
                                             "JOIN",
                                             style:
-                                            TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.white),
                                           ),
                                           color: Color(0xFF9EDEFF),
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                              BorderRadius.circular(18.0),
+                                                  BorderRadius.circular(18.0),
                                               side: BorderSide(
                                                   color: Color(0xFF9EDEFF))),
                                         )
                                       ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                    ListView.builder(
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                top: mediaQueryData.size.height * 0.03,
-                                left: 20,
-                                right: 20),
-                            child: Container(
-                              height: mediaQueryData.size.height * 0.2,
-                              padding: EdgeInsets.all(
-                                  mediaQueryData.size.height * 0.02),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(15.0)),
-                                border: Border.all(
-                                    color:
-                                    Color(0xFF9EDEFF), // Set border color
-                                    width: 1.0),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    "Year 1N".toUpperCase(),
-                                    style: TextStyle(
-                                      color: Color(0xFF144385),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "20 second ago",
-                                        style: TextStyle(
-                                            color: Colors.grey[400]),
-                                      ),
-                                      FlatButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          "JOIN",
-                                          style:
-                                          TextStyle(color: Colors.white),
-                                        ),
-                                        color: Color(0xFF9EDEFF),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(18.0),
-                                            side: BorderSide(
-                                                color: Color(0xFF9EDEFF))),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                  ]),
                             ),
                           );
                         }),
-                  ]),
-                ),
-              ],
-            )),
+                  ),
+                  ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              top: mediaQueryData.size.height * 0.03,
+                              left: 20,
+                              right: 20),
+                          child: Container(
+                            height: mediaQueryData.size.height * 0.2,
+                            padding: EdgeInsets.all(
+                                mediaQueryData.size.height * 0.02),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0)),
+                              border: Border.all(
+                                  color: Color(0xFF9EDEFF), // Set border color
+                                  width: 1.0),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Year 1N".toUpperCase(),
+                                  style: TextStyle(
+                                    color: Color(0xFF144385),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "20 second ago",
+                                      style: TextStyle(color: Colors.grey[400]),
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "JOIN",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      color: Color(0xFF9EDEFF),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          side: BorderSide(
+                                              color: Color(0xFF9EDEFF))),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      })
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
       floatingActionButton: floatingChat(),
     );
   }
 
-  Widget floatingChat(){
+  Widget floatingChat() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
@@ -280,82 +273,83 @@ class _ChatScreenState extends State<ChatScreen>
                 builder: (BuildContext context) {
                   return StatefulBuilder(
                       builder: (BuildContext context, StateSetter setState) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(width: 3, color: Color(0xFF9EDEFF))),
-                          title: Text(
-                            'New Conversation',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          content: Container(
-                            height: 200,
-                            width: 500,
-                            child: Column(
-                              children: <Widget>[
-                                new DropdownButtonHideUnderline(
-                                  child: new DropdownButton(
-                                    value: _chosenValue,
-                                    icon: const Icon(Icons.arrow_downward),
-                                    iconSize: 24,
-                                    elevation: 16,
-                                    onChanged: (String newValue) {
-                                      setState(() {
-                                        _chosenValue = newValue;
-                                        print(_chosenValue);
-                                      });
-                                    },
-                                    items: studentList.map((item) {
-                                      return DropdownMenuItem<String>(
-                                        value: item['id'].toString(),
-                                        child: Text(item['first_name']),
-                                      );
-                                    }).toList(),
-                                    hint: Text(
-                                      "Select leave type",
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        side: BorderSide(
-                                            color: Color(0xff7cd3f7), width: 2.0)),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: 10, left: 15),
-                                      child: TextField(
-                                        controller: _controllerInput,
-                                        style: TextStyle(color: Colors.black45),
-                                        maxLines: 6,
-                                        decoration: InputDecoration.collapsed(
-                                            hintText: "Chat name",
-                                            hintStyle: TextStyle(
-                                                fontSize: 14.0,
-                                                color: Color(0xffd8d8d8))),
-                                      ),
-                                    )),
-                              ],
-                            ),
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                storeChatRoom();
-                                Navigator.pop(context, 'Yes');
-                              },
-                              // onPressed: () => Navigator.pop(context, 'Yes'),
-                              child: Center(
-                                child: Text(
-                                  'apply'.toUpperCase(),
-                                  style: TextStyle(color: Color(0xFF9EDEFF)),
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(width: 3, color: Color(0xFF9EDEFF))),
+                      title: Text(
+                        'New Conversation',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      content: Container(
+                        height: 200,
+                        width: 500,
+                        child: Column(
+                          children: <Widget>[
+                            new DropdownButtonHideUnderline(
+                              child: new DropdownButton(
+                                value: _chosenValue,
+                                icon: const Icon(Icons.arrow_downward),
+                                iconSize: 24,
+                                elevation: 16,
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    _chosenValue = newValue;
+                                    print(_chosenValue);
+                                  });
+                                },
+                                menuMaxHeight: 400,
+                                items: studentList.map((item) {
+                                  return DropdownMenuItem<String>(
+                                    value: item['id'].toString(),
+                                    child: Text(item['first_name']),
+                                  );
+                                }).toList(),
+                                hint: Text(
+                                  "Select leave type",
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               ),
                             ),
+                            Card(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    side: BorderSide(
+                                        color: Color(0xff7cd3f7), width: 2.0)),
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 10, left: 15),
+                                  child: TextField(
+                                    controller: _controllerInput,
+                                    style: TextStyle(color: Colors.black45),
+                                    maxLines: 6,
+                                    decoration: InputDecoration.collapsed(
+                                        hintText: "Chat name",
+                                        hintStyle: TextStyle(
+                                            fontSize: 14.0,
+                                            color: Color(0xffd8d8d8))),
+                                  ),
+                                )),
                           ],
-                        );
-                      });
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            storeChatRoom();
+                            Navigator.pop(context, 'Yes');
+                          },
+                          // onPressed: () => Navigator.pop(context, 'Yes'),
+                          child: Center(
+                            child: Text(
+                              'apply'.toUpperCase(),
+                              style: TextStyle(color: Color(0xFF9EDEFF)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  });
                 }),
           ),
         ),

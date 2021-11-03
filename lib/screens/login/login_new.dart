@@ -185,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 5.0,top: 10.0),
+                        padding: const EdgeInsets.only(bottom: 5.0, top: 10.0),
                         child: TextFormField(
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
