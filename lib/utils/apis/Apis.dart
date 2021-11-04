@@ -200,6 +200,12 @@ static String getStudentSkill(int id){
   static String storeStudentSkill(int id,int skill_1,int skill_2,int skill_3,int skill_4){
     return baseApi+ "school-student-skill-store/$id/$skill_1/$skill_2/$skill_3/$skill_4";
   }
+  static String storeNotification(String content, int id){
+    return baseApi + "school-teacher-notification/$content/$id";
+  }
+  static String getNotificationDetail(int id){
+    return baseApi + "get-notification-detail/$id";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";

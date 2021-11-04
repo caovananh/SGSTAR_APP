@@ -1,15 +1,24 @@
+import 'dart:convert';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/utils/apis/Apis.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class NoteDetail extends StatefulWidget {
-  const NoteDetail({key}) : super(key: key);
+class NoteDetail extends StatefulWidget { final int id;
+  const NoteDetail({key, this.id}) : super(key: key);
   @override
   _NoteDetailState createState() => _NoteDetailState();
 }
 
 class _NoteDetailState extends State<NoteDetail> {
+  String content;
+  String message;
+  bool hasData=false;
   void initState() {
+    this.getStudentSkill();
     super.initState();
   }
 
@@ -18,7 +27,7 @@ class _NoteDetailState extends State<NoteDetail> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(),
-      body: ListView(
+      body: hasData!=false ? ListView(
         children: [
           SizedBox(
             height: 20,
@@ -44,8 +53,8 @@ class _NoteDetailState extends State<NoteDetail> {
           ),
           SizedBox(height: 30),
           Center(
-            child: Text('lorem ipsum'.toUpperCase(),
-            style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700),),
+            child: Text(message!=null?message.toUpperCase():'',
+              style: TextStyle(color: Color(0xff13438f),fontSize: 18,fontWeight: FontWeight.w700),),
           ),
 
           Padding(
@@ -53,18 +62,29 @@ class _NoteDetailState extends State<NoteDetail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Contrary to popular belief,'),
-                SizedBox(height: 10,),
-                Text('Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 '),
-                SizedBox(height: 10,),
-                Text('The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.')
+                Text(content!=null?content:''),
+                SizedBox(height: 10,)
               ],
             ),
           ),
-         
+
         ],
-      ),
+      ) : Center( child: Text('There no detail to show'.toUpperCase()),),
     );
   }
-  
+
+  Future<void> getStudentSkill() async {
+    final pref = await SharedPreferences.getInstance();
+    int id = this.widget.id;
+    final response = await http.get(Uri.parse(InfixApi.getNotificationDetail(this.widget.id)));
+    var jsonData = json.decode(response.body);
+    print(jsonData);
+    if (mounted) {
+      setState(() {
+        content = jsonData['data']['content']['content'];
+        message = jsonData['data']['content']['message'];
+        hasData = true;
+      });
+    }
+  }
 }

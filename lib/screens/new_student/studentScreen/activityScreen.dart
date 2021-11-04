@@ -33,232 +33,203 @@ class _ActivityScreenState extends State<ActivityScreen> {
         backgroundColor: Colors.white,
         appBar: AppBarWidget(),
         body: Container(
-            child: DefaultTabController(
-                length: 3,
-                child: Scaffold(
-                  body: Column(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TabBar(
-                        tabs: [
-                          Tab(
-                            text: 'Community',
-                          ),
-                          Tab(text: 'School'),
-                          Tab(text: 'My Library'),
-                        ],
+                      DropdownButton<String>(
+                        items: <String>[
+                          'Grade 1',
+                          'Grade 2',
+                          'Grade 3',
+                          'Grade 4'
+                        ].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        hint: Text("All Grades"),
+                        onChanged: (_) {},
                       ),
-                      Expanded(
-                          child: TabBarView(
-                        children: [
-                          Icon(
-                            Icons.directions_car,
-                            color: Colors.blue,
-                          ),
-                          Icon(
-                            Icons.directions_transit,
-                            color: Colors.blue,
-                          ),
-                          SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    DropdownButton<String>(
-                                      items: <String>[
-                                        'Grade 1',
-                                        'Grade 2',
-                                        'Grade 3',
-                                        'Grade 4'
-                                      ].map((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
-                                      hint: Text("All Grades"),
-                                      onChanged: (_) {},
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                    ),
-                                    DropdownButton<String>(
-                                      items: <String>[
-                                        'Grade 1',
-                                        'Grade 2',
-                                        'Grade 3',
-                                        'Grade 4'
-                                      ].map((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
-                                      hint: Text("All Subjects"),
-                                      onChanged: (_) {},
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                    ),
-                                    IconButton(
-                                        onPressed: null,
-                                        icon: Icon(Icons.search))
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 30, top: 15, bottom: 15),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'My Recent Activities',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 170,
-                                      height: 300,
-                                      decoration: new BoxDecoration(
-                                          borderRadius:
-                                              new BorderRadius.circular(16.0),
-                                          color: Color(0xffe1f0ec)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10),
-                                            child: IconButton(
-                                                onPressed: null,
-                                                icon: Icon(
-                                                  Icons.add_circle_outline,
-                                                  size: 50,
-                                                  color: Colors.blue,
-                                                )),
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text(
-                                            'Create New Activity',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xff13438f)),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 170,
-                                      height: 300,
-                                      decoration: new BoxDecoration(
-                                          borderRadius:
-                                              new BorderRadius.circular(16.0),
-                                          color: Color(0xffe1f0ec)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Text(
-                                            'Need Ideas?',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          SizedBox(
-                                            height: 40,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Center(
-                                              child: Text(
-                                                'Browse the Community Library!',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 30, top: 15, bottom: 15),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'My Collections  (0)',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        width: 250,
-                                        height: 50,
-                                        child: TextField(
-                                          decoration: const InputDecoration(
-                                              border: OutlineInputBorder(),
-                                              hintText:
-                                                  'Create new collection to organize your....'),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      child: OutlinedButton(
-                                        onPressed: null,
-                                        style: ButtonStyle(
-                                          shape: MaterialStateProperty.all(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          5.0))),
-                                        ),
-                                        child: const Text("Create"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ))
+                      SizedBox(
+                        width: 30,
+                      ),
+                      DropdownButton<String>(
+                        items: <String>[
+                          'Grade 1',
+                          'Grade 2',
+                          'Grade 3',
+                          'Grade 4'
+                        ].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        hint: Text("All Subjects"),
+                        onChanged: (_) {},
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      IconButton(
+                          onPressed: null,
+                          icon: Icon(Icons.search))
                     ],
                   ),
-                ))));
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 30, top: 15, bottom: 15),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'My Recent Activities',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Container(
+                      //   width: 170,
+                      //   height: 300,
+                      //   decoration: new BoxDecoration(
+                      //
+                      //       borderRadius:
+                      //       new BorderRadius.circular(16.0),
+                      //       color: Color(0xffe1f0ec)),
+                      //   child: Column(
+                      //     mainAxisAlignment:
+                      //     MainAxisAlignment.center,
+                      //     crossAxisAlignment:
+                      //     CrossAxisAlignment.center,
+                      //     children: [
+                      //       Padding(
+                      //         padding: const EdgeInsets.only(
+                      //             right: 10),
+                      //         child: IconButton(
+                      //             onPressed: null,
+                      //             icon: Icon(
+                      //               Icons.add_circle_outline,
+                      //               size: 50,
+                      //               color: Colors.blue,
+                      //             )),
+                      //       ),
+                      //       SizedBox(
+                      //         height: 20,
+                      //       ),
+                      //       Text(
+                      //         'Create New Activity',
+                      //         style: TextStyle(
+                      //             fontSize: 16,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Color(0xff13438f)),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 170,
+                        height: 300,
+                        decoration: new BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/card-thumb.png'),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius:
+                            new BorderRadius.circular(16.0),
+                            color: Color(0xffe1f0ec)),
+                        child: Column(
+                          mainAxisAlignment:
+                          MainAxisAlignment.end,
+                          crossAxisAlignment:
+                          CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10,right: 10),
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: new BorderRadius.only(topRight: Radius.circular(40.0),bottomRight: Radius.circular(40.0)),
+                                    color: Color(0xFF7dd3f7)
+                                  ),
+                                  child: Text(
+                                    'Browse the Community Library!',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight:
+                                        FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 30, top: 15, bottom: 15),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'My Collections  (0)',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 250,
+                          height: 50,
+                          child: TextField(
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText:
+                                'Create new collection to organize your....'),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        child: OutlinedButton(
+                          onPressed: null,
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(
+                                        5.0))),
+                          ),
+                          child: const Text("Create"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )));
   }
 
   Future<void> _openUrl(String url) async {

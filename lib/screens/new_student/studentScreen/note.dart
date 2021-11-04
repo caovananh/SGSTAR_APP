@@ -20,7 +20,7 @@ class _NoteScreenState extends State<NoteScreen> {
 
   String id;
   void initState() {
-    this.getNotification();
+
     super.initState();
   }
 
@@ -58,84 +58,96 @@ class _NoteScreenState extends State<NoteScreen> {
             ),
           ),
           SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
-              //itemCount: items.length,
-              itemCount: listNotification==null? 0:listNotification.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                  child: Card(
-                    color: Color(0xffebf6ff),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 0.0),
-                        isThreeLine: true,
-                        leading: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xFF7dd3f7),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30.0),
-                              bottomRight: Radius.circular(30.0),
+          FutureBuilder(
+            future: this.getNotification(),
+            builder: (context,data){
+              if(data.hasData)
+                {
+                  return Expanded(
+                    child: ListView.builder(
+                      //itemCount: items.length,
+                      itemCount: listNotification==null? 0:listNotification.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                          child: Card(
+                            color: Color(0xffebf6ff),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
                             ),
-                          ),
-                          width: 35,
-                          height: 30,
-                          child: Center(
-                              child: Text(
-                                (index+1).toString(),
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          )),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "notification".toUpperCase(),
-                              style: TextStyle(
-                                  color: Color(0xff13438f),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Text(
-                                listNotification[index]["date"],
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 14),
-                              ),
-                            )
-                          ],
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Text(
-                                listNotification[index]["message"]
+                            child: ListTile(
+                                contentPadding: EdgeInsets.only(left: 0.0),
+                                isThreeLine: true,
+                                leading: Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF7dd3f7),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(30.0),
+                                      bottomRight: Radius.circular(30.0),
+                                    ),
                                   ),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  _noteDetails(index);
-                                },
-                                child: Text(
-                                  'Read more',
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: _selected == index
-                                          ? Colors.red
-                                          : color),
+                                  width: 35,
+                                  height: 30,
+                                  child: Center(
+                                      child: Text(
+                                        (index+1).toString(),
+                                        style: TextStyle(fontSize: 18, color: Colors.white),
+                                      )),
+                                ),
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "notification".toUpperCase(),
+                                      style: TextStyle(
+                                          color: Color(0xff13438f),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Text(
+                                        listNotification[index]["date"],
+                                        style:
+                                        TextStyle(color: Colors.grey, fontSize: 14),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: Text(
+                                          listNotification[index]["message"]
+                                      ),
+                                    ),
+                                    TextButton(
+                                        onPressed: () {
+                                          _noteDetails(listNotification[index]["id"]);
+                                        },
+                                        child: Text(
+                                          'Read more',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic,
+                                              color: _selected == index
+                                                  ? Colors.red
+                                                  : color),
+                                        )),
+                                  ],
                                 )),
-                          ],
-                        )),
-                  ),
-                );
-              },
-            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              else
+                return Container(
+                    color: Colors.white,
+                    child: Center(child: CircularProgressIndicator()));
+            },
           ),
         ],
       )),
@@ -161,7 +173,7 @@ class _NoteScreenState extends State<NoteScreen> {
     });
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NoteDetail()),
+      MaterialPageRoute(builder: (context) => NoteDetail(id: index)),
     );
   }
 
@@ -174,7 +186,7 @@ class _NoteScreenState extends State<NoteScreen> {
     setState(() {
       listNotification = map["data"]["Notification"];
     });
-    print(listNotification);
+    // print(listNotification);
 
     return "Success!";
   }

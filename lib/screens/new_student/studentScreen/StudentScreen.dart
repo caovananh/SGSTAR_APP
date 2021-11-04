@@ -476,6 +476,40 @@ class _StudentScreenState extends State<StudentScreen> {
                               ))
                             ],
                           )),
+                          Container(
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: const Color(0xFF7dd3f7),
+                                        ),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          _navigate(13);
+                                        },
+                                        child: Image(
+                                            image: AssetImage(
+                                                'assets/images/contents.png')),
+                                      )),
+                                  Flexible(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Text(
+                                          'activity'.toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: Color(0xff07509d)),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ))
+                                ],
+                              )),
                         ],
                       ),
                     ),
@@ -975,7 +1009,7 @@ class _StudentScreenState extends State<StudentScreen> {
                                       ),
                                       child: InkWell(
                                         onTap: () {
-                                          _navigate(13);
+                                          _navigate(15);
                                         },
                                         child: Image(
                                             image: AssetImage(
@@ -986,6 +1020,40 @@ class _StudentScreenState extends State<StudentScreen> {
                                         padding: const EdgeInsets.only(top: 10.0),
                                         child: Text(
                                           'Skill'.toUpperCase(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: Color(0xff07509d)),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ))
+                                ],
+                              )),
+                          Container(
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          width: 2,
+                                          color: const Color(0xFF7dd3f7),
+                                        ),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          _navigate(13);
+                                        },
+                                        child: Image(
+                                            image: AssetImage(
+                                                'assets/images/contents.png')),
+                                      )),
+                                  Flexible(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10.0),
+                                        child: Text(
+                                          'activity'.toUpperCase(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 12,
@@ -1172,7 +1240,7 @@ class _StudentScreenState extends State<StudentScreen> {
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
         break;
-      case 13:
+      case 15:
         pushNewScreen(
           context,
           screen: Skill(),

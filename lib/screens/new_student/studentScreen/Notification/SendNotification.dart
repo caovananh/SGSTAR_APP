@@ -17,6 +17,8 @@ class _SendNoteState extends State<SendNote> {
 
   bool hasData = false;
   bool isSending=false;
+  TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,7 @@ class _SendNoteState extends State<SendNote> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20.0,right: 20.0,top: 20.0),
+                    padding: EdgeInsets.only(left: 1.0,right: 1.0,top: 20.0),
                     child: Container(
                       width: double.infinity,
                       height: MediaQuery.of(context).size.height*0.075,
@@ -61,7 +63,7 @@ class _SendNoteState extends State<SendNote> {
                       ),
                       child: Center(
                         child: Text(
-                          'SKILL CHART',
+                          'SEND NOTIFICATION',
                           style: TextStyle(
                               fontSize: 25,
                               color: Color(0xFF144385),
@@ -79,7 +81,7 @@ class _SendNoteState extends State<SendNote> {
                   TextField(
                     minLines: 15,
                     maxLines: null,
-                    // controller: _controllerInputSkill1,
+                    controller: textController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
@@ -93,11 +95,12 @@ class _SendNoteState extends State<SendNote> {
                           style: ElevatedButton.styleFrom(
                               textStyle: TextStyle(fontSize: 24),
                               maximumSize: Size.fromHeight(72),
-                              shape: StadiumBorder()
+                              shape: StadiumBorder(),
                           ),
                           onPressed: () async{
                             print('ok');
                             // storeStudentSkill();
+                            storeStudentSkill();
                             if(isSending) return;
                             setState(() {
                               isSending=true;
@@ -136,4 +139,12 @@ class _SendNoteState extends State<SendNote> {
     );
   }
 
+  Future<void> storeStudentSkill() async {
+    final pref = await SharedPreferences.getInstance();
+    String idUser = pref.get('id');
+
+    final response = await http.get(Uri.parse(InfixApi.storeNotification(
+        textController.text,int.parse(idUser))));
+    Navigator.pop(context);
+  }
 }
