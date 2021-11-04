@@ -9,6 +9,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsComment.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsContent.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/editNews.dart';
 import 'package:infixedu/screens/new_student/studentScreen/studentPostScreen.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -421,16 +422,44 @@ class _NewsState extends State<News> {
                                                                     Container(
                                                                       width: double
                                                                           .infinity,
+                                                                      height:
+                                                                          50,
                                                                       decoration:
                                                                           BoxDecoration(
                                                                               border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                      child: TextButton(
-                                                                          onPressed: () => pushNewScreen(
-                                                                              context,
-                                                                              screen:
-                                                                                  NewsContent()),
+                                                                      child:
+                                                                          InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          saveId(
+                                                                              listNews[index]["id"].toString());
+                                                                          pushNewScreen(
+                                                                            context,
+                                                                            screen:
+                                                                                EditNews(),
+                                                                            withNavBar:
+                                                                                true,
+                                                                            // OPTIONAL VALUE. True by default.
+                                                                            pageTransitionAnimation:
+                                                                                PageTransitionAnimation.cupertino,
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Center(
                                                                           child:
-                                                                              Text('Edit Post')),
+                                                                              Text(
+                                                                            'Edit',
+                                                                            maxLines:
+                                                                                1,
+                                                                            overflow:
+                                                                                TextOverflow.ellipsis,
+                                                                            style: TextStyle(
+                                                                                color: Colors.blue,
+                                                                                fontSize: 16,
+                                                                                fontWeight: FontWeight.w500),
+                                                                          ),
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                     Container(
                                                                       width: double

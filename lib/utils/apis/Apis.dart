@@ -139,6 +139,10 @@ class InfixApi {
     return baseApi + "pin-to-top/$id";
   }
 
+  static String updateNews(int id, String title) {
+    return baseApi + "update-post/$id?title=" + title;
+  }
+
   static String getEvents() {
     return baseApi + "events";
   }
