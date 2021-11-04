@@ -29,7 +29,7 @@ class News extends StatefulWidget {
 class _NewsState extends State<News> {
   List<dynamic> listNews;
   bool hasData = false;
-
+  String classId;
   @override
   void initState() {
     this.getNewsList();
@@ -213,7 +213,12 @@ class _NewsState extends State<News> {
                                                 );
                                               },
                                               child: Text(
-                                                listNews[index]["description"],
+                                                listNews[index]
+                                                            ["description"] !=
+                                                        null
+                                                    ? listNews[index]
+                                                        ["description"]
+                                                    : '',
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
@@ -431,6 +436,8 @@ class _NewsState extends State<News> {
                                                                           InkWell(
                                                                         onTap:
                                                                             () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
                                                                           saveId(
                                                                               listNews[index]["id"].toString());
                                                                           pushNewScreen(
@@ -563,13 +570,33 @@ class _NewsState extends State<News> {
   Future<String> getNewsList() async {
     final pref = await SharedPreferences.getInstance();
     String classId = pref.get('class_id');
-    final response =
-        await http.get(Uri.parse(InfixApi.getNewsList(int.parse(classId))));
-    Map<String, dynamic> map = json.decode(response.body);
-    setState(() {
-      listNews = map["data"]["News"];
-      hasData = true;
-    });
+    String userId = pref.get('id');
+    String rule = pref.get('rule');
+
+    if (int.parse(rule) == 2) {
+      final response =
+          await http.get(Uri.parse(InfixApi.getNewsList(int.parse(classId))));
+      Map<String, dynamic> map = json.decode(response.body);
+      setState(() {
+        listNews = map["data"]["News"];
+        hasData = true;
+      });
+    } else if (int.parse(rule) == 4) {
+      final response =
+          await http.get(Uri.parse(InfixApi.getTeacherInfo(int.parse(userId))));
+      var jsonData = json.decode(response.body);
+
+      final responseData = await http.get(Uri.parse(InfixApi.getNewsList(
+          int.parse(jsonData["data"]["teacher"]["class_id"]))));
+      Map<String, dynamic> map = json.decode(responseData.body);
+      //print(jsonData['data']['student_detail']);
+      if (mounted) {
+        setState(() {
+          listNews = map["data"]["News"];
+          hasData = true;
+        });
+      }
+    }
     return "Success!";
   }
 

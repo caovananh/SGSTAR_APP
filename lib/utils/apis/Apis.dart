@@ -139,8 +139,15 @@ class InfixApi {
     return baseApi + "pin-to-top/$id";
   }
 
-  static String updateNews(int id, String title) {
-    return baseApi + "update-post/$id?title=" + title;
+  static String updateNews(
+      int id, String title, String description, String newsBody) {
+    return baseApi +
+        "update-post/$id?title=" +
+        title +
+        "&description=" +
+        description +
+        "&body=" +
+        newsBody;
   }
 
   static String getEvents() {
@@ -191,6 +198,24 @@ class InfixApi {
 
   static String getStudentListChat(int id) {
     return baseApi + "student-list-chat/$id";
+  }
+
+  static String getTeacherInfo(int id) {
+    return baseApi + "school-teacher-information/$id";
+  }
+
+  static String getStudentSkill(int id) {
+    return baseApi + "school-student-skill/$id";
+  }
+
+  static String getStudentSkillDetail(int id) {
+    return baseApi + "school-student-skill-detail/$id";
+  }
+
+  static String storeStudentSkill(
+      int id, int skill_1, int skill_2, int skill_3, int skill_4) {
+    return baseApi +
+        "school-student-skill-store/$id/$skill_1/$skill_2/$skill_3/$skill_4";
   }
 
   //khoa end
