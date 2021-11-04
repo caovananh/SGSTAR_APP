@@ -85,6 +85,8 @@ dependencies:
   image_picker: ^0.8.4+4
   permission_handler: ^8.2.5
   image_gallery_saver: '^1.7.1'
+  html_editor_enhanced: ^2.4.0+1
+  flutter_summernote: ^1.0.0
 
 dev_dependencies:
   flutter_test:

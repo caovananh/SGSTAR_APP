@@ -9,6 +9,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsComment.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsContent.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/editNews.dart';
 import 'package:infixedu/screens/new_student/studentScreen/studentPostScreen.dart';
 import 'package:infixedu/utils/Utils.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
@@ -517,6 +518,7 @@ class _NewsState extends State<News> {
                                             )
                                           ],
                                         ),
+
                                       ),
                                     ),
                                   ),
@@ -567,9 +569,8 @@ class _NewsState extends State<News> {
           await http.get(Uri.parse(InfixApi.getTeacherInfo(int.parse(userId))));
       var jsonData = json.decode(response.body);
 
-
-      final responseData = await http.get(Uri.parse(
-          InfixApi.getNewsList(int.parse(jsonData["data"]["teacher"]["class_id"]))));
+      final responseData = await http.get(Uri.parse(InfixApi.getNewsList(
+          int.parse(jsonData["data"]["teacher"]["class_id"]))));
       Map<String, dynamic> map = json.decode(responseData.body);
       //print(jsonData['data']['student_detail']);
       if (mounted) {
