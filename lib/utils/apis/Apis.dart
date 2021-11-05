@@ -223,6 +223,14 @@ class InfixApi {
   static String getNotificationDetail(int id){
     return baseApi + "get-notification-detail/$id";
   }
+
+  static String getActivities(){
+    return baseApi + "get-activities";
+  }
+
+  static String storeImage(){
+    return baseApi + "upload-image";
+  }
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
