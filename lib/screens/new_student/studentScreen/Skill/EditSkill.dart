@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
 import 'package:infixedu/screens/new_student/studentScreen/Notification/SendNotification.dart';
 import 'package:infixedu/screens/new_student/studentScreen/note_detail.dart';
@@ -25,7 +26,7 @@ class _FixSkillState extends State<FixSkill> {
   String skill_3;
   String skill_4;
   bool hasData = false;
-  bool isSending=false;
+  bool isSending = false;
 
   @override
   void initState() {
@@ -67,12 +68,16 @@ class _FixSkillState extends State<FixSkill> {
                           ),
                           TextField(
                             // controller: _controllerInputSkill1,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: skill_1 != null ? skill_1 : 'Skill 1',
                             ),
                             onChanged: (text) {
-                              skill_1=text;
+                              skill_1 = text;
                             },
                           ),
                           SizedBox(
@@ -84,12 +89,16 @@ class _FixSkillState extends State<FixSkill> {
                           ),
                           TextField(
                             // controller: _controllerInputSkill2,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: skill_2 != null ? skill_2 : 'Skill 2',
                             ),
                             onChanged: (text) {
-                              skill_2=text;
+                              skill_2 = text;
                             },
                           ),
                           SizedBox(
@@ -101,12 +110,16 @@ class _FixSkillState extends State<FixSkill> {
                           ),
                           TextField(
                             // controller: _controllerInputSkill3,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: skill_3 != null ? skill_3 : 'Skill 3',
                             ),
                             onChanged: (text) {
-                              skill_3=text;
+                              skill_3 = text;
                             },
                           ),
                           SizedBox(
@@ -118,59 +131,68 @@ class _FixSkillState extends State<FixSkill> {
                           ),
                           TextField(
                             // controller: _controllerInputSkill4,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: skill_4 != null ? skill_4 : 'Skill 4',
                             ),
                             onChanged: (text) {
-                              skill_4=text;
+                              skill_4 = text;
                             },
                           ),
                           SizedBox(
                             height: 75.0,
                           ),
                           Center(
-                            child:
-                            Container(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
+                              child: Container(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
                                   textStyle: TextStyle(fontSize: 24),
                                   maximumSize: Size.fromHeight(72),
-                                  shape: StadiumBorder()
-                                ),
-                                onPressed: () async{
-                                  print('ok');
-                                  storeStudentSkill();
-                                  if(isSending) return;
-                                  setState(() {
-                                    isSending=true;
-                                  });
-                                  await Future.delayed(Duration(seconds: 60));
-                                      print('ok');
-                                },
-                                child: isSending ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        height: 20,
-                                        width: 20,
-                                        child: CircularProgressIndicator(color: Colors.white,)),
-                                    const SizedBox(width: 24,),
-                                    Text('Please Wait...')
-                                  ],
-                                ) : Text('Save'),
-                              ),
-                            )
-                            // OutlinedButton.icon(
-                            //   onPressed: () {
-                            //     storeStudentSkill();
-                            //     print('ok');
-                            //   },
-                            //   label: Text('Save'),
-                            //   icon: Icon(Icons.edit_sharp),
-                            // ),
+                                  shape: StadiumBorder()),
+                              onPressed: () async {
+                                print('ok');
+                                storeStudentSkill();
+                                if (isSending) return;
+                                setState(() {
+                                  isSending = true;
+                                });
+                                await Future.delayed(Duration(seconds: 60));
+                                print('ok');
+                              },
+                              child: isSending
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.white,
+                                            )),
+                                        const SizedBox(
+                                          width: 24,
+                                        ),
+                                        Text('Please Wait...')
+                                      ],
+                                    )
+                                  : Text('Save'),
+                            ),
                           )
+                              // OutlinedButton.icon(
+                              //   onPressed: () {
+                              //     storeStudentSkill();
+                              //     print('ok');
+                              //   },
+                              //   label: Text('Save'),
+                              //   icon: Icon(Icons.edit_sharp),
+                              // ),
+                              )
                         ],
                       ),
                     ),
@@ -185,7 +207,8 @@ class _FixSkillState extends State<FixSkill> {
   Future<void> getStudentSkill() async {
     final pref = await SharedPreferences.getInstance();
     int id = int.parse(widget.id);
-    final response = await http.get(Uri.parse(InfixApi.getStudentSkillDetail(id)));
+    final response =
+        await http.get(Uri.parse(InfixApi.getStudentSkillDetail(id)));
     var jsonData = json.decode(response.body);
     print(jsonData);
     if (mounted) {

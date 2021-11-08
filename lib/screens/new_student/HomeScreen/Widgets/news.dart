@@ -173,8 +173,8 @@ class _NewsState extends State<News> {
                               children: [
                                 Expanded(
                                   child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width - 40,
+                                      width: MediaQuery.of(context).size.width -
+                                          40,
                                       height: shortestSide >= 600
                                           ? screenHeight / 3
                                           : screenHeight / 4,
@@ -191,12 +191,12 @@ class _NewsState extends State<News> {
                                         fontSize: shortestSide >= 600 ? 20 : 14,
                                         color: Colors.grey),
                                     child: Container(
-                                      width:
-                                          MediaQuery.of(context).size.width - 40,
+                                      width: MediaQuery.of(context).size.width -
+                                          40,
                                       height: screenHeight / 6,
                                       child: Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 10, right: 10),
+                                        padding: EdgeInsets.only(
+                                            left: 10, right: 10),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -219,9 +219,11 @@ class _NewsState extends State<News> {
                                                   );
                                                 },
                                                 child: Text(
-                                                  listNews[index]["description"],
+                                                  listNews[index]
+                                                      ["description"],
                                                   maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                       color: Colors.black),
                                                 ),
@@ -230,7 +232,8 @@ class _NewsState extends State<News> {
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(listNews[index]["publish_date"],
+                                            Text(
+                                                listNews[index]["publish_date"],
                                                 style: TextStyle(
                                                     color: Colors.grey)),
                                             Row(
@@ -245,13 +248,15 @@ class _NewsState extends State<News> {
                                                       3,
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Container(
                                                         width: 25,
                                                         child: IconButton(
                                                             padding:
-                                                                EdgeInsets.all(0),
+                                                                EdgeInsets.all(
+                                                                    0),
                                                             icon: Image.asset(
                                                               'assets/images/icons/4. LIKE.png',
                                                               width: 25,
@@ -260,7 +265,8 @@ class _NewsState extends State<News> {
                                                             color: Colors.grey,
                                                             onPressed: () {
                                                               storeLike(
-                                                                  listNews[index]
+                                                                  listNews[
+                                                                          index]
                                                                       ["id"]);
                                                             }),
                                                       ),
@@ -277,13 +283,15 @@ class _NewsState extends State<News> {
                                                       3,
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Container(
                                                         width: 25,
                                                         child: IconButton(
                                                             padding:
-                                                                EdgeInsets.all(0),
+                                                                EdgeInsets.all(
+                                                                    0),
                                                             icon: Image.asset(
                                                               'assets/images/icons/5. COMMENT.png',
                                                               width: 25,
@@ -293,7 +301,8 @@ class _NewsState extends State<News> {
                                                             tooltip: 'Comment',
                                                             onPressed: () {
                                                               saveId(listNews[
-                                                                      index]["id"]
+                                                                          index]
+                                                                      ["id"]
                                                                   .toString());
                                                               Navigator.push(
                                                                 context,
@@ -320,13 +329,15 @@ class _NewsState extends State<News> {
                                                       3,
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Container(
                                                         width: 25,
                                                         child: IconButton(
                                                             padding:
-                                                                EdgeInsets.all(0),
+                                                                EdgeInsets.all(
+                                                                    0),
                                                             icon: Image.asset(
                                                               'assets/images/icons/6. SHARE.png',
                                                               width: 25,
@@ -346,179 +357,168 @@ class _NewsState extends State<News> {
                                                 ),
                                               ],
                                             ),
-                                            role!=4?Container():
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  height: 25,
-                                                  child: IconButton(
-                                                      onPressed: () =>
-                                                          showModalBottomSheet<
-                                                              void>(
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                            ),
-                                                            backgroundColor:
-                                                                Color(0xffd6d2d2),
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                context) {
-                                                              return Container(
-                                                                  height:
-                                                                      screenHeight /
-                                                                          2.2,
-                                                                  child: Column(
-                                                                    children: [
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed: () {
-                                                                              Navigator.of(context).pop();
-                                                                              showDialog(
-                                                                                context: context,
-                                                                                builder: (BuildContext context) {
-                                                                                  return AlertDialog(
-                                                                                    title: const Text('Delete Post'),
-                                                                                    content: SingleChildScrollView(
-                                                                                      child: ListBody(
-                                                                                        children: <Widget>[
-                                                                                          Text('Do you want to delete this post?'),
-                                                                                          // Text(listNews[index]["id"].toString())
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                    actions: <Widget>[
-                                                                                      Row(
-                                                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                                                        children: [
-                                                                                          TextButton(
-                                                                                            child: const Text('Cancel'),
-                                                                                            onPressed: () {
-                                                                                              Navigator.of(context).pop();
-                                                                                            },
+                                            role != 4
+                                                ? Container()
+                                                : Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Container(
+                                                        height: 25,
+                                                        child: IconButton(
+                                                            onPressed: () =>
+                                                                showModalBottomSheet<
+                                                                    void>(
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10.0),
+                                                                  ),
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0xffd6d2d2),
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    return Container(
+                                                                        height: screenHeight /
+                                                                            2.2,
+                                                                        child:
+                                                                            Column(
+                                                                          children: [
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.of(context).pop();
+                                                                                    showDialog(
+                                                                                      context: context,
+                                                                                      builder: (BuildContext context) {
+                                                                                        return AlertDialog(
+                                                                                          title: const Text('Delete Post'),
+                                                                                          content: SingleChildScrollView(
+                                                                                            child: ListBody(
+                                                                                              children: <Widget>[
+                                                                                                Text('Do you want to delete this post?'),
+                                                                                                // Text(listNews[index]["id"].toString())
+                                                                                              ],
+                                                                                            ),
                                                                                           ),
-                                                                                          TextButton(
-                                                                                            child: const Text('Accept'),
-                                                                                            onPressed: () {
-                                                                                              deletePost(listNews[index]["id"]);
-                                                                                              Navigator.of(context).pop();
-                                                                                            },
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ],
+                                                                                          actions: <Widget>[
+                                                                                            Row(
+                                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                                              children: [
+                                                                                                TextButton(
+                                                                                                  child: const Text('Cancel'),
+                                                                                                  onPressed: () {
+                                                                                                    Navigator.of(context).pop();
+                                                                                                  },
+                                                                                                ),
+                                                                                                TextButton(
+                                                                                                  child: const Text('Accept'),
+                                                                                                  onPressed: () {
+                                                                                                    deletePost(listNews[index]["id"]);
+                                                                                                    Navigator.of(context).pop();
+                                                                                                  },
+                                                                                                ),
+                                                                                              ],
+                                                                                            ),
+                                                                                          ],
+                                                                                        );
+                                                                                      },
+                                                                                    );
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    child: Text('Delete Post'),
+                                                                                  )),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: InkWell(
+                                                                                onTap: () {
+                                                                                  saveId(listNews[index]["id"].toString());
+                                                                                  pushNewScreen(
+                                                                                    context,
+                                                                                    screen: EditNews(),
+                                                                                    withNavBar: true,
+                                                                                    // OPTIONAL VALUE. True by default.
+                                                                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                                                                   );
                                                                                 },
-                                                                              );
-                                                                            },
-                                                                            child: Container(
-                                                                              child:
-                                                                                  Text('Delete Post'),
-                                                                            )),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed: () => pushNewScreen(
-                                                                                context,
-                                                                                screen:
-                                                                                    NewsContent()),
-                                                                            child:
-                                                                                Text('Edit Post')),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed: () {
-                                                                              pinTop(listNews[index]["id"]);
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                            child: Text('Pin To Top')),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed:
-                                                                                null,
-                                                                            child:
-                                                                                Text('Edit People')),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed: () {
-                                                                              setState(() {
-                                                                                url = "https://sgstar.asia/" + listNews[index]["image"];
-                                                                              });
-                                                                              _save();
-                                                                            },
-                                                                            child: Text('Save')),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed:
-                                                                                null,
-                                                                            child:
-                                                                                Text('Print with QR Code')),
-                                                                      ),
-                                                                      Container(
-                                                                        width: double
-                                                                            .infinity,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                                border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                        child: TextButton(
-                                                                            onPressed: () {
-                                                                              Navigator.of(context).pop();
-                                                                            },
-                                                                            child: Text('Cancel')),
-                                                                      ),
-                                                                    ],
-                                                                  ));
-                                                            },
-                                                          ),
-                                                      icon: Icon(
-                                                        Icons.pending_outlined,
-                                                        size: 30,
-                                                        color: Colors.grey,
-                                                      )),
-                                                ),
-                                              ],
-                                            )
+                                                                                child: Container(
+                                                                                  height: 50,
+                                                                                  child: Center(
+                                                                                    child: Text(
+                                                                                      "Edit Post",
+                                                                                      overflow: TextOverflow.ellipsis,
+                                                                                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(
+                                                                                  onPressed: () {
+                                                                                    pinTop(listNews[index]["id"]);
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                  child: Text('Pin To Top')),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(onPressed: null, child: Text('Edit People')),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(
+                                                                                  onPressed: () {
+                                                                                    setState(() {
+                                                                                      url = "https://sgstar.asia/" + listNews[index]["image"];
+                                                                                    });
+                                                                                    _save();
+                                                                                  },
+                                                                                  child: Text('Save')),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(onPressed: null, child: Text('Print with QR Code')),
+                                                                            ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
+                                                                              child: TextButton(
+                                                                                  onPressed: () {
+                                                                                    Navigator.of(context).pop();
+                                                                                  },
+                                                                                  child: Text('Cancel')),
+                                                                            ),
+                                                                          ],
+                                                                        ));
+                                                                  },
+                                                                ),
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .pending_outlined,
+                                                              size: 30,
+                                                              color:
+                                                                  Colors.grey,
+                                                            )),
+                                                      ),
+                                                    ],
+                                                  )
                                           ],
                                         ),
-
                                       ),
                                     ),
                                   ),

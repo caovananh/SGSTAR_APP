@@ -87,6 +87,7 @@ dependencies:
   image_gallery_saver: '^1.7.1'
   html_editor_enhanced: ^2.4.0+1
   flutter_summernote: ^1.0.0
+  date_format: ^2.0.4
 
 dev_dependencies:
   flutter_test:

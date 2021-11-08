@@ -12,6 +12,9 @@ class AbsentScreen extends StatefulWidget {
 
 class _AbsentScreenState extends State<AbsentScreen> {
   bool _checkbox = false;
+  bool _checkbox1 = false;
+  bool _checkbox2 = false;
+  bool _checkbox3 = false;
   String name;
 
   void initState() {
@@ -104,10 +107,10 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       unselectedWidgetColor: Color(0xff7cd3f7),
                     ),
                     child: Checkbox(
-                      value: _checkbox,
+                      value: _checkbox1,
                       onChanged: (value) {
                         setState(() {
-                          _checkbox = !_checkbox;
+                          _checkbox1 = !_checkbox1;
                         });
                       },
                     ),
@@ -139,10 +142,10 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       unselectedWidgetColor: Color(0xff7cd3f7),
                     ),
                     child: Checkbox(
-                      value: _checkbox,
+                      value: _checkbox2,
                       onChanged: (value) {
                         setState(() {
-                          _checkbox = !_checkbox;
+                          _checkbox2 = !_checkbox2;
                         });
                       },
                     ),
@@ -153,10 +156,10 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       unselectedWidgetColor: Color(0xff7cd3f7),
                     ),
                     child: Checkbox(
-                      value: _checkbox,
+                      value: _checkbox3,
                       onChanged: (value) {
                         setState(() {
-                          _checkbox = !_checkbox;
+                          _checkbox3 = !_checkbox3;
                         });
                       },
                     ),
@@ -195,25 +198,22 @@ class _AbsentScreenState extends State<AbsentScreen> {
               ],
             ),
           ),
-
           Center(
-                  child: ElevatedButton(         
-                    onPressed: () {},
-                    child: Text(
-                      'SUBMIT',
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w800),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xffe4087e),
-                      fixedSize: Size(140, 45),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // <-- Radius
-                      ),
-                    ),
-                  ),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'SUBMIT',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xffe4087e),
+                fixedSize: Size(140, 45),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // <-- Radius
                 ),
-
+              ),
+            ),
+          ),
         ],
       ),
     );

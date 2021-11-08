@@ -143,17 +143,19 @@ class _EditNewsState extends State<EditNews> {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: TextButton(
                       onPressed: () async {
-                        var body = await _keyEditor.currentState.getText();
-                        print(body);
-                        updateNews(
-                            int.parse(idNews),
-                            _titleController.text != ''
-                                ? _titleController.text
-                                : newsTitle,
-                            _descriptionController.text != ''
-                                ? _descriptionController.text
-                                : newsDescription,
-                            body != '' ? body : newsBody);
+                        await _keyEditor.currentState.getText().then((value) {
+                          print(value);
+                        });
+
+                        // updateNews(
+                        //     int.parse(idNews),
+                        //     _titleController.text != ''
+                        //         ? _titleController.text
+                        //         : newsTitle,
+                        //     _descriptionController.text != ''
+                        //         ? _descriptionController.text
+                        //         : newsDescription,
+                        //     body != '' ? body : newsBody);
 
                         // showDialog(
                         //     context: context,

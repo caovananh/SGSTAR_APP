@@ -182,6 +182,10 @@ class InfixApi {
     return baseApi + "school-event";
   }
 
+  // static String uploadImage() {
+  //   return baseApi + "upload-image";
+  // }
+
   static String schoolLeaveType(int id) {
     return baseApi + "school-leave-type/$id";
   }
@@ -217,12 +221,15 @@ class InfixApi {
     return baseApi +
         "school-student-skill-store/$id/$skill_1/$skill_2/$skill_3/$skill_4";
   }
-  static String storeNotification(String content, int id){
+
+  static String storeNotification(String content, int id) {
     return baseApi + "school-teacher-notification/$content/$id";
   }
-  static String getNotificationDetail(int id){
+
+  static String getNotificationDetail(int id) {
     return baseApi + "get-notification-detail/$id";
   }
+
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
