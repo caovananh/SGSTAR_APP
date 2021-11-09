@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/file.dart';
 
@@ -29,6 +30,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
   TextEditingController _controllerInput_1 = TextEditingController();
   TextEditingController _controllerInput_2 = TextEditingController();
   TextEditingController _controllerInput_3 = TextEditingController();
+  var _image;
 
   void initState() {
     myFuture = this.getLeaveTypeList();
@@ -300,18 +302,51 @@ class _LeaveScreenState extends State<LeaveScreen> {
                     },
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child:
+                          Text(_image != null ? _image.split('/').last : '')),
+                ),
                 Center(
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (_starttime > _endtime) {
+                      if (_controllerInput_3.text == '' ||
+                          _controllerInput_1.text == '' ||
+                          _controllerInput_2.text == '' ||
+                          dropdownValue == null ||
+                          _starttime > _endtime) {
                         showDialog(
                             context: context,
-                            builder: (BuildContext context) =>
-                                const AlertDialog(
-                                    title: Text(
-                                        'Start time must be early End time')));
-                      } else {}
-                      //storeLeave();
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Please fill all the input'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'Cancel');
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ));
+                      } else if (_image == null) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Please attach your file'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'Cancel');
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ));
+                      } else {
+                        _upload(_image);
+                        storeLeave();
+                      }
                     },
                     child: Text(
                       'SUBMIT',
@@ -359,7 +394,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
     String userId = pref.get('id');
     String schoolId = pref.get('schoolId');
     String academicId = pref.get('academicId');
-    //print(int.parse(dropdownValue));
+    //print(_image);
     final response = await http.get(Uri.parse(InfixApi.storeSchoolLeave(
         int.parse(userId),
         int.parse(dropdownValue),
@@ -367,13 +402,15 @@ class _LeaveScreenState extends State<LeaveScreen> {
         _controllerInput_2.text,
         _controllerInput_3.text,
         int.parse(schoolId),
-        int.parse(academicId))));
+        int.parse(academicId),
+        _image.split('/').last)));
 
     setState(() {
       _controllerInput_1.text = '';
       _controllerInput_2.text = '';
       _controllerInput_3.text = '';
     });
+
     return "Success!";
   }
 
@@ -393,20 +430,20 @@ class _LeaveScreenState extends State<LeaveScreen> {
         .post("https://sgstar.asia/api/upload-image", data: data)
         .then((response) => print(response))
         .catchError((error) => print(error));
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text('Upload successfully'),
+            ));
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   Future getImage() async {
-    var _image;
     final picker = ImagePicker();
 
-    // var _pickedFile = await picker.pickImage(
-    //   source: ImageSource.gallery,
-    //   imageQuality: 100, // <- Reduce Image quality
-    // );
     var _pickedFile = await FilePicker.platform.pickFiles();
-
-    _image = _pickedFile.files.first.path;
-
-    _upload(_image);
+    setState(() {
+      _image = _pickedFile.files.first.path;
+    });
   }
 }

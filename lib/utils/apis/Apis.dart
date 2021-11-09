@@ -191,9 +191,9 @@ class InfixApi {
   }
 
   static String storeSchoolLeave(int userId, int leaveId, String fromDate,
-      String toDate, String reason, int schoolId, int academicId) {
+      String toDate, String reason, int schoolId, int academicId, String file) {
     return baseApi +
-        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId";
+        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId/$file";
   }
 
   static String chatRoom(int id) {
@@ -230,16 +230,14 @@ class InfixApi {
     return baseApi + "get-notification-detail/$id";
   }
 
-<<<<<<< HEAD
-=======
-  static String getActivities(){
+  static String getActivities() {
     return baseApi + "get-activities";
   }
 
-  static String storeImage(){
+  static String storeImage() {
     return baseApi + "upload-image";
   }
->>>>>>> 625f35b619d63de59e3d910c76d63d127b3cdf80
+
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
