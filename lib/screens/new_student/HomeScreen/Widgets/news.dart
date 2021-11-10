@@ -31,6 +31,7 @@ class _NewsState extends State<News> {
   List<dynamic> listNews;
   bool hasData = false;
   String classId;
+
   int role;
   @override
   void initState() {
@@ -314,7 +315,9 @@ class _NewsState extends State<News> {
                                                             }),
                                                       ),
                                                       Text(
-                                                        '0 Comment',
+                                                        listNews[index][
+                                                                "comment_count"] +
+                                                            ' Comment',
                                                         textAlign:
                                                             TextAlign.right,
                                                       ),
@@ -351,7 +354,7 @@ class _NewsState extends State<News> {
                                                                       .toString());
                                                             }),
                                                       ),
-                                                      Text('0 Share'),
+                                                      Text(' Share'),
                                                     ],
                                                   ),
                                                 ),
@@ -475,7 +478,11 @@ class _NewsState extends State<News> {
                                                                             Container(
                                                                               width: double.infinity,
                                                                               decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
-                                                                              child: TextButton(onPressed: null, child: Text('Edit People')),
+                                                                              child: TextButton(
+                                                                                  onPressed: () {
+                                                                                    print('');
+                                                                                  },
+                                                                                  child: Text('Edit People')),
                                                                             ),
                                                                             Container(
                                                                               width: double.infinity,

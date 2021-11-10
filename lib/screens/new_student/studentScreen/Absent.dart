@@ -97,6 +97,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       onChanged: (value) {
                         setState(() {
                           _checkbox = !_checkbox;
+                          _checkbox1 = !_checkbox;
                         });
                       },
                     ),
@@ -111,6 +112,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       onChanged: (value) {
                         setState(() {
                           _checkbox1 = !_checkbox1;
+                          _checkbox = !_checkbox1;
                         });
                       },
                     ),
@@ -146,6 +148,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       onChanged: (value) {
                         setState(() {
                           _checkbox2 = !_checkbox2;
+                          _checkbox3 = !_checkbox2;
                         });
                       },
                     ),
@@ -160,6 +163,7 @@ class _AbsentScreenState extends State<AbsentScreen> {
                       onChanged: (value) {
                         setState(() {
                           _checkbox3 = !_checkbox3;
+                          _checkbox2 = !_checkbox3;
                         });
                       },
                     ),
