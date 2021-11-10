@@ -401,8 +401,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
         _controllerInput_1.text,
         _controllerInput_2.text,
         _controllerInput_3.text,
-        int.parse(schoolId),
-        int.parse(academicId),
         _image.split('/').last)));
 
     setState(() {

@@ -108,7 +108,7 @@ class _NewsState extends State<News> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return Container(
-                                          height: screenHeight / 5,
+                                          height: screenHeight / 4,
                                           child: Column(
                                             children: [
                                               TextButton(

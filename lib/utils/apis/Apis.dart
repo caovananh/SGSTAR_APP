@@ -191,9 +191,9 @@ class InfixApi {
   }
 
   static String storeSchoolLeave(int userId, int leaveId, String fromDate,
-      String toDate, String reason, int schoolId, int academicId, String file) {
+      String toDate, String reason, String file) {
     return baseApi +
-        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId/$file";
+        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$file";
   }
 
   static String chatRoom(int id) {
@@ -223,7 +223,7 @@ class InfixApi {
   }
 
   static String storeNotification(String content, int id) {
-    return baseApi + "school-teacher-notification/$content/$id";
+      return baseApi + "school-teacher-notification/$content/$id";
   }
 
   static String getNotificationDetail(int id) {

@@ -64,13 +64,9 @@ class _CommentStateContent extends State<CommentContent> {
                             ),
                             child: CircleAvatar(
                               radius: 25.0,
-                              backgroundImage:
-                                  listComment[index]['student_photo'] != null
-                                      ? NetworkImage('https://sgstar.asia/' +
-                                          listComment[index]['student_photo']
-                                              .toString())
-                                      : AssetImage(
-                                          'assets/images/icons/student1.png'),
+                              backgroundImage:int.parse(listComment[index]['role_id'])==2? AssetImage(
+                                  'assets/images/icons/student1.png'):AssetImage(
+                                  'assets/images/icons/teacher.png'),
                               backgroundColor: Colors.white,
                             ),
                           ),
@@ -149,7 +145,7 @@ class _CommentStateContent extends State<CommentContent> {
       listComment = map["data"]["commentContent"];
       // hasData=true;
     });
-    //print(listComment);
+    print(listComment);
     return "Success!";
   }
 

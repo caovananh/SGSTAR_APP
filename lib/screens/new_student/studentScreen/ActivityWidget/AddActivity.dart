@@ -32,9 +32,6 @@ class _StoreActivityState extends State<StoreActivity> {
   TextEditingController _controllerInput_3 = TextEditingController();
   var _image;
 
-  void _choose() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -241,6 +238,7 @@ class _StoreActivityState extends State<StoreActivity> {
                         },
                       ),
                   ),
+                  image!=null? Image.file(image):Container(),
                   Center(
                       child: Container(
                     width: double.infinity,
@@ -333,7 +331,10 @@ class _StoreActivityState extends State<StoreActivity> {
     // );
     var _pickedFile = await FilePicker.platform.pickFiles();
 
+    final temporaryImage=File(_pickedFile.files.first.path);
+
     setState(() {
+      this.image=temporaryImage;
       _image = _pickedFile.files.first.path;
     });
   }

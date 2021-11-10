@@ -15,6 +15,7 @@ class SendNote extends StatefulWidget {
 
 class _SendNoteState extends State<SendNote> {
 
+  List<dynamic> listComment;
   bool hasData = false;
   bool isSending=false;
   TextEditingController textController = TextEditingController();
@@ -78,7 +79,7 @@ class _SendNoteState extends State<SendNote> {
                   SizedBox(
                     height: 15.0,
                   ),
-                  TextField(
+                  TextFormField(
                     minLines: 15,
                     maxLines: null,
                     controller: textController,
@@ -99,7 +100,7 @@ class _SendNoteState extends State<SendNote> {
                           ),
                           onPressed: () async{
                             print('ok');
-                            // storeStudentSkill();
+                            print(textController.text);
                             storeStudentSkill();
                             if(isSending) return;
                             setState(() {
@@ -145,6 +146,14 @@ class _SendNoteState extends State<SendNote> {
 
     final response = await http.get(Uri.parse(InfixApi.storeNotification(
         textController.text,int.parse(idUser))));
+    Map<String, dynamic> map = json.decode(response.body);
+
+    setState(() {
+      listComment = map["data"]["commentContent"];
+      // hasData=true;
+    });
+    print(listComment);
+
     Navigator.pop(context);
   }
 }
