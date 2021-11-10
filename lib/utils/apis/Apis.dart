@@ -191,9 +191,9 @@ class InfixApi {
   }
 
   static String storeSchoolLeave(int userId, int leaveId, String fromDate,
-      String toDate, String reason) {
+      String toDate, String reason, int schoolId, int academicId, String file) {
     return baseApi +
-        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason";
+        "store-leave/$userId/$leaveId/$fromDate/$toDate/$reason/$schoolId/$academicId/$file";
   }
 
   static String chatRoom(int id) {
@@ -230,17 +230,18 @@ class InfixApi {
     return baseApi + "get-notification-detail/$id";
   }
 
-  static String getActivities(){
+  static String getActivities() {
     return baseApi + "get-activities";
   }
 
-  static String storeImage(){
+  static String storeImage() {
     return baseApi + "upload-image";
   }
 
   static String storeActivities(String title,String date,String description,String content,String image){
     return baseApi + "store-activities/$title/$date/$description/$content/$image";
   }
+
   //khoa end
   static String getNewsList(int id) {
     return baseApi + "news-list/$id";
