@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:infixedu/screens/new_student/CommonWidgets/AppBarWidget.dart';
+import 'package:infixedu/screens/new_student/studentScreen/ActivityWidget/DetailActivity.dart';
 import 'package:infixedu/utils/apis/Apis.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,49 +44,49 @@ class _ActivityScreenState extends State<ActivityScreen> {
             child: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  DropdownButton<String>(
-                    items: <String>['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4']
-                        .map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    hint: Text("All Grades"),
-                    onChanged: (_) {},
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  DropdownButton<String>(
-                    items: <String>['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4']
-                        .map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    hint: Text("All Subjects"),
-                    onChanged: (_) {},
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  IconButton(onPressed: null, icon: Icon(Icons.search))
-                ],
-              ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: [
+              //     DropdownButton<String>(
+              //       items: <String>['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4']
+              //           .map((String value) {
+              //         return DropdownMenuItem<String>(
+              //           value: value,
+              //           child: Text(value),
+              //         );
+              //       }).toList(),
+              //       hint: Text("All Grades"),
+              //       onChanged: (_) {},
+              //     ),
+              //     SizedBox(
+              //       width: 30,
+              //     ),
+              //     DropdownButton<String>(
+              //       items: <String>['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4']
+              //           .map((String value) {
+              //         return DropdownMenuItem<String>(
+              //           value: value,
+              //           child: Text(value),
+              //         );
+              //       }).toList(),
+              //       hint: Text("All Subjects"),
+              //       onChanged: (_) {},
+              //     ),
+              //     SizedBox(
+              //       width: 30,
+              //     ),
+              //     IconButton(onPressed: null, icon: Icon(Icons.search))
+              //   ],
+              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 30, top: 15, bottom: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'My Recent Activities',
+                      'Recent Activities',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -116,46 +117,56 @@ class _ActivityScreenState extends State<ActivityScreen> {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                              child: Container(
-                                width: 170,
-                                height: 300,
-                                decoration: new BoxDecoration(
-                                    image: DecorationImage(
-                                      image:  NetworkImage("https://sgstar.asia/" +listNews[index]['image']),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: new BorderRadius.circular(16.0),
-                                    color: Color(0xffe1f0ec)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(bottom: 15, right: 10),
-                                      child: Align(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Container(
-                                          height: 30,
-                                          width: 140,
-                                          decoration: BoxDecoration(
-                                              borderRadius: new BorderRadius.only(
-                                                  topRight: Radius.circular(40.0),
-                                                  bottomRight: Radius.circular(40.0)),
-                                              color: Color(0xFF7dd3f7)),
-                                          child: Center(
-                                            child: Text(
-                                              listNews[index]['news_title'],
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetailActivity(id: listNews[index]['id'])),
+                                  );
+                                },
+                                child: Container(
+                                  width: 170,
+                                  height: 300,
+                                  decoration: new BoxDecoration(
+                                      image: DecorationImage(
+                                        image:  NetworkImage("https://sgstar.asia/" +listNews[index]['image']),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: new BorderRadius.circular(16.0),
+                                      color: Color(0xffe1f0ec)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                        const EdgeInsets.only(bottom: 15, right: 10),
+                                        child: Align(
+                                          alignment: Alignment.bottomLeft,
+                                          child: Container(
+                                            height: 30,
+                                            width: 140,
+                                            decoration: BoxDecoration(
+                                                borderRadius: new BorderRadius.only(
+                                                    topRight: Radius.circular(40.0),
+                                                    bottomRight: Radius.circular(40.0)),
+                                                color: Color(0xFF7dd3f7)),
+                                            child: Center(
+                                              child: Text(
+                                                listNews[index]['news_title'],
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
