@@ -16,10 +16,10 @@ class NewsComment extends StatefulWidget {
 }
 
 class _NewsCommentState extends State<NewsComment> {
-
-  showComment(){
+  showComment() {
     return Text("Comment");
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +31,4 @@ class _NewsCommentState extends State<NewsComment> {
       body: CommentContent(),
     );
   }
-
-
 }

@@ -20,20 +20,19 @@ class _CommentStateContent extends State<CommentContent> {
   final items = List<String>.generate(35, (i) => "Item $i");
   List<dynamic> listComment;
   String idNews;
-  bool emojiStatus=false;
-  FocusNode focusNode =FocusNode();
-  Icon emojiIcon=Icon(Icons.emoji_emotions_outlined);
+  bool emojiStatus = false;
+  FocusNode focusNode = FocusNode();
+  Icon emojiIcon = Icon(Icons.emoji_emotions_outlined);
   @override
   void initState() {
     getNewsComment();
     focusNode.addListener(() {
-      if(focusNode.hasFocus){
+      if (focusNode.hasFocus) {
         setState(() {
-          emojiStatus=false;
-          emojiIcon=Icon(Icons.emoji_emotions_outlined);
+          emojiStatus = false;
+          emojiIcon = Icon(Icons.emoji_emotions_outlined);
         });
       }
-
     });
     super.initState();
   }
@@ -44,71 +43,78 @@ class _CommentStateContent extends State<CommentContent> {
       children: <Widget>[
         Expanded(
             child: RefreshIndicator(
-              onRefresh: getNewsComment,
-              child: ListView.builder(
-                  itemCount: listComment == null ? 0 : listComment.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
-                      child: Row(
-                        children: [
-                          Container(
-                            // padding: EdgeInsets.only(left: 10),
-                            decoration: new BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: new Border.all(
-                                color: Color(0xFF9EDEFF),
-                                width: 1.0,
-                              ),
-                            ),
-                            child: CircleAvatar(
-                              radius: 25.0,
-                              backgroundImage:int.parse(listComment[index]['role_id'])==2? AssetImage(
-                                  'assets/images/icons/student1.png'):AssetImage(
-                                  'assets/images/icons/teacher.png'),
-                              backgroundColor: Colors.white,
-                            ),
+          onRefresh: getNewsComment,
+          child: ListView.builder(
+              itemCount: listComment == null ? 0 : listComment.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                  child: Row(
+                    children: [
+                      Container(
+                        // padding: EdgeInsets.only(left: 10),
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: new Border.all(
+                            color: Color(0xFF9EDEFF),
+                            width: 1.0,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color(0xFF9EDEFF),
-                                ),
-                                padding: EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      listComment[index]['full_name'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      listComment[index]['comment_content'],
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
+                        child: CircleAvatar(
+                          radius: 25.0,
+                          backgroundImage: listComment[index]
+                                      ['student_photo'] !=
+                                  null
+                              ? NetworkImage('https://sgstar.asia/' +
+                                  listComment[index]['student_photo']
+                                      .toString())
+                              : AssetImage('assets/images/icons/student1.png'),
+                          backgroundColor: Colors.white,
+                        ),
                       ),
-                    );
-                  }),
-            )),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color(0xFF9EDEFF),
+                            ),
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  listComment[index]['full_name'] != null
+                                      ? listComment[index]['full_name']
+                                      : '',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  listComment[index]['comment_content'] != null
+                                      ? listComment[index]['comment_content']
+                                      : '',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+        )),
         Divider(),
-
         ListTile(
           leading: showEmoji(),
           title: TextFormField(
@@ -145,7 +151,7 @@ class _CommentStateContent extends State<CommentContent> {
       listComment = map["data"]["commentContent"];
       // hasData=true;
     });
-    print(listComment);
+    //print(listComment);
     return "Success!";
   }
 
@@ -166,7 +172,7 @@ class _CommentStateContent extends State<CommentContent> {
       columns: 7,
       numRecommended: 10,
       onEmojiSelected: (emoji, category) {
-        commentController.text=commentController.text+emoji.emoji;
+        commentController.text = commentController.text + emoji.emoji;
       },
     );
   }
@@ -176,10 +182,10 @@ class _CommentStateContent extends State<CommentContent> {
         child: IconButton(
           onPressed: () {
             focusNode.unfocus();
-            focusNode.canRequestFocus=false;
+            focusNode.canRequestFocus = false;
             setState(() {
-              emojiStatus=!emojiStatus;
-              emojiIcon=Icon(Icons.keyboard);
+              emojiStatus = !emojiStatus;
+              emojiIcon = Icon(Icons.keyboard);
             });
           },
           icon: emojiIcon,

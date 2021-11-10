@@ -39,6 +39,7 @@ class _EditNewsState extends State<EditNews> {
   String newsBody;
   String newsPublishDate;
   String idNews;
+  var bodycontent;
   bool hasData = false;
   TextEditingController _titleController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
@@ -143,38 +144,19 @@ class _EditNewsState extends State<EditNews> {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: TextButton(
                       onPressed: () async {
-                        await _keyEditor.currentState.getText().then((value) {
-                          print(value);
-                        });
+                        bodycontent = await _keyEditor.currentState.getText();
+                        bodycontent = await _keyEditor.currentState.getText();
 
-                        // updateNews(
-                        //     int.parse(idNews),
-                        //     _titleController.text != ''
-                        //         ? _titleController.text
-                        //         : newsTitle,
-                        //     _descriptionController.text != ''
-                        //         ? _descriptionController.text
-                        //         : newsDescription,
-                        //     body != '' ? body : newsBody);
-
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (BuildContext context) => AlertDialog(
-                        //           title: const Text('AlertDialog Title'),
-                        //           content:
-                        //               const Text('AlertDialog description'),
-                        //           actions: <Widget>[
-                        //             TextButton(
-                        //               onPressed: () =>
-                        //                   Navigator.pop(context, 'Cancel'),
-                        //               child: const Text('Cancel'),
-                        //             ),
-                        //             TextButton(
-                        //               onPressed: () {},
-                        //               child: const Text('OK'),
-                        //             ),
-                        //           ],
-                        //         ));
+                        print(_keyEditor.currentState.text);
+                        if (_titleController.text != '' &&
+                            _descriptionController.text != '' &&
+                            bodycontent != '') {
+                          updateNews(
+                              int.tryParse(idNews),
+                              _titleController.text,
+                              _descriptionController.text,
+                              bodycontent);
+                        }
                       },
                       style: TextButton.styleFrom(
                           primary: Colors.white, backgroundColor: Colors.blue),
@@ -203,7 +185,20 @@ class _EditNewsState extends State<EditNews> {
     final response = await http.get(
         Uri.parse(InfixApi.updateNews($id, $title, $description, $newsBody)));
     print("success");
-    //Navigator.of(context).popUntil((route) => route.isFirst);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text('Update successfully !'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, 'Cancel');
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ));
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   Future<void> getNewsContent() async {
