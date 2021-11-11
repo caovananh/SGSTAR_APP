@@ -9,6 +9,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsComment.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/NewsContent.dart';
+import 'package:infixedu/screens/new_student/HomeScreen/Widgets/blockUser.dart';
 import 'package:infixedu/screens/new_student/HomeScreen/Widgets/editNews.dart';
 import 'package:infixedu/screens/new_student/studentScreen/studentPostScreen.dart';
 import 'package:infixedu/utils/Utils.dart';
@@ -383,14 +384,15 @@ class _NewsState extends State<News> {
                                                                           0xffd6d2d2),
                                                                   context:
                                                                       context,
+                                                                  isScrollControlled: true,
                                                                   builder:
                                                                       (BuildContext
                                                                           context) {
                                                                     return Container(
-                                                                        height: screenHeight /
-                                                                            2.2,
+                                                                        height: MediaQuery.of(context).size.height * 0.60,
                                                                         child:
-                                                                            Column(
+                                                                            ListView(
+                                                                              shrinkWrap: true,
                                                                           children: [
                                                                             Container(
                                                                               width: double.infinity,
@@ -480,7 +482,10 @@ class _NewsState extends State<News> {
                                                                               decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
                                                                               child: TextButton(
                                                                                   onPressed: () {
-                                                                                    print('');
+                                                                                    Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(builder: (context) => BlockUser(id: listNews[index]["id"])),
+                                                                                    );
                                                                                   },
                                                                                   child: Text('Edit People')),
                                                                             ),

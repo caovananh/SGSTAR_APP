@@ -122,14 +122,6 @@ class _SendNoteState extends State<SendNote> {
                           ) : Text('Save'),
                         ),
                       )
-                    // OutlinedButton.icon(
-                    //   onPressed: () {
-                    //     storeStudentSkill();
-                    //     print('ok');
-                    //   },
-                    //   label: Text('Save'),
-                    //   icon: Icon(Icons.edit_sharp),
-                    // ),
                   )
                 ],
               ),

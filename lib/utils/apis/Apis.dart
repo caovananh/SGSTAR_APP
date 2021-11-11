@@ -207,7 +207,9 @@ class InfixApi {
   static String getTeacherInfo(int id) {
     return baseApi + "school-teacher-information/$id";
   }
-
+  static String getTeacherStudent(int id){
+    return baseApi + "school-teacher-student/$id";
+  }
   static String getStudentSkill(int id) {
     return baseApi + "school-student-skill/$id";
   }
